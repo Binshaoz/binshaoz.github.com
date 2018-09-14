@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2018/07/08/hello-world/"/>
+      <url>/2018/07/08/hello-world/</url>
+      <content type="html"><![CDATA[<p>Hi，我是十三，当然也可以叫我 Binshao。这是我的第一篇个人博客！</p><a id="more"></a>]]></content>
+      
+      <categories>
+          
+          <category> Hello World </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hello World </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
+</search>
