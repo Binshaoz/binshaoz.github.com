@@ -1555,6 +1555,38 @@ body .ui-tooltip {
 .article-entry figure table tbody tr:hover {
   background: none;
 }
+.article-entry #notFound {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  width: 80%;
+  height: auto;
+}
+.article-entry #yun {
+  height: 320px;
+  width: 100%;
+  position: relative;
+}
+@media only screen and (max-width: 768px) {
+  .article-entry #yun {
+    height: 300px;
+  }
+  .article-entry #notFound {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .article-entry #yun {
+    height: 200px;
+  }
+  .article-entry #notFound {
+    width: 120%;
+  }
+}
 .article-meta {
   position: absolute;
   right: 0;
