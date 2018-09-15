@@ -258,7 +258,7 @@ a {
   background: none;
   font-weight: bold;
 }
-#container +.hide-left-col {
+#container .hide-left-col {
   z-index: 999;
   cursor: pointer;
   -webkit-transition: all 0.2s ease-in;
@@ -276,13 +276,13 @@ a {
   font-size: 28px;
   background: none;
 }
-#container +.hide-left-col .fa {
+#container .hide-left-col .fa {
   color: #fff;
 }
-#container +.hide-left-col:hover {
+#container .hide-left-col:hover {
   background: rgba(147,181,224,0.3) !important;
 }
-#container +.hide-left-col:hover .fa {
+#container .hide-left-col:hover .fa {
   color: #fff;
 }
 #container .mid-col {
@@ -293,7 +293,7 @@ a {
   left: 300px;
   width: auto;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
   #container .hide-left-col {
     display: none;
   }
