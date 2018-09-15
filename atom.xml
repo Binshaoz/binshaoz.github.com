@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>十三的个人博客</title>
+  
+  <subtitle>我不在彩虹，彩虹在我.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://Binshao.site/"/>
+  <updated>2018-09-14T11:52:36.164Z</updated>
+  <id>http://Binshao.site/</id>
+  
+  <author>
+    <name>十三</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://Binshao.site/2018/07/08/hello-world/"/>
+    <id>http://Binshao.site/2018/07/08/hello-world/</id>
+    <published>2018-07-07T16:00:00.000Z</published>
+    <updated>2018-09-14T11:52:36.164Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hi，我是十三，当然也可以叫我 Binshao。这是我的第一篇个人博客！</p><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hi，我是十三，当然也可以叫我 Binshao。这是我的第一篇个人博客！&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hello World" scheme="http://Binshao.site/categories/Hello-World/"/>
+    
+    
+      <category term="Hello World" scheme="http://Binshao.site/tags/Hello-World/"/>
+    
+  </entry>
+  
+</feed>
