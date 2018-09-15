@@ -2845,7 +2845,18 @@ pre .javascript .function {
   top: 0.4375rem;
   left: 2px;
 }
-.article-tag::before .article-tag-list,
+.article-tag::before,
+.article-category::before {
+  float: left;
+  color: #999;
+  font: 16px FontAwesome;
+  margin-right: 5px;
+  margin-top: 0.333333333333333rem;
+}
+.article-tag::before {
+  content: "\f02b";
+  margin-left: 1em;
+}
 .article-tag .article-tag-list {
   display: -webkit-box;
   display: -moz-box;
@@ -2859,27 +2870,14 @@ pre .javascript .function {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.article-tag::before span,
 .article-tag span {
   cursor: pointer;
   line-height: 29px;
   font-size: 13px;
   color: #aaa;
 }
-.article-tag::before span:before,
 .article-tag span:before {
   content: "\27A4";
-  margin-left: 1em;
-}
-.article-category::before {
-  float: left;
-  color: #999;
-  font: 16px FontAwesome;
-  margin-right: 5px;
-  margin-top: 0.333333333333333rem;
-}
-.article-tag::before {
-  content: "\f02b";
   margin-left: 1em;
 }
 .article-category::before {
