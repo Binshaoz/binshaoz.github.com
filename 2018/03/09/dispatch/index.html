@@ -15,21 +15,21 @@
 
 
 
-<meta name="description" content="这几天让我感觉春天来了！到处散发着“春”（荷尔蒙）的气息？（微笑脸）最近项目需要用到 SurfaceView，发现很久没有写 SurfaceView，什么都忘记了！真是好记性不如烂笔头，记录下吧！">
-<meta name="keywords" content="SurfaceView">
+<meta name="description" content="Hello，大家好！今天广州的天气真好，暖洋洋的，好适合出去玩玩出去走走。哈哈，毕竟老是待在电脑前也不是很好，其实我挺想去云南玩的，觉得那里真的好美！有机会，一定去！">
+<meta name="keywords" content="事件分发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SurfaceView">
-<meta property="og:url" content="http://Binshao.site/2018/03/07/SurfaceView/index.html">
+<meta property="og:title" content="浅谈事件分发机制">
+<meta property="og:url" content="http://Binshao.site/2018/03/09/dispatch/index.html">
 <meta property="og:site_name" content="十三的个人博客">
-<meta property="og:description" content="这几天让我感觉春天来了！到处散发着“春”（荷尔蒙）的气息？（微笑脸）最近项目需要用到 SurfaceView，发现很久没有写 SurfaceView，什么都忘记了！真是好记性不如烂笔头，记录下吧！">
+<meta property="og:description" content="Hello，大家好！今天广州的天气真好，暖洋洋的，好适合出去玩玩出去走走。哈哈，毕竟老是待在电脑前也不是很好，其实我挺想去云南玩的，觉得那里真的好美！有机会，一定去！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fvbrhq8m8zj30u00gutfs.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvbpreg5gmj31hc0u0wmi.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg">
-<meta property="og:updated_time" content="2018-09-16T14:43:51.467Z">
+<meta property="og:updated_time" content="2018-09-16T15:05:48.632Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SurfaceView">
-<meta name="twitter:description" content="这几天让我感觉春天来了！到处散发着“春”（荷尔蒙）的气息？（微笑脸）最近项目需要用到 SurfaceView，发现很久没有写 SurfaceView，什么都忘记了！真是好记性不如烂笔头，记录下吧！">
-<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fvbrhq8m8zj30u00gutfs.jpg">
+<meta name="twitter:title" content="浅谈事件分发机制">
+<meta name="twitter:description" content="Hello，大家好！今天广州的天气真好，暖洋洋的，好适合出去玩玩出去走走。哈哈，毕竟老是待在电脑前也不是很好，其实我挺想去云南玩的，觉得那里真的好美！有机会，一定去！">
+<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvbpreg5gmj31hc0u0wmi.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -61,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>SurfaceView | 十三的个人博客</title>
+<title>浅谈事件分发机制 | 十三的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -279,11 +279,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-SurfaceView" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-dispatch" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/03/07/SurfaceView/" class="article-date">
-      <time datetime="2018-03-07T10:47:39.000Z" itemprop="datePublished">2018-03-07</time>
+      <a href="/2018/03/09/dispatch/" class="article-date">
+      <time datetime="2018-03-09T14:45:27.000Z" itemprop="datePublished">2018-03-09</time>
 </a>
 
 
@@ -298,7 +298,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      SurfaceView
+      浅谈事件分发机制
     </h1>
   
 
@@ -313,9 +313,9 @@
 
         
     <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SurfaceView/">SurfaceView</a></li></ul>
-       <span class="post-count">总字数974</span>
-       <span class="post-count">预计阅读3分钟</span>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事件分发/">事件分发</a></li></ul>
+       <span class="post-count">总字数1.2k</span>
+       <span class="post-count">预计阅读4分钟</span>
     </div>
 
         <div class="clearfix"></div>
@@ -326,25 +326,40 @@
       
           
         <blockquote>
-<p>这几天让我感觉春天来了！到处散发着“春”（荷尔蒙）的气息？（微笑脸）<br>最近项目需要用到 SurfaceView，发现很久没有写 SurfaceView，什么都忘记了！真是好记性不如烂笔头，记录下吧！</p>
+<p>Hello，大家好！今天广州的天气真好，暖洋洋的，好适合出去玩玩出去走走。哈哈，毕竟老是待在电脑前也不是很好，其实我挺想去云南玩的，觉得那里真的好美！有机会，一定去！</p>
 </blockquote>
 <a id="more"></a>
-<p><div align="center"><img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fvbrhq8m8zj30u00gutfs.jpg" alt=""></div></p>
-<h2 id="关于-SurfaceView"><a href="#关于-SurfaceView" class="headerlink" title="关于 SurfaceView"></a>关于 SurfaceView</h2><p>&emsp;&emsp;首先我们发现 SurfaceView 继承自 View，我们都知道 Android 系统提供了 View 让开发者进行绘图处理，那么这个 SurfaceView 又是用来干什么的呢？它和 View 之间又有什么爱恨情仇呢？别急！喝杯茶，且听我娓娓道来。  </p>
-<p>View 的确可以进行绘图处理，但在某些情况下也有些心有余而力不足（才美不外现？），Android 系统通过发出信号对屏幕进行重新绘制，刷新页面间隔为 16 ms，在这段时间内，View 如果执行完成刷新页面操作，页面在视觉上就不会产生卡顿的现象，执行逻辑不多还好，任务一多，如需要频繁刷新页面，特别是 View 在主线程中更新 UI 界面，就会造成主线程阻塞、画面卡顿。你说那可怎么办才好？这不，Android 系统就提供了 SurfaceView 来解决这个问题！<br><br></p>
-<h2 id="区别及使用场景"><a href="#区别及使用场景" class="headerlink" title="区别及使用场景"></a>区别及使用场景</h2><ul>
-<li>SurfaceView 通过子线程中进行画面更新，View 则在主线程中进行画面更新。</li>
-<li>SurfaceView 用于被动更新，如频繁画面更新，View 则用于主动更新，如触摸点击等事件响应等。</li>
-<li>SurfaceView 在底层实现了双缓冲机制，效率大大提升了，View 则没有。</li>
+<p><div align="center"><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvbpreg5gmj31hc0u0wmi.jpg" alt=""></div></p>
+<h2 id="什么是事件分发"><a href="#什么是事件分发" class="headerlink" title="什么是事件分发"></a>什么是事件分发</h2><p>&emsp;&emsp;今天简单总结下事件分发机制，主要是了解事件的分发、拦截、以及处理事件的流程。在我们学习的时候，最好先对整体流程有一个大致的了解后，我们再去深入学习分发机制，这样就不好学得一头雾水，摸不着头脑！</p>
+<p>&emsp;&emsp;了解事件之前，首先我们要知道触摸事件，一般为按下、滑动、抬起，这个想必大家都很清楚，而 Android 为这些触摸事件封装了个类 MotionEvent, 我们可以通过它去获取触摸点的坐标，或者去获得点击的事件类型，通过不同的 Action 实现不同的逻辑。我们都知道 View 可以放在 ViewGroup 里面，而 ViewGroup 又可以嵌套在另一个 ViewGroup 中，这时候问题就来了，我们的触摸事件到底要给谁处理，是给子 View 还是 父辈 ViewGroup？而事件分发其实就是这个 MotionEvent 事件的分发过程，当事件产生之后，需要把这个事件交给具体的一个 View 进行处理，而这个交付过程就是分发过程。<br><br></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&emsp;&emsp;这里我们可以联想一下生活中的常见场景，平时上班中，经理把个任务交给下属组长去办，而组长又把这个任务交给了我。当我奋力加班终于把任务完成后，就把完成结果交给了组长，组长又把任务完成结果交给了经理，这样一个任务顺利完成，到最后你发现，领导照样活的滋润，你还是你，苦逼！</p>
+<p>&emsp;&emsp;通过上面这个例子是否更加了解整个过程呢？接下来继续说，事件的分发过程由三个方法完成：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">        Log.d(<span class="string">"Binshao"</span>, <span class="string">"ViewGroupA dispatchTouchEvent"</span> + ev.getAction());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.dispatchTouchEvent(ev);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">        Log.d(<span class="string">"Binshao"</span>, <span class="string">"ViewGroupA onInterceptTouchEvent"</span> + ev.getAction());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onInterceptTouchEvent(ev);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">       Log.d(<span class="string">"Binshao"</span>, <span class="string">"ViewGroupA onTouchEvent"</span> + event.getAction());</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>下面来介绍一下这三个方法：</p>
+<ul>
+<li><p>public boolean dispatchTouchEvent(MotionEvent ev)<br>  这个方法是用来进行事件分发的，事件如果传递给当前 View，方法会被调用.</p>
+</li>
+<li><p>public boolean onInterceptTouchEvent(MotionEvent ev)<br>  在上面的方法内部调用，是用来判断是否拦截事件，它的返回值为 True 不继续流程；默认为 False，不拦截继续流程.</p>
+</li>
+<li><p>public boolean onTouchEvent(MotionEvent event)<br>  用来处理点击事件，返回结果表示是否消耗当前事件.<br><br></p>
+</li>
 </ul>
-<p>那么什么时候使用 SurfaceView？<br>&emsp;&emsp;如果当前画面需要不停绘制或者数据处理量较大时，为避免 UI 线程堵塞，就用 SurfaceView 代替 View。<br><br></p>
-<h2 id="光说不练假把式"><a href="#光说不练假把式" class="headerlink" title="光说不练假把式"></a>光说不练假把式</h2><p>&emsp;&emsp;编写 SurfaceView 是可以套用模板代码的，这里贴一下模板代码，然后我们这里面编写相应的逻辑即可！  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SurfaceViewTemplate</span> <span class="keyword">extends</span> <span class="title">SurfaceView</span> <span class="keyword">implements</span></span></span><br><span class="line"><span class="class">         <span class="title">SurfaceHolder</span>.<span class="title">Callback</span>, <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="comment">// SurfaceHolder</span></span><br><span class="line">    <span class="keyword">private</span> SurfaceHolder mHolder;</span><br><span class="line">    <span class="comment">// 用于绘图的Canvas</span></span><br><span class="line">    <span class="keyword">private</span> Canvas mCanvas;</span><br><span class="line">    <span class="comment">// 子线程开启标志位</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> mIsRunning;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SurfaceViewTemplate</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SurfaceViewTemplate</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SurfaceViewTemplate</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyle);</span><br><span class="line">        initView();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mHolder = getHolder();</span><br><span class="line">        mHolder.addCallback(<span class="keyword">this</span>);</span><br><span class="line">        setFocusable(<span class="keyword">true</span>);</span><br><span class="line">        setFocusableInTouchMode(<span class="keyword">true</span>);</span><br><span class="line">        setKeepScreenOn(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">surfaceCreated</span><span class="params">(SurfaceHolder holder)</span> </span>&#123;</span><br><span class="line">        mIsRunning = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">this</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">surfaceChanged</span><span class="params">(SurfaceHolder holder,</span></span></span><br><span class="line"><span class="function"><span class="params">                               <span class="keyword">int</span> format, <span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">surfaceDestroyed</span><span class="params">(SurfaceHolder holder)</span> </span>&#123;</span><br><span class="line">        mIsRunning = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (mIsRunning) &#123;</span><br><span class="line">            draw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            mCanvas = mHolder.lockCanvas();</span><br><span class="line">            <span class="comment">// 在这里编写绘制逻辑</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">          &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (mCanvas != <span class="keyword">null</span>)</span><br><span class="line">                mHolder.unlockCanvasAndPost(mCanvas);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;可以看到我们首先创建个模板继承自 SurfaceView，分别实现 SurfaceHolder.Callback 和 Runnable 这两个接口并实现接口里的方法，然后初始化 SurfaceHolder以及注册 SurfaceHolder的回调方法。和 View 一样，成员变量 Canvas 也是用来给 SurfaceView 进行绘图的，而布尔类型的 mIsRunning 则是用来控制子线程的，因为 SurfaceView 会在子线程中进行绘制操作。  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SurfaceView 的创建</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">surfaceCreated</span><span class="params">(SurfaceHolder holder)</span> </span>&#123;</span><br><span class="line">       mIsDrawing = <span class="keyword">true</span>;</span><br><span class="line">       <span class="keyword">new</span> Thread(<span class="keyword">this</span>).start();</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">// SurfaceView 的改变</span></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">surfaceChanged</span><span class="params">(SurfaceHolder holder,</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="keyword">int</span> format, <span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">// SurfaceView 的销毁</span></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">surfaceDestroyed</span><span class="params">(SurfaceHolder holder)</span> </span>&#123;</span><br><span class="line">       mIsDrawing = <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p><div align="center" style="color: red; font-size: 13px;">实现 SurfaceHolder.Callback 接口的方法</div></p>
-<p>&emsp;&emsp;绘制时，利用上图三个回调方法，在 surfaceCreated()方法开启子线程进行绘制操作，子线程中则使用 while 循环进行画面绘制，而绘制逻辑中通过 lockCanvas()方法获得 Canvas 对象去绘制对象，绘制完成后，最后通过 unlockCanvasAndPost(mCanvas)方法提交内容。</p>
-<p>&emsp;&emsp;到这里整个模板代码就完成了，我们编写 SurfaceView 只需要套用模板，在里面编写相应的逻辑就可以了！<br><br><br><br></p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>&emsp;&emsp;光说不练假把式，这里上个简单演示，验证我们的结论：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">com.example.binshao.testdemo1.MyViewGroupA</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:background</span>=<span class="string">"@android:color/holo_blue_bright"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">com.example.binshao.testdemo1.MyViewGroupB</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"300dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"300dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@android:color/holo_green_dark"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">com.example.binshao.testdemo1.MyView</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">"150dp"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">"150dp"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:background</span>=<span class="string">"@android:color/darker_gray"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">com.example.binshao.testdemo1.MyViewGroupB</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">com.example.binshao.testdemo1.MyViewGroupA</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里直接就上布局文件了，自定义 View 和 ViewGroup 代码就不上了，非常简单，下面我们来看看日志打印：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">E/Binshao: ViewGroupA dispatchTouchEvent0</span><br><span class="line">E/Binshao: ViewGroupA onInterceptTouchEvent0</span><br><span class="line">E/Binshao: ViewGroupB dispatchTouchEvent0</span><br><span class="line">E/Binshao: ViewGroupB onInterceptTouchEvent0</span><br><span class="line">E/Binshao: View dispatchTouchEvent0</span><br><span class="line">E/Binshao: View onTouchEvent0</span><br><span class="line">E/Binshao: ViewGroupB onTouchEvent0</span><br><span class="line">E/Binshao: ViewGroupA onTouchEvent0</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;果然结果和我们分析的一样。</p>
+<p>&emsp;&emsp;当一个事件产生后，首先会传递给根 ViewGroup，这时 dispatchTouchEvent 就会被调用，此时如果当前 ViewGroup 的 onInterceptTouchEvent 方法返回值为 true 就表示它要拦截当前事件，如果为 false 就表示不拦截当前事件，这时候事件就会继续传递到它的子元素，接着子元素就会像上面说的一样，如此重复直到事件被处理。假如所有的元素都不处理这个事件，那么这个事件最终传递给 Activity 处理，也就是它的 onTouchEvent 方法会被调用。<br><br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><br></p>
+<ul>
+<li><p>ViewGroup 默认不拦截事件，它的 onInterceptTouchEvent 方法默认返回 false.</p>
+</li>
+<li><p>View 是没有 onInterceptTouchEvent 方法，一旦有事件传递给它，它的 onTouchEvent 方法就会被调用.</p>
+</li>
+<li><p>事件传递过程是由外向内的，也就是先传递给父元素，再由父元素分发给子元素.</p>
+</li>
+</ul>
+<p><br><br><br></p>
 <hr>
 <p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号</div></p>
 
@@ -355,13 +370,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/03/07/SurfaceView/">SurfaceView</a></p>
+        <p><span>本文标题:</span><a href="/2018/03/09/dispatch/">浅谈事件分发机制</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
-        <p><span>发布时间:</span>2018-03-07, 18:47:39</p>
-        <p><span>最后更新:</span>2018-09-16, 22:43:51</p>
+        <p><span>发布时间:</span>2018-03-09, 22:45:27</p>
+        <p><span>最后更新:</span>2018-09-16, 23:05:48</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/03/07/SurfaceView/" title="SurfaceView">http://Binshao.site/2018/03/07/SurfaceView/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/03/07/SurfaceView/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/03/09/dispatch/" title="浅谈事件分发机制">http://Binshao.site/2018/03/09/dispatch/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/03/09/dispatch/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -374,15 +389,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/03/08/AttributeSet/">
-                    Android 自定义属性
+                <a href="/2018/08/30/Aug/">
+                    扎心的八月
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/02/17/hello-world/">
-                    Hello World
+                <a href="/2018/03/08/AttributeSet/">
+                    Android 自定义属性
                 </a>
             </div>
         
@@ -394,7 +409,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于-SurfaceView"><span class="toc-number">1.</span> <span class="toc-text">关于 SurfaceView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#区别及使用场景"><span class="toc-number">2.</span> <span class="toc-text">区别及使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#光说不练假把式"><span class="toc-number">3.</span> <span class="toc-text">光说不练假把式</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是事件分发"><span class="toc-number">1.</span> <span class="toc-text">什么是事件分发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实践"><span class="toc-number">3.</span> <span class="toc-text">实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
         
     </div>
     <style>
@@ -460,7 +475,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/03/08/AttributeSet/" title="上一篇: Android 自定义属性">
+            <a href="/2018/08/30/Aug/" title="上一篇: 扎心的八月">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -468,7 +483,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/02/17/hello-world/" title="下一篇: Hello World">
+            <a href="/2018/03/08/AttributeSet/" title="下一篇: Android 自定义属性">
                 <i class="fa fa-angle-right"></i>
             </a>
         
