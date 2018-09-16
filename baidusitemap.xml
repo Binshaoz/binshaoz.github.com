@@ -3,17 +3,13 @@
 
 
     
-    
-    
-    
-    
   <url>
-    <loc>http://Binshao.site/2018/07/08/hello-world/</loc>
-    <lastmod>2018-09-14T11:52:36.164Z</lastmod>
+    <loc>http://Binshao.site/2018/01/01/hello-world/</loc>
+    <lastmod>2018-09-16T10:39:48.328Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
-        <pubTime>2018-07-07T16:00:00.000Z</pubTime>
+        <pubTime>2018-01-01T05:39:03.000Z</pubTime>
         
         <tag>Hello World</tag>
          
@@ -26,4 +22,30 @@
     </data>
     </url>
 
+    
+  <url>
+    <loc>http://Binshao.site/2018/03/07/Aug/</loc>
+    <lastmod>2018-09-16T10:38:19.504Z</lastmod>
+    <data>
+        <display>
+        <title>扎心的八月</title>
+        <pubTime>2018-03-07T01:29:02.000Z</pubTime>
+        
+        <tag>健康</tag>
+         
+        <tag>生活杂谈</tag>
+         
+         
+           
+             
+              <breadCrumb title="时光任意门" url="http://Binshao.site/categories/%E6%97%B6%E5%85%89%E4%BB%BB%E6%84%8F%E9%97%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+    
 </urlset>
