@@ -4,6 +4,126 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/07/15/Singletop/</loc>
+    <lastmod>2018-09-17T08:15:37.713Z</lastmod>
+    <data>
+        <display>
+        <title>以古代帝皇来讲单例模式</title>
+        <pubTime>2018-07-15T06:13:01.000Z</pubTime>
+        
+        <tag>单例模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/09/Creator/</loc>
+    <lastmod>2018-09-17T07:52:28.654Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之工厂方法模式</title>
+        <pubTime>2018-07-09T00:11:11.000Z</pubTime>
+        
+        <tag>工厂方法模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/07/simpleFactory/</loc>
+    <lastmod>2018-09-17T07:29:56.313Z</lastmod>
+    <data>
+        <display>
+        <title>哆啦A梦来讲简单工厂模式</title>
+        <pubTime>2018-07-07T06:10:24.000Z</pubTime>
+        
+        <tag>简单工厂模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/06/Strategy/</loc>
+    <lastmod>2018-09-17T07:19:35.090Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之策略模式</title>
+        <pubTime>2018-07-06T06:09:56.000Z</pubTime>
+        
+        <tag>策略模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/04/Memento/</loc>
+    <lastmod>2018-09-17T07:14:48.864Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之备忘录模式</title>
+        <pubTime>2018-07-04T06:09:22.000Z</pubTime>
+        
+        <tag>备忘录模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/06/25/blackApple/</loc>
+    <lastmod>2018-09-17T06:35:54.510Z</lastmod>
+    <data>
+        <display>
+        <title>黑苹果踩坑指南</title>
+        <pubTime>2018-06-25T06:07:49.000Z</pubTime>
+        
+        <tag>黑苹果</tag>
+         
+         
+           
+             
+              <breadCrumb title="Mac" url="http://Binshao.site/categories/Mac/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/06/17/readBook/</loc>
     <lastmod>2018-09-17T05:31:38.347Z</lastmod>
     <data>
