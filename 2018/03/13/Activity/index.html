@@ -15,21 +15,22 @@
 
 
 
-<meta name="description" content="Hello，大家好！今天总结一篇自定义属性的文章，很久之前就想要总结了，懒……对了今天还是三月八日，祝各位小仙女女神节快乐！">
-<meta name="keywords" content="Android 自定义属性">
+<meta name="description" content="Hello，大家好！今天周一，大家鼓足干劲就是干，反手就是一巴掌（哈哈）。  &amp;emsp;&amp;emsp;这篇文章是关于 Activity 的一些总结（小白文，莫喷)，其中部分是刚哥《艺术探索》的读书笔记，Activity 作为四大金刚中出现频率最高的组件，我们可以在各个地方都可以见到它。总结过程中也借此好好回顾下，分享给大家，当然也希望各位大牛能不吝赐教。">
+<meta name="keywords" content="Activity">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android 自定义属性">
-<meta property="og:url" content="http://Binshao.site/2018/03/08/AttributeSet/index.html">
+<meta property="og:title" content="Activity 基础总结">
+<meta property="og:url" content="http://Binshao.site/2018/03/13/Activity/index.html">
 <meta property="og:site_name" content="十三的个人博客">
-<meta property="og:description" content="Hello，大家好！今天总结一篇自定义属性的文章，很久之前就想要总结了，懒……对了今天还是三月八日，祝各位小仙女女神节快乐！">
+<meta property="og:description" content="Hello，大家好！今天周一，大家鼓足干劲就是干，反手就是一巴掌（哈哈）。  &amp;emsp;&amp;emsp;这篇文章是关于 Activity 的一些总结（小白文，莫喷)，其中部分是刚哥《艺术探索》的读书笔记，Activity 作为四大金刚中出现频率最高的组件，我们可以在各个地方都可以见到它。总结过程中也借此好好回顾下，分享给大家，当然也希望各位大牛能不吝赐教。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvbrbhfdfcj30dw0k6tbc.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvcamdvj9wj30zk0nq488.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvcat0b0ryj30e90ift9a.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg">
-<meta property="og:updated_time" content="2018-09-16T14:50:50.901Z">
+<meta property="og:updated_time" content="2018-09-17T02:04:02.355Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android 自定义属性">
-<meta name="twitter:description" content="Hello，大家好！今天总结一篇自定义属性的文章，很久之前就想要总结了，懒……对了今天还是三月八日，祝各位小仙女女神节快乐！">
-<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvbrbhfdfcj30dw0k6tbc.jpg">
+<meta name="twitter:title" content="Activity 基础总结">
+<meta name="twitter:description" content="Hello，大家好！今天周一，大家鼓足干劲就是干，反手就是一巴掌（哈哈）。  &amp;emsp;&amp;emsp;这篇文章是关于 Activity 的一些总结（小白文，莫喷)，其中部分是刚哥《艺术探索》的读书笔记，Activity 作为四大金刚中出现频率最高的组件，我们可以在各个地方都可以见到它。总结过程中也借此好好回顾下，分享给大家，当然也希望各位大牛能不吝赐教。">
+<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvcamdvj9wj30zk0nq488.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -61,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Android 自定义属性 | 十三的个人博客</title>
+<title>Activity 基础总结 | 十三的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -279,11 +280,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-AttributeSet" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Activity" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/03/08/AttributeSet/" class="article-date">
-      <time datetime="2018-03-08T13:42:42.000Z" itemprop="datePublished">2018-03-08</time>
+      <a href="/2018/03/13/Activity/" class="article-date">
+      <time datetime="2018-03-13T01:39:18.000Z" itemprop="datePublished">2018-03-13</time>
 </a>
 
 
@@ -298,7 +299,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android 自定义属性
+      Activity 基础总结
     </h1>
   
 
@@ -313,9 +314,9 @@
 
         
     <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-自定义属性/">Android 自定义属性</a></li></ul>
-       <span class="post-count">总字数739</span>
-       <span class="post-count">预计阅读3分钟</span>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Activity/">Activity</a></li></ul>
+       <span class="post-count">总字数2.2k</span>
+       <span class="post-count">预计阅读8分钟</span>
     </div>
 
         <div class="clearfix"></div>
@@ -326,37 +327,89 @@
       
           
         <blockquote>
-<p>Hello，大家好！今天总结一篇自定义属性的文章，很久之前就想要总结了，懒……对了今天还是三月八日，祝各位小仙女女神节快乐！</p>
+<p>Hello，大家好！今天周一，大家鼓足干劲就是干，反手就是一巴掌（哈哈）。</p>
 </blockquote>
+<p>&emsp;&emsp;这篇文章是关于 Activity 的一些总结（小白文，莫喷)，其中部分是刚哥《艺术探索》的读书笔记，Activity 作为四大金刚中出现频率最高的组件，我们可以在各个地方都可以见到它。总结过程中也借此好好回顾下，分享给大家，当然也希望各位大牛能不吝赐教。</p>
 <a id="more"></a>
-<p><div align="center"><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvbrbhfdfcj30dw0k6tbc.jpg" alt=""></div></p>
-<h2 id="自定义属性流程"><a href="#自定义属性流程" class="headerlink" title="自定义属性流程"></a>自定义属性流程</h2><p>&emsp;&emsp;对于自定义属性，大家肯定都已经滚瓜烂熟了（看来是我太菜了），主要是以下几步：</p>
-<pre><code>*  自定义一个类继承自 View 类.
-*  在 values 目录下新建 XML 文件并编写标签元素.
-*  在自定义类布局文件中使用自定义属性.
-*  在自定义类中的构造方法通过 TypedArray 获取自定义属性.
-</code></pre><p>下面贴出代码演示下流程：</p>
-<ol>
-<li>自定义属性文件：</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"test"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"number"</span> <span class="attr">format</span>=<span class="string">"integer"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>自定义 View 类并获取自定义属性：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MCustomView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Binshao"</span>;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="title">MCustomView</span><span class="params">(Context context, @Nullable AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">super</span>(context, attrs);</span><br><span class="line">         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.test);</span><br><span class="line">         <span class="keyword">int</span> num = ta.getString(R.styleable.test_number, <span class="number">0</span>);</span><br><span class="line">         String text = ta.getInteger(R.styleable.test_text);</span><br><span class="line">         Log.e(TAG, <span class="string">"num = "</span> + num + <span class="string">" , text = "</span> + text);</span><br><span class="line">         <span class="comment">//  记得回收资源</span></span><br><span class="line">        ta.recycle();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>布局文件中就可以使用我们的自定义属性：</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"> <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">xmlns:binshao</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">tools:context</span>=<span class="string">"com.example.binshao.testdemo1.MCustomView"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">com.example.binshao.testdemo1.MCustomView</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">binshao:number</span>=<span class="string">"1339"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">binshao:text</span>=<span class="string">"十三"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;好了，接下来我们看一下日志打印结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">03-08 14:14:30.385 13084-13084/com.example.binshao.testdemo1 E/Binshao: num = 1339 , text = 十三</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;到这里我们自定义属性流程就完成了，你以为就结束了？ No，通过网上搜索鸿神博客，构造方法中的参数 AttributeSet 也能获取我们的自定义属性，那我们要怎么获取呢？下面贴出代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MCustomView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"Binshao"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MCustomView</span><span class="params">(Context context, @Nullable AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">        <span class="keyword">int</span> attrsCount = attrs.getAttributeCount();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; attrsCount; i++) &#123;</span><br><span class="line">            String attrNum = attrs.getAttributeName(i);</span><br><span class="line">            String attrText = attrs.getAttributeValue(i);</span><br><span class="line">            Log.e(TAG, <span class="string">"num = "</span> + attrNum + <span class="string">" , text = "</span> + attrText);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>日志打印结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">03-08 14:31:03.750 17331-17331/? E/Binshao: num = number , text = 1339</span><br><span class="line">203-08 14:31:03.750 17331-17331/? E/Binshao: num = text , text = 十三</span><br></pre></td></tr></table></figure>
+<p><div align="center"><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvcamdvj9wj30zk0nq488.jpg" alt=""></div></p>
+<p><div align="center" style="font-size: 13px; color: gray;">Photo by lwowomeme from polaxiong</div></p>
+<h2 id="Activity-的四种状态"><a href="#Activity-的四种状态" class="headerlink" title="Activity 的四种状态"></a>Activity 的四种状态</h2><p>&emsp;&emsp;关于什么是 Activity 的概念我就不介绍了，都烂大街了。Activity 有多种状态，它可以在这几种状态之间切换，并以此影响着 Activity 的生命周期。</p>
+<ul>
+<li><p>Running：<br>  表明 Activity 处于活动状态，用户可以点击屏幕并作出响应，这时候处于 Activity 栈顶。</p>
+</li>
+<li><p>Paused：<br>  表明 Activity 失去焦点或被非全屏 Activity 覆盖，失去和用户交互的能力，在内存不紧张情况下，所有状态信息都还会存在。</p>
+</li>
+<li><p>stopped：<br>  被其他 Activity 完全覆盖，不再是可见的，状态信息同上。</p>
+</li>
+<li><p>Killed:<br>  Activity 已经被系统回收且所有状态信息不存在。<br>  从上面我们可以看出，用户者不同的操作行为会让 Activity 在不同的状态间切换，接下来我们来看看它的生命周期。</p>
+</li>
+</ul>
 <p><br></p>
-<h2 id="关于-AttributeSet-与-TypedArray"><a href="#关于-AttributeSet-与-TypedArray" class="headerlink" title="关于 AttributeSet 与 TypedArray"></a>关于 AttributeSet 与 TypedArray</h2><p>&emsp;&emsp;那么问题来了，既然 AttributeSet 也能获取所有自定义属性，那么我们还要 TypedArray 干嘛呢？其实 TypedArray 其实可以帮助我们简化工作，如果我们使用 AttributeSet 去获取自定义属性，首先需要获取 id，其次再去进行解析，比较麻烦！而我们的 TypedArray 正是简化这一过程！</p>
-<p>&emsp;&emsp;好了，今天就总结到这里了，最后我贴出鸿神博客地址，那里更加详细：<a href="http://blog.csdn.net/lmj623565791/article/details/45022631/" target="_blank" rel="noopener">http://blog.csdn.net/lmj623565791/article/details/45022631/</a><br><br><br><br></p>
+<h2 id="Activity-的生命周期"><a href="#Activity-的生命周期" class="headerlink" title="Activity 的生命周期"></a>Activity 的生命周期</h2><p>&emsp;&emsp;先来张经典的官方 Activity 生命周期图：</p>
+<p><div align="center"><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvcat0b0ryj30e90ift9a.jpg" alt=""></div></p>
+<p><div align="center" style="font-size: 13px; color: gray;">Activity 生命周期</div></p>
+<p>&emsp;&emsp;我们来回顾下上面的方法，看看自己还记得多少（偷笑）：</p>
+<ul>
+<li><p>onCreate()<br>  这是生命周期的第一个方法，此时 Activity 正在创建，一般我们会做一些初始化工作，如加载界面、初始化数据等。</p>
+</li>
+<li><p>onStart()<br>  此时 Activity 正在启动，这时的 Activity 已经可见，可是还没有出现在前台，也就无法和用户进行交互。</p>
+</li>
+<li><p>onResume()<br>  这时候的 Activity 已经可见了且是出现在前台了，<code>注意：和 onStart()相比，onResume()的时候，Activity 已经显示在前台了。</code></p>
+</li>
+<li><p>onPause()<br>  此时的 Activity 正在停止，然后 onStop()就会被调用，一般我们可以做些存储数据等操作，<code>但是这里要注意，不可以做太过耗时操作。</code></p>
+</li>
+<li><p>onStop()<br>  此时的 Activity 即将停止。</p>
+</li>
+<li><p>onRestart()<br>  此时 Activity 正在重新启动，假如 Activity 从不可见重新变为可见的时候，这个方法就会被调用，如打开一个新的页面然后又返回当前 Activity。</p>
+</li>
+<li><p>onDestroy()<br>  这是生命周期最后一个回调方法，此时的 Activity 即将销毁，通常我们会做写资源释放等操作。</p>
+</li>
+</ul>
+<p><br></p>
+<h2 id="生命周期的分析"><a href="#生命周期的分析" class="headerlink" title="生命周期的分析"></a>生命周期的分析</h2><ul>
+<li><p>Activity 启动：onCreate() -&gt; onStart() -&gt; onResume()</p>
+</li>
+<li><p>Home 键返回主界面或被覆盖(Activity 不可见)：onPause() -&gt; onStop()</p>
+</li>
+<li><p>回到原 Activity：onRestart() -&gt; onStart() -&gt; onResume()</p>
+</li>
+<li><p>退出当前 Activity：onPause() -&gt; onStop() -&gt; onDestroy()</p>
+</li>
+</ul>
+<p>&emsp;&emsp;以上就是 Activity 的生命周期分析，各位是不是对整个流程信手捏来，我只能说 666 了！</p>
+<p>&emsp;&emsp;最后这里再说一个问题，如果当前 Activity 为 A，此时用户再打开一个新的 Activity 页面 B，<code>Activity A 的 onPause()方法会先调用，然后才调用 B 的 onResume()方法，也就是 Activity B 才启动。这也就是我们说为什么不能在 onPause()方法做太耗时操作。</code>    </p>
+<p>&emsp;&emsp;你以为生命周期介绍到这里就没了？当然不是，上面那是正常情况下，难不保有意外，不然保险公司为啥赚的盆满坡满？<br>这些意外就是系统配置发生了改变，如旋转屏幕。又或是因为内存不足导致 Activity 被 Kill 掉，都是极有可能的。</p>
+<ul>
+<li><p>系统配置发生改变，Activity 就会被销毁然后再重新创建，如果我们不想让 Activity 重新创建，我们也可以通过 Activity 指定 configChanges 属性值为 orientation 值。同时因为 Activity 在这种意外情况下被销毁，系统就会通过 onSaveInstanceState()方法 保存当前 Activity 的状态信息，然后我们可以通过 onRestoreInstanceState()方法 取出并恢复保存的数据，关于这方面的 View 的存储和恢复，具体我就不介绍了，大家感兴趣的可以自己去看看，当然大家可能早就熟门熟路了，嘿嘿。当然了，Android 系统默认实现了控件的状态缓存，减少了开发者的工作量。</p>
+</li>
+<li><p>内存不足导致 Activity 被杀死，当然系统也是按照情况来杀掉进程的，这也就是进程优先级，它们之间的关系如下：<br>  前台 &gt; 可见 &gt; 服务 &gt; 后台 &gt; 空<br>  优先级越大越不容易被杀死，从这里也可以看出，一些重要的后台工作应当放入 Service 中保证不被系统杀死。</p>
+</li>
+</ul>
+<p><br></p>
+<h2 id="Activity-的-LaunchMode"><a href="#Activity-的-LaunchMode" class="headerlink" title="Activity 的 LaunchMode"></a>Activity 的 LaunchMode</h2><p>&emsp;&emsp;在介绍启动模式前，我们先来说说 Android 的任务栈，Android 系统通过栈保存 App 的 Activity，这个栈也就是 Task，表示若干个 Activity 集合，一个 Task 中的 Activity 可以来自不同的 App。对于栈，大家应该都很熟悉，它是一个先进后出的线性表，我就不啰嗦了。</p>
+<p>&emsp;&emsp;启动模式一共有四种启动模式：standard，singleTop，singleTask 和 singleInstance。</p>
+<p>对于它们之间的区别以及功能我就不介绍了，想必大家应该耳熟能详了。那么如何设置启动模式？</p>
+<ul>
+<li>通过 AndroidMenifest 指定：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">"com.example.binshao.mainActivity"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:configChanges</span>=<span class="string">"orientation"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:launchMode</span>=<span class="string">"singleTop"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过 Intent 设置 Flag 指定启动模式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.setClass(MainActivity.<span class="keyword">this</span>, SecondActivity.class);</span><br><span class="line">intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;还有其他一些常用的 Flag 大家也可以去搜一搜，我这里也不一一介绍了。<br><br></p>
+<h2 id="IntentFilter-使用"><a href="#IntentFilter-使用" class="headerlink" title="IntentFilter 使用"></a>IntentFilter 使用</h2><p>&emsp;&emsp;我们都清楚启动 Activity 可以分为显式调用和隐式调用。显式调用，顾名思义就是明确指定被启动目标对象的信息，非常简单也就不详细介绍了。而隐式调用则相反，它需要 Intent 去匹配目标对象的 IntentFilter 设置的过滤信息，IntentFilter 的过滤信息有 action、category、data。假如与目标对象的不一致则无法启动目标对象。</p>
+<p>&emsp;&emsp;一个过滤信息表中的 action、category 和 data 可以有多个，一个 Activity 当中也可以有过个过滤信息表 intent-filter，只要一个 Intent 能对应其中一组过滤信息表就可以启动对应的目标对象。</p>
+<ul>
+<li><p>action<br>  action其实是字符串，系统也定义了一些 action，还记得那会入门的拨打电话小案例吗？嘿嘿，当然我们可以自定义action。只要 Intent 中的 action 能够和过滤列表中的任何一个 action 值相同就配对成功，值相同指的是 action 的字符串值是一样的。<code>注意：action 是区分大小写的。</code></p>
+</li>
+<li><p>category<br>  category 也是字符串，但是它的配对规则和 action 不同，它要求如果 Intent 中如果含有 category 信息，那么这些所有的 category 都要和过滤列表中的任意一个 category 值相同，也就是 Intent 中的 category 已经是在过滤表中定义过的 category。<code>注意：Intent 可以没有 category，而且它也能配对成功，原因在于系统去启动 Activity 的时候默认会加上“android.intent.category.DEFAULT”这个 category，所以为了成功配对，我们要在过滤列表中添加这个 category。</code></p>
+</li>
+<li><p>data<br>  data 由 mimeType 和 URL 组成，mimeType 是媒体类型，这里就一笔带过吧！其实 data 的配对规则和 action 是相似的，它要求 Intent 中含有 data 数据且可以和过滤列表中任意一个 data 匹配，这个过程是过滤列表中的 data 也出现在 Intent 的 data 中，即配对成功。</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:name</span>=<span class="string">"com.example.binshao.mainActivity"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.example.binshao.z"</span> /&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.example.binshao.s"</span> /&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"com.example.binshao.z"</span> /&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"com.example.binshao.s"</span> /&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"image/*"</span> /&gt;</span></span><br><span class="line">        </span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;好了，到这里这篇文章也到了尾声，不知道各位看完是否有收获吗？大家可别因为是继承而忽视，当然这篇文章说是总结，却不够详细，如关于 View 的存储和恢复及源码等也还没深入，以及各种启动模式的应用场景等等，因为时间关系没有总结成文，很多时候自己会但是要提笔写出来真的挺费时间的，怎么说呢，抛砖引玉吧！接下来和大家一起共同进步！<br><br><br><br></p>
 <hr>
 <p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号</div></p>
 
@@ -367,13 +420,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/03/08/AttributeSet/">Android 自定义属性</a></p>
+        <p><span>本文标题:</span><a href="/2018/03/13/Activity/">Activity 基础总结</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
-        <p><span>发布时间:</span>2018-03-08, 21:42:42</p>
-        <p><span>最后更新:</span>2018-09-16, 22:50:50</p>
+        <p><span>发布时间:</span>2018-03-13, 09:39:18</p>
+        <p><span>最后更新:</span>2018-09-17, 10:04:02</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/03/08/AttributeSet/" title="Android 自定义属性">http://Binshao.site/2018/03/08/AttributeSet/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/03/08/AttributeSet/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/03/13/Activity/" title="Activity 基础总结">http://Binshao.site/2018/03/13/Activity/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/03/13/Activity/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -386,15 +439,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/03/09/dispatch/">
-                    浅谈事件分发机制
+                <a href="/2018/08/30/Aug/">
+                    扎心的八月
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/03/07/SurfaceView/">
-                    SurfaceView
+                <a href="/2018/03/10/AndroidTheme/">
+                    Android 主题和样式
                 </a>
             </div>
         
@@ -406,7 +459,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义属性流程"><span class="toc-number">1.</span> <span class="toc-text">自定义属性流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于-AttributeSet-与-TypedArray"><span class="toc-number">2.</span> <span class="toc-text">关于 AttributeSet 与 TypedArray</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Activity-的四种状态"><span class="toc-number">1.</span> <span class="toc-text">Activity 的四种状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Activity-的生命周期"><span class="toc-number">2.</span> <span class="toc-text">Activity 的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期的分析"><span class="toc-number">3.</span> <span class="toc-text">生命周期的分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Activity-的-LaunchMode"><span class="toc-number">4.</span> <span class="toc-text">Activity 的 LaunchMode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IntentFilter-使用"><span class="toc-number">5.</span> <span class="toc-text">IntentFilter 使用</span></a></li></ol>
         
     </div>
     <style>
@@ -472,7 +525,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/03/09/dispatch/" title="上一篇: 浅谈事件分发机制">
+            <a href="/2018/08/30/Aug/" title="上一篇: 扎心的八月">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -480,7 +533,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/03/07/SurfaceView/" title="下一篇: SurfaceView">
+            <a href="/2018/03/10/AndroidTheme/" title="下一篇: Android 主题和样式">
                 <i class="fa fa-angle-right"></i>
             </a>
         
