@@ -14,20 +14,23 @@
 <meta name="author" content="十三" />
 
 
-    
-    
 
-
-<meta name="description" content="Android Java 读书 生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="十三的个人博客">
-<meta property="og:url" content="http://Binshao.site/index.html">
+<meta name="description" content="Hi，我是十三。一首华仔《暗里着迷》送给大家，怎样，是不是很符合气氛！   心动的感觉&amp;emsp;&amp;emsp;这是设计模式系列的第 九 篇学习记录，什么，你 TM 在逗我，我要看的是妹子，你个标题党！大兄弟，你，你先别急，上吊也得喘口气，且听我娓娓道来…… &amp;emsp;&amp;emsp;很多人都说大学一定要谈一场轰轰烈烈的恋爱，不然大学不算完整，十三在这之前可能对这些不太上心，觉得谈恋爱还不如打代码来">
+<meta name="keywords" content="观察者模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十三校园泡妞记">
+<meta property="og:url" content="http://Binshao.site/2018/07/19/Observer/index.html">
 <meta property="og:site_name" content="十三的个人博客">
-<meta property="og:description" content="Android Java 读书 生活">
+<meta property="og:description" content="Hi，我是十三。一首华仔《暗里着迷》送给大家，怎样，是不是很符合气氛！   心动的感觉&amp;emsp;&amp;emsp;这是设计模式系列的第 九 篇学习记录，什么，你 TM 在逗我，我要看的是妹子，你个标题党！大兄弟，你，你先别急，上吊也得喘口气，且听我娓娓道来…… &amp;emsp;&amp;emsp;很多人都说大学一定要谈一场轰轰烈烈的恋爱，不然大学不算完整，十三在这之前可能对这些不太上心，觉得谈恋爱还不如打代码来">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdmh8muk6j30zk0npaca.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvdmuiw7iaj30vk09cwfn.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg">
+<meta property="og:updated_time" content="2018-09-18T05:36:10.826Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十三的个人博客">
-<meta name="twitter:description" content="Android Java 读书 生活">
+<meta name="twitter:title" content="十三校园泡妞记">
+<meta name="twitter:description" content="Hi，我是十三。一首华仔《暗里着迷》送给大家，怎样，是不是很符合气氛！   心动的感觉&amp;emsp;&amp;emsp;这是设计模式系列的第 九 篇学习记录，什么，你 TM 在逗我，我要看的是妹子，你个标题党！大兄弟，你，你先别急，上吊也得喘口气，且听我娓娓道来…… &amp;emsp;&amp;emsp;很多人都说大学一定要谈一场轰轰烈烈的恋爱，不然大学不算完整，十三在这之前可能对这些不太上心，觉得谈恋爱还不如打代码来">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdmh8muk6j30zk0npaca.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -55,13 +58,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>十三的个人博客</title>
+<title>十三校园泡妞记 | 十三的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -70,8 +71,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -279,9 +280,7 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-Observer" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Observer" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2018/07/19/Observer/" class="article-date">
@@ -299,12 +298,29 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/19/Observer/">十三校园泡妞记</a>
+    <h1 class="article-title" itemprop="name">
+      十三校园泡妞记
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/观察者模式/">观察者模式</a></li></ul>
+       <span class="post-count">总字数2.5k</span>
+       <span class="post-count">预计阅读9分钟</span>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -376,413 +392,137 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <a class="">置顶</a>
-        </div>
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/观察者模式/">观察者模式</a></li></ul>
-       <span class="post-count">总字数2.5k</span>
-       <span class="post-count">预计阅读9分钟</span>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="blog-Aug" class="article article-type-blog" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/08/30/Aug/" class="article-date">
-      <time datetime="2018-08-30T01:29:02.000Z" itemprop="datePublished">2018-08-30</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/30/Aug/">扎心的八月</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三，人生中最后一个暑假假期就剩下两天了，余额严重不足感……  </p>
-</blockquote>
-<p>&emsp;&emsp;好些天没来记录了，这段时间都用来养病去了，以至于感觉过的没那么充实却又觉意义深远，今天家这边大雨倾盆，竟然有些凉意。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/时光任意门/">时光任意门</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/健康/">健康</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活杂谈/">生活杂谈</a></li></ul>
-       <span class="post-count">总字数666</span>
-       <span class="post-count">预计阅读2分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/08/30/Aug/#more">阅读全文 >></a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/07/19/Observer/">十三校园泡妞记</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
+        <p><span>发布时间:</span>2018-07-19, 13:01:09</p>
+        <p><span>最后更新:</span>2018-09-18, 13:36:10</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/19/Observer/" title="十三校园泡妞记">http://Binshao.site/2018/07/19/Observer/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/07/19/Observer/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-design-decorator" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/07/18/design-decorator/" class="article-date">
-      <time datetime="2018-07-18T01:13:49.000Z" itemprop="datePublished">2018-07-18</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/18/design-decorator/">爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三。时间一晃假期便过了三天，我人生中最后一个暑假，你慢点走…</p>
-</blockquote>
-<p><div align="center"><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvdgj1txi8j30zk0fh0wh.jpg" alt=""></div></p>
-<p><div align="center" style="font-size: 11px; color: red;">今晚八点秋名山见…</div></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/装饰模式/">装饰模式</a></li></ul>
-       <span class="post-count">总字数1.8k</span>
-       <span class="post-count">预计阅读7分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/07/18/design-decorator/#more">阅读全文 >></a>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-    <article id="post-Builder" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/07/17/Builder/" class="article-date">
-      <time datetime="2018-07-17T01:13:23.000Z" itemprop="datePublished">2018-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三。今天把自己的房间整理打扫了下，感觉心情很 nice 阿！</p>
-</blockquote>
-<p>&emsp;&emsp;这是设计模式系列的第 七 篇学习记录。最近有个段子挺火的，具体内容不记得了，大概是说你天天多早起床，然后天天坚持学习，可依旧还是买不起房…阿，房价始终还是压在心里的一块大石，十年生死两茫茫，房价涨，房奴殇。作为还是学生的十三，可能还没那么深的感触，但是按这目前情况来看，这辈子怕是买不起了。既然买不起那我们就自己”盖房子”，好，那我们就来过把瘾……</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/建造者模式/">建造者模式</a></li></ul>
-       <span class="post-count">总字数1.4k</span>
-       <span class="post-count">预计阅读5分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/07/17/Builder/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Prototype" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/07/16/Prototype/" class="article-date">
-      <time datetime="2018-07-16T01:13:10.000Z" itemprop="datePublished">2018-07-16</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/08/30/Aug/">
+                    扎心的八月
+                </a>
+            </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/Prototype/">设计模式之原型模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三。最近把之前的文章删了又重发了，时间上可能不匹配，大家不要觉得奇怪。</p>
-</blockquote>
-<p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvdfjpxfnqj30zk0nngr9.jpg" alt=""></div></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型模式/">原型模式</a></li></ul>
-       <span class="post-count">总字数1.9k</span>
-       <span class="post-count">预计阅读8分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/07/16/Prototype/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Singletop" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/07/15/Singletop/" class="article-date">
-      <time datetime="2018-07-15T06:13:01.000Z" itemprop="datePublished">2018-07-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三，昨天回家了，一早起来继续搬砖，嘿嘿。</p>
-</blockquote>
-<p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fvclb9i4tyj30zk0k1n44.jpg" alt=""></div></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例模式/">单例模式</a></li></ul>
-       <span class="post-count">总字数1.7k</span>
-       <span class="post-count">预计阅读6分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/07/15/Singletop/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/07/18/design-decorator/">
+                    爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式
+                </a>
+            </div>
+        
     </nav>
+
   
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#心动的感觉"><span class="toc-number">1.</span> <span class="toc-text">心动的感觉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式"><span class="toc-number">2.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Observable-和-Observer"><span class="toc-number">3.</span> <span class="toc-text">Observable 和 Observer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        
+        <div class="addthis_inline_share_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyMS8xNjI0OA==">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/08/30/Aug/" title="上一篇: 扎心的八月">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/07/18/design-decorator/" title="下一篇: 爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/30/Aug/">扎心的八月</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Observer/">十三校园泡妞记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/design-decorator/">爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/16/Prototype/">设计模式之原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/07/simpleFactory/">哆啦A梦来讲简单工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Strategy/">设计模式之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/Memento/">设计模式之备忘录模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/readBook/">推荐一些读过的技术书籍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/Thinking-in-Java/">读 《Java编程思想》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/Activity/">Activity 基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/10/AndroidTheme/">Android 主题和样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/dispatch/">浅谈事件分发机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/08/AttributeSet/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/07/SurfaceView/">SurfaceView</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
