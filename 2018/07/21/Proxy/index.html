@@ -15,22 +15,22 @@
 
 
 
-<meta name="description" content="Hi，我是十三。天气好热都要融化了，恐怖的三伏天……">
-<meta name="keywords" content="享元模式">
+<meta name="description" content="Hi，我是十三，不知道是不是越长大就更难做到坚持……">
+<meta name="keywords" content="代理模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式之享元模式">
-<meta property="og:url" content="http://Binshao.site/2018/07/20/Flyweight/index.html">
+<meta property="og:title" content="校园爱情故事后记">
+<meta property="og:url" content="http://Binshao.site/2018/07/21/Proxy/index.html">
 <meta property="og:site_name" content="十三的个人博客">
-<meta property="og:description" content="Hi，我是十三。天气好热都要融化了，恐怖的三伏天……">
+<meta property="og:description" content="Hi，我是十三，不知道是不是越长大就更难做到坚持……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnij8wf0j30u00k3t9s.jpg">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnp4k285j30ui09s3zk.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvdodj2pdgj30zk0mtdor.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvdopc4qhej30jp091aao.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg">
-<meta property="og:updated_time" content="2018-09-18T06:05:50.257Z">
+<meta property="og:updated_time" content="2018-09-18T06:38:23.652Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式之享元模式">
-<meta name="twitter:description" content="Hi，我是十三。天气好热都要融化了，恐怖的三伏天……">
-<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnij8wf0j30u00k3t9s.jpg">
+<meta name="twitter:title" content="校园爱情故事后记">
+<meta name="twitter:description" content="Hi，我是十三，不知道是不是越长大就更难做到坚持……">
+<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvdodj2pdgj30zk0mtdor.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -62,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>设计模式之享元模式 | 十三的个人博客</title>
+<title>校园爱情故事后记 | 十三的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -280,11 +280,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Flyweight" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Proxy" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/07/20/Flyweight/" class="article-date">
-      <time datetime="2018-07-20T05:52:45.000Z" itemprop="datePublished">2018-07-20</time>
+      <a href="/2018/07/21/Proxy/" class="article-date">
+      <time datetime="2018-07-21T06:24:40.000Z" itemprop="datePublished">2018-07-21</time>
 </a>
 
 
@@ -299,7 +299,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式之享元模式
+      校园爱情故事后记
     </h1>
   
 
@@ -314,9 +314,9 @@
 
         
     <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/享元模式/">享元模式</a></li></ul>
-       <span class="post-count">总字数1.7k</span>
-       <span class="post-count">预计阅读6分钟</span>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代理模式/">代理模式</a></li></ul>
+       <span class="post-count">总字数1.9k</span>
+       <span class="post-count">预计阅读7分钟</span>
     </div>
 
         <div class="clearfix"></div>
@@ -327,49 +327,67 @@
       
           
         <blockquote>
-<p>Hi，我是十三。天气好热都要融化了，恐怖的三伏天……</p>
+<p>Hi，我是十三，不知道是不是越长大就更难做到坚持……</p>
 </blockquote>
-<p><div align="center"><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnij8wf0j30u00k3t9s.jpg" alt=""></div></p>
+<p><div align="center"><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvdodj2pdgj30zk0mtdor.jpg" alt=""></div></p>
 <a id="more"></a>
-<p><br></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;这是设计模式系列的第 十 篇学习记录，天气还是那么炎热，我盼望着富婆的到来，我不想努力了，然而什么都没有出现，继续搬砖…</p>
-<p>&emsp;&emsp;在开始我们今天的学习前，十三首先问大家一个基础的问题，假设现在有 两 个字符串对象，它们的内容也就是赋值相同，那么它们是同一个对象吗？我们先用代码描述出来先 ：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        String str = <span class="string">"LL"</span>;</span><br><span class="line">        String text = <span class="string">"LL"</span>;</span><br><span class="line">        System.out.println(str == text);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;那么最后我们运行程序的结果是什么呢，是 true 还是 false 呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">true</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;没错，答案是 true，我们知道在 Java 中字符串常量都是存放在常量池中的，Java 会确保 一 个字符串常量在常量池中只有 一 个拷贝，并且 String 对象是 final 类型，对象一旦创建就不可改变。在平时开发中，会出现许多 String 类型的变量，如果只是小应用倒还好,假设是一个庞大的系统,有好多处都需要用定义 String 类型的变量，那开销可想而知，而 JDK 的开发者自然想到了这点，采用了享元模式解决创建大量相同 String 变量带来的开销问题。</p>
-<p>&emsp;&emsp;那么问题就来了，这个享元模式到底是什么呢？我们接着往下看。<br><br></p>
-<h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><p>&emsp;&emsp;享元模式是池技术的重要实现方式，它不仅可以减少应用程序创建的对象，而且降低了程序内存的占用，提高程序的性能。</p>
-<p><code>定义：使用共享对象有效地支持大量细粒度的对象.</code></p>
-<p>&emsp;&emsp;支持大量细粒度对象，就会使得对象数量多并且性质基本上是相同的，这些对象分为两部分：内部状态和外部状态。</p>
-<p>&emsp;&emsp;内部状态是对象可分享出来的信息，存储在享元对象内部并且不会随环境的改变而改变；如上面的字符串例子中，字符串对象具有字符串类型的特性，这些特性是每个字符串对象都拥有的且是不会改变的。</p>
-<p>&emsp;&emsp;外部状态则是对象依赖的一个标记，它是随环境改变而改变的并且不可共享的状态。如每个字符串对象的内容都可能会不同，它是会随时变化的。</p>
-<p>享元模式中的角色及职责 ：</p>
+<p><br>    </p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;自从上次十三有了女神闺蜜的情报，十三最后是否成功抱得美人归呢？这可能是个谜，因为写这篇文章的十三自己都不知道呢，嘿嘿。好吧，说着说着话题都偏了…不知道十三在说啥的同学，请到传送门接受安检 <a href="https://binshao.site/2018/07/19/Observer/">十三校园泡妞记</a>。</p>
+<p>&emsp;&emsp;有了闺蜜的精准情报，十三每次自然不会扑空，只是当十三想要上去搭讪或是有进一步动作的时候，十三就怂了，没错，怂了。他害怕又感些许自卑，可又担心这样下去会失去，就这样一直循环重复，就连卧底闺蜜都抱怨十三太怂了，嚷嚷着不提供情报了，可每次看到十三那一脸痴情样又叹了口气。</p>
+<p>&emsp;&emsp;某天晚上，十三手捧着束花，他动作熟练地打开手机微信，发了条信息，上面写着：“恩人阿恩人，我在你楼下帮我送束花给她吧，您的大恩大德永不忘！”，没过多久，对方回信：“可以啊，还懂得送花了，开窍了，不过自己送。”，原来十三想送花给女神，可他又不好意思当面送，看来十三是真的怂…只好委托她闺蜜帮他送花了，只是人家并不答应他，最后还是十三提出请她吃大餐才答应送花的…</p>
+<p>&emsp;&emsp;注意，这里开始可是要画风突变了，上面这个委托送花过程其实可以用到个设计模式，它便是代理模式，好，接下来我们一起来看看代理模式的介绍。<br><br></p>
+<h2 id="代理模式-Proxy"><a href="#代理模式-Proxy" class="headerlink" title="代理模式 (Proxy)"></a>代理模式 (Proxy)</h2><p>&emsp;&emsp;代理模式也被称为委托模式，它是结构型设计模式的一种。在我们平时日常生活中类似代理模式的场景也非常常见，比如说请律师代理打官司、代理工具上网等等。</p>
+<p><code>定义：为其他对象提供一种代理以控制对这个对象的访问.</code></p>
+<p>代理模式中的角色及职责 ：</p>
 <ul>
-<li><p>Flyweight : 抽象享元角色，同时定义出对象的外部状态和内部状态的接口或者实现.</p>
+<li><p>Subject : 抽象主题类，声明真实主题与代理的共同接口方法.</p>
 </li>
-<li><p>ConcreteFlyweight: 具体享元角色，实现抽象享元角色定义的业务方法.</p>
+<li><p>RealSubject : 真实主题类，代理类所代表的真实主题，客户端通过代理类间接地调用真实主题类的方法.</p>
 </li>
-<li><p>FlyweightFactory: 享元工厂，负责管理对象池和创建享元对象.</p>
+<li><p>Proxy : 代理类，持有对真实主题类的引用，在其所实现的接口方法中调用真实主题类中相应的接口方法执行.</p>
 </li>
 </ul>
-<p>&emsp;&emsp;光说不练假把式，咱们这里我们就以一个线上手机商城为例子把享元模式用起来 ：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Phone</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showPrice</span><span class="params">(String phone_Name)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这里我们先定义了一个接口，里面分别提供了 showPrice 这个方法，它便对应模式里抽象享元这个角色。我们接着往下看 ：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Apple_Phone</span> <span class="keyword">implements</span> <span class="title">Phone</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String phoneName;</span><br><span class="line">    <span class="keyword">private</span> String version;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Apple_Phone</span><span class="params">(String phoneName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.phoneName = phoneName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showPrice</span><span class="params">(String version)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (version.equals(<span class="string">"32G"</span>)) &#123;</span><br><span class="line">            System.out.println(<span class="string">"price : 5199 元"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (version.equals(<span class="string">"64G"</span>)) &#123;</span><br><span class="line">            System.out.println(<span class="string">"price : 5699 元"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;接着我看到这里定义了个类，它实现了前面我们定义的抽象享元角色接口并实现了接口里的方法，那么它对应的角色便是具体享元这个角色了。除了实现接口方法外，我们还定义两个字段属性和构造方法，字段属性分别是手机名字以及手机型号。好，我们继续往下面看 ：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhoneFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Apple_Phone&gt; pool = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Phone <span class="title">getPhone</span><span class="params">(String PhoneName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pool.containsKey(PhoneName)) &#123;</span><br><span class="line">            System.out.println(<span class="string">"使用共享对象,手机型号为："</span> + PhoneName);</span><br><span class="line">            <span class="keyword">return</span> pool.get(PhoneName);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Apple_Phone phone = <span class="keyword">new</span> Apple_Phone(PhoneName);</span><br><span class="line">            pool.put(PhoneName, phone);</span><br><span class="line">            System.out.println(<span class="string">"创建手机对象,手机型号为："</span> + PhoneName);</span><br><span class="line">            <span class="keyword">return</span> phone;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;我们看到这个类名带有 Factory，那么想都不用想，它就是享元工厂类这个角色了。享元工厂是用来创建享元对象的，它通过 Map 容器来存储对象，将内部状态的属性作为 Map 的 key，这里我们手机的内部状态便是 PhoneName，不管怎么样手机名字是不会改变的。然后我们进行判断，如果 Map 容器包含这个 key，那我们就使用 Map 容器存储的这个对象；否则就新创建对象并放入 Map 容器中，以达到共享的目的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Apple_Phone phoneA = (Apple_Phone) PhoneFactory.getPhone(<span class="string">"iPhone 8"</span>);</span><br><span class="line">        phoneA.showPrice(<span class="string">"64G"</span>);</span><br><span class="line">        Apple_Phone phoneB = (Apple_Phone) PhoneFactory.getPhone(<span class="string">"iPhone 8"</span>);</span><br><span class="line">        phoneB.showPrice(<span class="string">"32G"</span>);</span><br><span class="line">        Apple_Phone phoneC = (Apple_Phone) PhoneFactory.getPhone(<span class="string">"iPhone 8"</span>);</span><br><span class="line">        phoneC.showPrice(<span class="string">"64G"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">创建手机对象,手机型号为：iPhone 8</span><br><span class="line">price : 5699 元</span><br><span class="line">使用共享对象,手机型号为：iPhone 8</span><br><span class="line">price : 5199 元</span><br><span class="line">使用共享对象,手机型号为：iPhone 8</span><br><span class="line">price : 5699 元</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;最后我们通过运行结果可以得到，首先由于是第一次创建对象，Map 容器中并没有存储这个对象，所以它便新建对象便存储到 Map 容器中，接下来，只要再创建对象时便直接使用 Map 容器存储的对象。我们在回过头来想下，在这里，手机名字作为内部状态它是不会改变的，而手机型号则是外部状态它的值是会变化的，当然最终的手机价格也会发生改变。如此一来，因为有了共享对象，节约了开销。<br><br></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>那么到最后我们来简单总结下 ：</p>
-<p><code>使用场景 :</code><br>如果一个应用程序使用了大量的相似对象，而这些大量的对象造成了很大的存储开销就应该考虑使用；当需要缓冲池的场景。</p>
-<p><code>优点 ：</code><br>减少应用程序创建的对象，降低程序内存的占用，提高程序的性能。</p>
-<p>最后来张观察者模式的合照 ： </p>
-<p><div align="center"><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnp4k285j30ui09s3zk.jpg" alt=""></div></p>
-<p><div align="center" style="font-size: 11px; color: gray;">Flyweight 结构图</div></p>
-<p>&emsp;&emsp;好了，关于享元模式的学习记录就到这里了，天气那么热，各位注意防晒和多吃点水果。<br><br><br><br></p>
+<p>&emsp;&emsp;学了就要用，接下来我们把上面十三委托送花的事用代理模式简单实现下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GiveGift</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GiveFlowers</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;首先我们先定义了一个抽象主题接口，抽象主题类它具有真实主题类和代理的共同接口方法，而这个共同方法就是送花了，所以在里面提供了 GiveFlowers 这个方法，继续往下看 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pursuit</span> <span class="keyword">implements</span> <span class="title">GiveGift</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String girlName;</span><br><span class="line">    <span class="keyword">private</span> String boyName;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pursuit</span><span class="params">(String girlName, String boyName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.girlName = girlName;</span><br><span class="line">        <span class="keyword">this</span>.boyName = boyName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GiveFlowers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(girlName + <span class="string">","</span> + boyName + <span class="string">"送你花耶！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;然后我们定义了个追求者类，它实现了抽象主题类并重写接口里面的方法，实际上，它是代理模式中真实主题类这个角色，在送花这里十三无疑便是这个角色了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">GiveGift</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String proxyName;</span><br><span class="line">    Pursuit pursuit;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Proxy</span><span class="params">(String proxyName, String girlName, String boyName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.proxyName = proxyName;</span><br><span class="line">        pursuit = <span class="keyword">new</span> Pursuit(girlName, boyName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GiveFlowers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.print(proxyName + <span class="string">":"</span>);</span><br><span class="line">        pursuit.GiveFlowers();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;接下来就是代理类了，它同样也是实现了抽象主题接口，我们可以看到它持有对真实主题类的引用，并在重写的接口方法中调用真实主题类重写的接口方法，也就是说，闺蜜代理帮十三完成送花这个动作，之所以通过调用真实主题类重写的方法，是因为这是十三委托我们的闺蜜帮他送花。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Subject proxy = <span class="keyword">new</span> Proxy(<span class="string">"LL闺蜜"</span>, <span class="string">"LL"</span>, <span class="string">"十三"</span>);</span><br><span class="line">        proxy.GiveFlowers();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LL闺蜜:LL,十三送你花耶！</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;客户端的代码非常简单，我们直接通过代理对象并调用相关方法就完成了送花这个动作，最终调用的是真实主题类里实现的方法，我们这里就成功使用代理模式做了个简单实现。</p>
+<p>&emsp;&emsp;事实上上面我们写的例子是静态代理，代理模式主要分为静态代理和动态代理。<code>静态代理在代码运行前就已经存在了代理类的 class 编译文件；动态代理则是在运行时通过反射来动态生成代理类的对象，并确定是谁来代理。</code><br><br></p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>&emsp;&emsp;既然静态代理我们上面已经实现过了，那么这个动态代理应该怎么来做呢？别急，JDK 提供了相关的类库供我们使用，InvocationHandler 是代理实例的调用程序实现的接口，实现了该接口需要重写 invoke() 方法，那么下面我们用十三送花这个例子来实现动态代理 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProxy</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Object object;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DynamicProxy</span><span class="params">(Object object)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.object = object;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在代理实例上处理方法调用并返回结果</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] arg)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        Object result = method.invoke(object, arg);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;首先我们先声明了一个 Object 对象，它指向引用与真实主题类，也就是被代理类，紧接着我们在重写的 invoke 方法中去调用执行被代理类的具体方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Subject realSubject = <span class="keyword">new</span> Pursuit(<span class="string">"LL"</span>, <span class="string">"十三"</span>);</span><br><span class="line">        DynamicProxy mDynamicProxy = <span class="keyword">new</span> DynamicProxy(realSubject);</span><br><span class="line">        ClassLoader loader = Pursuit.class.getClassLoader();</span><br><span class="line">        Subject dynamicProxy = (Subject) java.lang.reflect.Proxy.</span><br><span class="line">                newProxyInstance(loader, <span class="keyword">new</span> Class[]&#123;Subject.class&#125;, mDynamicProxy);</span><br><span class="line">        dynamicProxy.GiveFlowers();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;最后我们得要在客户端调用 Proxy.newProxyInstance() 方法来生成动态代理类，接着通过它去调用 GiveFlowers() 方法，而它则会去调用上面我们写的 DynamicProxy 类中的 invoke 方法，这样我们便简单完成了动态代理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LL,十三送你花耶！</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;那么到最后我们来简单总结下 ：</p>
+<p><code>使用场景 （通过网络搜索，一般分下面几种）:</code></p>
+<ul>
+<li><p>远程代理，也就是为一个对象在不同的地址空间提供局部代表，这样便于隐藏.</p>
+</li>
+<li><p>虚拟代理，根据需要创建开销很大的对象，通过它来存放实例化需要很长时间的真实对象.</p>
+</li>
+<li><p>安全代理，用来控制真实对象访问时的权限.</p>
+</li>
+<li><p>智能指引，当调用真实对象时，代理处理另外一些事.</p>
+</li>
+</ul>
+<p><code>优点 ：</code></p>
+<ul>
+<li><p>真实主题类只需关心本职工作.</p>
+</li>
+<li><p>即使真实主题类发生变化，代理类仍然不受影响，因为真实主题类实现了公共接口.</p>
+</li>
+</ul>
+<p>这里来张代理模式的合照，一 二 三，茄子 ： </p>
+<p><div align="center"><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvdopc4qhej30jp091aao.jpg" alt=""></div></p>
+<p><div align="center" style="font-size: 11px; color: gray;">Proxy 结构图<br><br></div></p>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>&emsp;&emsp;后来，LL 收到了十三送的花，其实 LL 知道十三喜欢她，因为闺蜜已经把什么都和她说了…LL 拿着花并轻轻说了句：“呆子！“。<br><br><br><br></p>
 <hr>
 <p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号</div></p>
 
@@ -380,13 +398,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/07/20/Flyweight/">设计模式之享元模式</a></p>
+        <p><span>本文标题:</span><a href="/2018/07/21/Proxy/">校园爱情故事后记</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
-        <p><span>发布时间:</span>2018-07-20, 13:52:45</p>
-        <p><span>最后更新:</span>2018-09-18, 14:05:50</p>
+        <p><span>发布时间:</span>2018-07-21, 14:24:40</p>
+        <p><span>最后更新:</span>2018-09-18, 14:38:23</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/07/20/Flyweight/" title="设计模式之享元模式">http://Binshao.site/2018/07/20/Flyweight/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/07/20/Flyweight/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/21/Proxy/" title="校园爱情故事后记">http://Binshao.site/2018/07/21/Proxy/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/07/21/Proxy/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -399,15 +417,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/07/21/Proxy/">
-                    校园爱情故事后记
+                <a href="/2018/08/30/Aug/">
+                    扎心的八月
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/07/19/Observer/">
-                    十三校园泡妞记
+                <a href="/2018/07/20/Flyweight/">
+                    设计模式之享元模式
                 </a>
             </div>
         
@@ -419,7 +437,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#享元模式"><span class="toc-number">2.</span> <span class="toc-text">享元模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理模式-Proxy"><span class="toc-number">2.</span> <span class="toc-text">代理模式 (Proxy)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态代理"><span class="toc-number">3.</span> <span class="toc-text">动态代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后话"><span class="toc-number">5.</span> <span class="toc-text">后话</span></a></li></ol>
         
     </div>
     <style>
@@ -485,7 +503,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/07/21/Proxy/" title="上一篇: 校园爱情故事后记">
+            <a href="/2018/08/30/Aug/" title="上一篇: 扎心的八月">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -493,7 +511,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/07/19/Observer/" title="下一篇: 十三校园泡妞记">
+            <a href="/2018/07/20/Flyweight/" title="下一篇: 设计模式之享元模式">
                 <i class="fa fa-angle-right"></i>
             </a>
         
