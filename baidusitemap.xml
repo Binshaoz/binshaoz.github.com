@@ -4,6 +4,126 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/07/29/Responsibility/</loc>
+    <lastmod>2018-09-18T12:08:57.658Z</lastmod>
+    <data>
+        <display>
+        <title>从请假流程来学习责任链模式</title>
+        <pubTime>2018-07-29T06:45:14.000Z</pubTime>
+        
+        <tag>责任链模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/27/Mediator/</loc>
+    <lastmod>2018-09-18T12:01:32.372Z</lastmod>
+    <data>
+        <display>
+        <title>程序猿相亲记</title>
+        <pubTime>2018-07-27T06:44:43.000Z</pubTime>
+        
+        <tag>中介者模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/25/Adapter/</loc>
+    <lastmod>2018-09-18T11:48:22.994Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之适配器模式</title>
+        <pubTime>2018-07-25T06:44:21.000Z</pubTime>
+        
+        <tag>适配器模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/24/Bridge/</loc>
+    <lastmod>2018-09-18T11:43:31.761Z</lastmod>
+    <data>
+        <display>
+        <title>秋名山车王 —AE86— 改装记</title>
+        <pubTime>2018-07-24T06:44:04.000Z</pubTime>
+        
+        <tag>桥接模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/23/Composite/</loc>
+    <lastmod>2018-09-18T11:27:56.890Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之组合模式</title>
+        <pubTime>2018-07-23T07:43:30.000Z</pubTime>
+        
+        <tag>组合模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/22/Facade/</loc>
+    <lastmod>2018-09-18T11:20:46.625Z</lastmod>
+    <data>
+        <display>
+        <title>从造人的角度来学习外观模式</title>
+        <pubTime>2018-07-22T06:42:57.000Z</pubTime>
+        
+        <tag>外观模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/07/21/Proxy/</loc>
     <lastmod>2018-09-18T06:38:23.652Z</lastmod>
     <data>
