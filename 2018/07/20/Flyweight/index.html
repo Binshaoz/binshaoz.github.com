@@ -15,22 +15,22 @@
 
 
 
-<meta name="description" content="Hi，我是十三。刚刚高考分数线发布出来了，想必也是有人欢喜有人愁，回想起来，不免心生些许感概。">
-<meta name="keywords" content="黑苹果">
+<meta name="description" content="Hi，我是十三。天气好热都要融化了，恐怖的三伏天……">
+<meta name="keywords" content="享元模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="黑苹果踩坑指南">
-<meta property="og:url" content="http://Binshao.site/2018/06/25/blackApple/index.html">
+<meta property="og:title" content="设计模式之享元模式">
+<meta property="og:url" content="http://Binshao.site/2018/07/20/Flyweight/index.html">
 <meta property="og:site_name" content="十三的个人博客">
-<meta property="og:description" content="Hi，我是十三。刚刚高考分数线发布出来了，想必也是有人欢喜有人愁，回想起来，不免心生些许感概。">
+<meta property="og:description" content="Hi，我是十三。天气好热都要融化了，恐怖的三伏天……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvciqr1843j30zk0n9n2g.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvcivf1cpdj30qa06omy0.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnij8wf0j30u00k3t9s.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnp4k285j30ui09s3zk.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg">
-<meta property="og:updated_time" content="2018-09-17T06:35:54.510Z">
+<meta property="og:updated_time" content="2018-09-18T06:05:50.257Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="黑苹果踩坑指南">
-<meta name="twitter:description" content="Hi，我是十三。刚刚高考分数线发布出来了，想必也是有人欢喜有人愁，回想起来，不免心生些许感概。">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvciqr1843j30zk0n9n2g.jpg">
+<meta name="twitter:title" content="设计模式之享元模式">
+<meta name="twitter:description" content="Hi，我是十三。天气好热都要融化了，恐怖的三伏天……">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnij8wf0j30u00k3t9s.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -62,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>黑苹果踩坑指南 | 十三的个人博客</title>
+<title>设计模式之享元模式 | 十三的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -280,11 +280,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-blackApple" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Flyweight" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/06/25/blackApple/" class="article-date">
-      <time datetime="2018-06-25T06:07:49.000Z" itemprop="datePublished">2018-06-25</time>
+      <a href="/2018/07/20/Flyweight/" class="article-date">
+      <time datetime="2018-07-20T05:52:45.000Z" itemprop="datePublished">2018-07-20</time>
 </a>
 
 
@@ -299,7 +299,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      黑苹果踩坑指南
+      设计模式之享元模式
     </h1>
   
 
@@ -308,15 +308,15 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Mac/">Mac</a>
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
     </div>
 
 
         
     <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
-       <span class="post-count">总字数1.2k</span>
-       <span class="post-count">预计阅读3分钟</span>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/享元模式/">享元模式</a></li></ul>
+       <span class="post-count">总字数1.7k</span>
+       <span class="post-count">预计阅读6分钟</span>
     </div>
 
         <div class="clearfix"></div>
@@ -327,33 +327,49 @@
       
           
         <blockquote>
-<p>Hi，我是十三。刚刚高考分数线发布出来了，想必也是有人欢喜有人愁，回想起来，不免心生些许感概。</p>
+<p>Hi，我是十三。天气好热都要融化了，恐怖的三伏天……</p>
 </blockquote>
+<p><div align="center"><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnij8wf0j30u00k3t9s.jpg" alt=""></div></p>
 <a id="more"></a>
-<p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fvciqr1843j30zk0n9n2g.jpg" alt=""></div></p>
-<p><div align="center" style="font-size: 13px; color: gray;">十三也想要台 Mac</div></p>
-<h2 id="最近"><a href="#最近" class="headerlink" title="最近"></a>最近</h2><p>&emsp;&emsp;自从上星期端午假后，接下来十三一直都在忙课程设计，What，什么课程设计？iOS…十三所在专业是移动应用专业，也正因此走上 Android 不归路，当然了，既然是移动端，少不了 iOS，这不，十三最近不是正忙着课程设计上嘛。当然了，由于这些年，移动互联网热度的下降，这大大地打击同学们上课的热情（十三从来就很认真，哼哼..大雾），导致于最近不少同学在弄课程设计上都哭爹喊娘的，我也替这些同学感到些惋惜，学院配备全 Mac 一体机的机房环境，这还真是浪费了这良好的学习环境。这不是重点，重点是 Mac 实在是太好用了，我都想放弃自己这台大卡逼 Window 了，还是因为这万恶的金钱，穷啊！</p>
-<p>&emsp;&emsp;所以既然要完成课程设计，无可奈何，只能黑苹果了。通常情况下，都是用 VMware 来跑 Mac 系统，具体安装的流程大家网上搜索下就能找到了，比较坑的是网上提供的系统资源要么跑不起来，要么就是系统版本和 VMware 解锁黑苹果补丁不匹配，除了这点比较坑之外，其他的都可以正常按流程走下去。十三至少花了一天半的时间下镜像和 Xcode 安装包，至少十几个 G，加上学院宿舍里渣渣网速，醉了醉了…<br><br></p>
-<h2 id="黑苹果"><a href="#黑苹果" class="headerlink" title="黑苹果"></a>黑苹果</h2><p>&emsp;&emsp;当然了，十三今天已经把课程设计完成了，十三就把要用到的资源共享下，顺便来说下黑苹果要注意的地方。</p>
+<p><br></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;这是设计模式系列的第 十 篇学习记录，天气还是那么炎热，我盼望着富婆的到来，我不想努力了，然而什么都没有出现，继续搬砖…</p>
+<p>&emsp;&emsp;在开始我们今天的学习前，十三首先问大家一个基础的问题，假设现在有 两 个字符串对象，它们的内容也就是赋值相同，那么它们是同一个对象吗？我们先用代码描述出来先 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        String str = <span class="string">"LL"</span>;</span><br><span class="line">        String text = <span class="string">"LL"</span>;</span><br><span class="line">        System.out.println(str == text);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;那么最后我们运行程序的结果是什么呢，是 true 还是 false 呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">true</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;没错，答案是 true，我们知道在 Java 中字符串常量都是存放在常量池中的，Java 会确保 一 个字符串常量在常量池中只有 一 个拷贝，并且 String 对象是 final 类型，对象一旦创建就不可改变。在平时开发中，会出现许多 String 类型的变量，如果只是小应用倒还好,假设是一个庞大的系统,有好多处都需要用定义 String 类型的变量，那开销可想而知，而 JDK 的开发者自然想到了这点，采用了享元模式解决创建大量相同 String 变量带来的开销问题。</p>
+<p>&emsp;&emsp;那么问题就来了，这个享元模式到底是什么呢？我们接着往下看。<br><br></p>
+<h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><p>&emsp;&emsp;享元模式是池技术的重要实现方式，它不仅可以减少应用程序创建的对象，而且降低了程序内存的占用，提高程序的性能。</p>
+<p><code>定义：使用共享对象有效地支持大量细粒度的对象.</code></p>
+<p>&emsp;&emsp;支持大量细粒度对象，就会使得对象数量多并且性质基本上是相同的，这些对象分为两部分：内部状态和外部状态。</p>
+<p>&emsp;&emsp;内部状态是对象可分享出来的信息，存储在享元对象内部并且不会随环境的改变而改变；如上面的字符串例子中，字符串对象具有字符串类型的特性，这些特性是每个字符串对象都拥有的且是不会改变的。</p>
+<p>&emsp;&emsp;外部状态则是对象依赖的一个标记，它是随环境改变而改变的并且不可共享的状态。如每个字符串对象的内容都可能会不同，它是会随时变化的。</p>
+<p>享元模式中的角色及职责 ：</p>
 <ul>
-<li><p>首先 VMware 默认是没有安装苹果镜像选项的，所以需要打补丁，而补丁又得要和对应 VMware 版本搭配才能使用，否则无效。</p>
+<li><p>Flyweight : 抽象享元角色，同时定义出对象的外部状态和内部状态的接口或者实现.</p>
 </li>
-<li><p>其次，当我们完成上面第一步的时候，基本也就能进入苹果系统了，接下来安装 Xcode，要注意 Xcode 版本是对我们安装 Mac OS 版本是有要求的，低版本的 OS X 是不支持高版本的 Xcode，这点大家务必注意下，毕竟 XCode 下载动辄几个 G，对应关系给个例图。</p>
+<li><p>ConcreteFlyweight: 具体享元角色，实现抽象享元角色定义的业务方法.</p>
+</li>
+<li><p>FlyweightFactory: 享元工厂，负责管理对象池和创建享元对象.</p>
 </li>
 </ul>
-<p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fvcivf1cpdj30qa06omy0.jpg" alt=""></div></p>
-<p><div align="center" style="font-size: 13px; color: gray;">对应版本关系图</div></p>
-<p>&emsp;&emsp;走到了这一步，基本上我们 iOS 的开发环境就已经是搭建起来了，别急，我们还可以再优化一下，毕竟虚拟机下跑个系统，机器硬盘下那是卡出了翔……</p>
-<ol>
-<li><p>首先，刚进入桌面就发现一堆的通知显示，这些我们都可以在<code>系统偏好设置</code>中进入<code>扩展</code>选项中，把不需要的通知组件都取消勾选掉，不仅清爽还能流畅不少。</p>
-</li>
-<li><p>其次，OS X 中的菜单和 Dock 都采用了透明效果，好看是好看，可 TM 吃性能，在<code>系统偏好设置</code>中进入<code>辅助功能</code>选项中，然后我们找到<code>减少透明度</code>选项并把它勾选上。</p>
-</li>
-<li><p>最后，来个大杀器——<code>beamoff</code>，安装它可以提升 OS X 在 VMware 的性能，我们可以把它设置为开机自动运行。</p>
-</li>
-</ol>
-<p>&emsp;&emsp;好了，经过上面几步的优化，都可以流畅使用，偶尔会些许卡顿，哎哟，真是累死我了…好了，我把一些用到的资源都共享到百度云盘上，大家去阅读原文点击就能跳转到资源页面了。<br><br></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;这几天在做课程设计上，发现写代码还是比较行云流水的，主要还是课上 OC 基础语法掌握的不错，我想，这也可以涉及到广度的选择上吧，记得主席任玉刚在博客曾说道他在校期间深入学习 Android 的同时也去了解其他，如 Html，Java 等等，这不也算是扩大自己的知识面吗？这样技术的广度和深度也就有了，而 iOS 作为移动开发，玩 Android 的我们也是可以去看看的，没有坏处。学习之路漫长，还有很多东西要学，大家一起加油，我也争取早一天拥有我第一台的 Mac，无它，好用。溜了溜了…<br><br><br><br></p>
+<p>&emsp;&emsp;光说不练假把式，咱们这里我们就以一个线上手机商城为例子把享元模式用起来 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Phone</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showPrice</span><span class="params">(String phone_Name)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里我们先定义了一个接口，里面分别提供了 showPrice 这个方法，它便对应模式里抽象享元这个角色。我们接着往下看 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Apple_Phone</span> <span class="keyword">implements</span> <span class="title">Phone</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String phoneName;</span><br><span class="line">    <span class="keyword">private</span> String version;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Apple_Phone</span><span class="params">(String phoneName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.phoneName = phoneName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showPrice</span><span class="params">(String version)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (version.equals(<span class="string">"32G"</span>)) &#123;</span><br><span class="line">            System.out.println(<span class="string">"price : 5199 元"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (version.equals(<span class="string">"64G"</span>)) &#123;</span><br><span class="line">            System.out.println(<span class="string">"price : 5699 元"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;接着我看到这里定义了个类，它实现了前面我们定义的抽象享元角色接口并实现了接口里的方法，那么它对应的角色便是具体享元这个角色了。除了实现接口方法外，我们还定义两个字段属性和构造方法，字段属性分别是手机名字以及手机型号。好，我们继续往下面看 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhoneFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Apple_Phone&gt; pool = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Phone <span class="title">getPhone</span><span class="params">(String PhoneName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pool.containsKey(PhoneName)) &#123;</span><br><span class="line">            System.out.println(<span class="string">"使用共享对象,手机型号为："</span> + PhoneName);</span><br><span class="line">            <span class="keyword">return</span> pool.get(PhoneName);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Apple_Phone phone = <span class="keyword">new</span> Apple_Phone(PhoneName);</span><br><span class="line">            pool.put(PhoneName, phone);</span><br><span class="line">            System.out.println(<span class="string">"创建手机对象,手机型号为："</span> + PhoneName);</span><br><span class="line">            <span class="keyword">return</span> phone;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们看到这个类名带有 Factory，那么想都不用想，它就是享元工厂类这个角色了。享元工厂是用来创建享元对象的，它通过 Map 容器来存储对象，将内部状态的属性作为 Map 的 key，这里我们手机的内部状态便是 PhoneName，不管怎么样手机名字是不会改变的。然后我们进行判断，如果 Map 容器包含这个 key，那我们就使用 Map 容器存储的这个对象；否则就新创建对象并放入 Map 容器中，以达到共享的目的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Apple_Phone phoneA = (Apple_Phone) PhoneFactory.getPhone(<span class="string">"iPhone 8"</span>);</span><br><span class="line">        phoneA.showPrice(<span class="string">"64G"</span>);</span><br><span class="line">        Apple_Phone phoneB = (Apple_Phone) PhoneFactory.getPhone(<span class="string">"iPhone 8"</span>);</span><br><span class="line">        phoneB.showPrice(<span class="string">"32G"</span>);</span><br><span class="line">        Apple_Phone phoneC = (Apple_Phone) PhoneFactory.getPhone(<span class="string">"iPhone 8"</span>);</span><br><span class="line">        phoneC.showPrice(<span class="string">"64G"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">创建手机对象,手机型号为：iPhone 8</span><br><span class="line">price : 5699 元</span><br><span class="line">使用共享对象,手机型号为：iPhone 8</span><br><span class="line">price : 5199 元</span><br><span class="line">使用共享对象,手机型号为：iPhone 8</span><br><span class="line">price : 5699 元</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;最后我们通过运行结果可以得到，首先由于是第一次创建对象，Map 容器中并没有存储这个对象，所以它便新建对象便存储到 Map 容器中，接下来，只要再创建对象时便直接使用 Map 容器存储的对象。我们在回过头来想下，在这里，手机名字作为内部状态它是不会改变的，而手机型号则是外部状态它的值是会变化的，当然最终的手机价格也会发生改变。如此一来，因为有了共享对象，节约了开销。<br><br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>那么到最后我们来简单总结下 ：</p>
+<p><code>使用场景 :</code><br>如果一个应用程序使用了大量的相似对象，而这些大量的对象造成了很大的存储开销就应该考虑使用；当需要缓冲池的场景。</p>
+<p><code>优点 ：</code><br>减少应用程序创建的对象，降低程序内存的占用，提高程序的性能。</p>
+<p>最后来张观察者模式的合照 ： </p>
+<p><div align="center"><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdnp4k285j30ui09s3zk.jpg" alt=""></div></p>
+<p><div align="center" style="font-size: 11px; color: gray;">Flyweight 结构图</div></p>
+<p>&emsp;&emsp;好了，关于享元模式的学习记录就到这里了，天气那么热，各位注意防晒和多吃点水果。<br><br><br><br></p>
 <hr>
 <p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号</div></p>
 
@@ -364,13 +380,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></p>
+        <p><span>本文标题:</span><a href="/2018/07/20/Flyweight/">设计模式之享元模式</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
-        <p><span>发布时间:</span>2018-06-25, 14:07:49</p>
-        <p><span>最后更新:</span>2018-09-17, 14:35:54</p>
+        <p><span>发布时间:</span>2018-07-20, 13:52:45</p>
+        <p><span>最后更新:</span>2018-09-18, 14:05:50</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/06/25/blackApple/" title="黑苹果踩坑指南">http://Binshao.site/2018/06/25/blackApple/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/06/25/blackApple/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/20/Flyweight/" title="设计模式之享元模式">http://Binshao.site/2018/07/20/Flyweight/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/07/20/Flyweight/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -383,15 +399,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/07/04/Memento/">
-                    设计模式之备忘录模式
+                <a href="/2018/08/30/Aug/">
+                    扎心的八月
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/06/17/readBook/">
-                    推荐一些读过的技术书籍
+                <a href="/2018/07/19/Observer/">
+                    十三校园泡妞记
                 </a>
             </div>
         
@@ -403,7 +419,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最近"><span class="toc-number">1.</span> <span class="toc-text">最近</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#黑苹果"><span class="toc-number">2.</span> <span class="toc-text">黑苹果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#享元模式"><span class="toc-number">2.</span> <span class="toc-text">享元模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
         
     </div>
     <style>
@@ -469,7 +485,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/07/04/Memento/" title="上一篇: 设计模式之备忘录模式">
+            <a href="/2018/08/30/Aug/" title="上一篇: 扎心的八月">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -477,7 +493,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/06/17/readBook/" title="下一篇: 推荐一些读过的技术书籍">
+            <a href="/2018/07/19/Observer/" title="下一篇: 十三校园泡妞记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
