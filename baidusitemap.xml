@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/08/08/ThreadPool/</loc>
+    <lastmod>2018-09-18T14:07:40.215Z</lastmod>
+    <data>
+        <display>
+        <title>Android 中的线程池</title>
+        <pubTime>2018-08-08T12:26:02.000Z</pubTime>
+        
+        <tag>线程池</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/11/Command/</loc>
+    <lastmod>2018-09-18T14:06:36.183Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之命令模式</title>
+        <pubTime>2018-08-11T12:26:58.000Z</pubTime>
+        
+        <tag>命令模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/08/17/runOnUiThread/</loc>
     <lastmod>2018-09-18T13:59:20.998Z</lastmod>
     <data>
@@ -64,26 +104,6 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/08/11/Command/</loc>
-    <lastmod>2018-09-18T13:56:19.715Z</lastmod>
-    <data>
-        <display>
-        <title>设计模式之命令模式</title>
-        <pubTime>2018-08-11T12:26:58.000Z</pubTime>
-        
-        <tag>命令模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://Binshao.site/2018/08/10/AsyncTask/</loc>
     <lastmod>2018-09-18T13:48:24.619Z</lastmod>
     <data>
@@ -117,26 +137,6 @@
            
              
               <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/08/ThreadPool/</loc>
-    <lastmod>2018-09-18T13:18:04.882Z</lastmod>
-    <data>
-        <display>
-        <title>Android 中的线程池</title>
-        <pubTime>2018-08-08T12:26:02.000Z</pubTime>
-        
-        <tag>线程池</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
           
         </display>
     </data>
