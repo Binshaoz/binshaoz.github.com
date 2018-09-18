@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="十三" />
+
+
+
+<meta name="description" content="Hi，我是十三。最近把之前的文章删了又重发了，时间上可能不匹配，大家不要觉得奇怪。">
+<meta name="keywords" content="原型模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式之原型模式">
+<meta property="og:url" content="http://Binshao.site/2018/07/16/Prototype/index.html">
+<meta property="og:site_name" content="十三的个人博客">
+<meta property="og:description" content="Hi，我是十三。最近把之前的文章删了又重发了，时间上可能不匹配，大家不要觉得奇怪。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvdfjpxfnqj30zk0nngr9.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg">
+<meta property="og:updated_time" content="2018-09-18T01:37:23.901Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式之原型模式">
+<meta name="twitter:description" content="Hi，我是十三。最近把之前的文章删了又重发了，时间上可能不匹配，大家不要觉得奇怪。">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvdfjpxfnqj30zk0nngr9.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="十三的个人博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/orange/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>设计模式之原型模式 | 十三的个人博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9ca89eb39b844f"></script>
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/icon.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">十三</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-主题和样式/">Android 主题和样式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-书籍/">Android 书籍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义属性/">Android 自定义属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java编程思想/">Java编程思想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SurfaceView/">SurfaceView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件分发/">事件分发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘录模式/">备忘录模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路上/">学习路上</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活杂谈/">生活杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略模式/">策略模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单工厂模式/">简单工厂模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Hi，我是十三！努力成为 Android 老司机 ing...生活不止技术，喜欢看书、旅游、听歌！</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="hide-left-col" title="隐藏侧栏">
+     <i class="fa fa-angle-double-left"></i>
+   </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">十三</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/icon.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">十三</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Prototype" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/16/Prototype/" class="article-date">
+      <time datetime="2018-07-16T01:13:10.000Z" itemprop="datePublished">2018-07-16</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      设计模式之原型模式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型模式/">原型模式</a></li></ul>
+       <span class="post-count">总字数1.9k</span>
+       <span class="post-count">预计阅读8分钟</span>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>Hi，我是十三。最近把之前的文章删了又重发了，时间上可能不匹配，大家不要觉得奇怪。</p>
+</blockquote>
+<p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvdfjpxfnqj30zk0nngr9.jpg" alt=""></div></p>
+<a id="more"></a>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>&emsp;&emsp;这是设计模式系列的第 六 篇学习记录，量变引起质变，学习路上还要坚持。今天我们猪脚是原型模式，下面就让我们一起来看看原型模式是什么鬼。<br><br></p>
+<h2 id="原型模式-Prototype"><a href="#原型模式-Prototype" class="headerlink" title="原型模式 (Prototype)"></a>原型模式 (Prototype)</h2><p>&emsp;&emsp;<code>原型模式</code>是一种对象创建型模式，用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。<br>什么意思呢？别急，我们先简单举个例子，假设我们有个 Person 类，有属性及 Get Set 方法，如下 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"name: "</span> + name + <span class="string">"  age: "</span> + age + <span class="string">"  sex: "</span> + sex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;代码非常简单，都是些基础，接下来我们在 Main 方法里创建实例 :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        p.setName(<span class="string">"Binshao"</span>);</span><br><span class="line">        p.setAge(<span class="number">29</span>);</span><br><span class="line">        p.setSex(<span class="string">"Man"</span>);</span><br><span class="line"></span><br><span class="line">        Person p1 = <span class="keyword">new</span> Person();</span><br><span class="line">        p1.setName(<span class="string">"十三"</span>);</span><br><span class="line">        p1.setAge(<span class="number">13</span>);</span><br><span class="line">        p1.setSex(<span class="string">"Man"</span>);</span><br><span class="line"></span><br><span class="line">        p.display();</span><br><span class="line">        p1.display();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;那么运行结果显示就为下面所示 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name: Binshao  age: 29  sex: Man</span><br><span class="line">name: 十三      age: 13  sex: Man</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这样子我们创建两个对象就需要两次实例化，假如这时候我们要多个对象岂不是要实例化多次，这可要麻烦死了。而且不知道大家有没有发现，我们上面创建的两个实例对象的基本结构(属性方法等)都是相同的，那我们有没有其他好的解决办法呢？没错，就用我们刚刚提到的原型模式，那么怎么来做呢，放码 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 浅克隆</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Person <span class="title">clone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (Person) <span class="keyword">super</span>.clone();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"name: "</span> + name + <span class="string">"  age: "</span> + age + <span class="string">"  sex: "</span> + sex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;首先我们让 Person 类实现 Cloneable 这个接口，Clone 顾名思义便是克隆的意思，Java 本身就有提供支持。接着我们再添加个 clone() 方法用来克隆生成新对象，也就是说通过复制原型(Person)来创建新的实例对象，这便完成了克隆，通过原型模式创建的对象，不仅仅<code>与原型对象具有相同的结构，还与原型对象具有相同的值</code>。<br>眼见为实，让我们来看看结果 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        p.setName(<span class="string">"Binshao"</span>);</span><br><span class="line">        p.setAge(<span class="number">29</span>);</span><br><span class="line">        p.setSex(<span class="string">"Man"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 克隆 p 对象</span></span><br><span class="line">        Person p1 = p.clone();</span><br><span class="line">        <span class="comment">// 当然我们也可以修改值(仅相对于对象数据是值类型)</span></span><br><span class="line">        <span class="comment">//p1.setName("LL");</span></span><br><span class="line">        <span class="comment">//p1.setAge(13);</span></span><br><span class="line">        <span class="comment">//p1.setSex("Girl");</span></span><br><span class="line"></span><br><span class="line">        p.display();</span><br><span class="line">        p1.display();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name: Binshao  age: 29  sex: Man</span><br><span class="line">name: Binshao  age: 29  sex: Man</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这样一看，果然我们克隆的对象和原型对象的值是相同的。当然，我们也可以修改数据值，前提是对象数据(字段)都是值类型的,如果字段是引用类型，克隆对象则复制引用所有变量但不复制引用的对象，也就是说原型对象和克隆对象引用的是同一个对象。事实上，这样的写法叫做浅克隆。</p>
+<p>&emsp;&emsp;一脸懵逼？没事，我们来看看代码，相信大家就会明白了，首先给 Person 类添加个 friend 字段及 get set 方法 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; friends;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getFriends</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> friends;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFriends</span><span class="params">(List&lt;String&gt; friends)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.friends = friends;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 浅克隆</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Person <span class="title">clone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (Person) <span class="keyword">super</span>.clone();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"name: "</span> + name + <span class="string">"  age: "</span> + age + <span class="string">"  sex: "</span> + sex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们都知道每个人当然不止一个朋友，所以我们用容器来装载。接下来在 Main 方法里看看 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Person per1 = <span class="keyword">new</span> Person();</span><br><span class="line">        List&lt;String&gt; friends = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        friends.add(<span class="string">"Binshao"</span>);</span><br><span class="line">        friends.add(<span class="string">"十三"</span>);</span><br><span class="line">        per1.setFriends(friends);</span><br><span class="line"></span><br><span class="line">        Person per2 = per1.clone();</span><br><span class="line"></span><br><span class="line">        System.out.println(per1.getFriends());</span><br><span class="line">        System.out.println(per2.getFriends());</span><br><span class="line"></span><br><span class="line">        friends.add(<span class="string">"LL"</span>);</span><br><span class="line">        per1.setFriends(friends);</span><br><span class="line"></span><br><span class="line">        System.out.println(per1.getFriends());</span><br><span class="line">        System.out.println(per2.getFriends());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Binshao, 十三]</span><br><span class="line">[Binshao, 十三]</span><br><span class="line">[Binshao, 十三, LL]</span><br><span class="line">[Binshao, 十三, LL]</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;从结果我们看到，克隆对象复制引用了原型对象的所有变量，并且克隆对像和原型对象引用的是同一个对象，对应到我们的例子便是你认识的所有朋友我也认识，因为它们都是同个对象所以能不一样才怪…我们希望的是它们之间可以互相不影响，那么这又怎么做才好呢？<br><br></p>
+<h2 id="深度克隆"><a href="#深度克隆" class="headerlink" title="深度克隆"></a>深度克隆</h2><p>&emsp;&emsp;既然有了浅度克隆便有了深度克隆，深度克隆便把引用对象的变量指向克隆过的新对象，而不是原有的被引用的对象，那么我们直接上大招 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; friends;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getFriends</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> friends;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFriends</span><span class="params">(List&lt;String&gt; friends)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.friends = friends;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 浅克隆</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Person <span class="title">clone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (Person) <span class="keyword">super</span>.clone();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 深克隆</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Person <span class="title">deepClone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Person per = (Person) <span class="keyword">super</span>.clone();</span><br><span class="line">            List&lt;String&gt; newFriends = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (String friends : <span class="keyword">this</span>.getFriends()) &#123;</span><br><span class="line">                newFriends.add(friends);</span><br><span class="line">            &#125;</span><br><span class="line">            per.setFriends(newFriends);</span><br><span class="line">            <span class="keyword">return</span> per;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"name: "</span> + name + <span class="string">"  age: "</span> + age + <span class="string">"  sex: "</span> + sex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们在这里添加了个深度克隆的方法函数，同样先是获得克隆对象，接着我们通过对 list 容器进行相关赋值，最终返回一个深度克隆的对象，这样一来，克隆对象便把引用对象指向这个复制的新对象，而不是原有的引用对象。最后，我们来验证下看看 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Person per1 = <span class="keyword">new</span> Person();</span><br><span class="line">        List&lt;String&gt; friends = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        friends.add(<span class="string">"Binshao"</span>);</span><br><span class="line">        friends.add(<span class="string">"十三"</span>);</span><br><span class="line">        per1.setFriends(friends);</span><br><span class="line"></span><br><span class="line">        Person per2 = per1.deepClone();</span><br><span class="line"></span><br><span class="line">        System.out.println(per1.getFriends());</span><br><span class="line">        System.out.println(per2.getFriends());</span><br><span class="line"></span><br><span class="line">        friends.add(<span class="string">"LL"</span>);</span><br><span class="line">        per1.setFriends(friends);</span><br><span class="line"></span><br><span class="line">        System.out.println(per1.getFriends());</span><br><span class="line">        System.out.println(per2.getFriends());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Binshao, 十三]</span><br><span class="line">[Binshao, 十三]</span><br><span class="line">[Binshao, 十三, LL]</span><br><span class="line">[Binshao, 十三]</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这样一来，果然它们之间可以完全不互相影响。<br><br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后我们来总结下原型模式 ：</p>
+<ul>
+<li><p>由原型对象自身创建目标对象，也就是说，对象创建这一动作发自原型对象本身.</p>
+</li>
+<li><p>目标对象是原型对象的一个克隆，也就是说，通过 Prototype 模式创建的对象，不仅仅与原型对象具有相同的结构，还与原型对象具有相同的值.</p>
+</li>
+<li><p>根据对象克隆深度层次的不同，有浅度克隆和深度克隆.</p>
+</li>
+</ul>
+<p>Ok，今天就到这里，溜了……<br><br><br><br></p>
+<hr>
+<p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号</div></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/07/16/Prototype/">设计模式之原型模式</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
+        <p><span>发布时间:</span>2018-07-16, 09:13:10</p>
+        <p><span>最后更新:</span>2018-09-18, 09:37:23</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/16/Prototype/" title="设计模式之原型模式">http://Binshao.site/2018/07/16/Prototype/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/07/16/Prototype/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/07/17/Builder/">
+                    买不起房就自己“盖房”来聊聊建造者模式
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/07/15/Singletop/">
+                    以古代帝皇来讲单例模式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型模式-Prototype"><span class="toc-number">2.</span> <span class="toc-text">原型模式 (Prototype)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深度克隆"><span class="toc-number">3.</span> <span class="toc-text">深度克隆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        
+        <div class="addthis_inline_share_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyMS8xNjI0OA==">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/07/17/Builder/" title="上一篇: 买不起房就自己“盖房”来聊聊建造者模式">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/07/15/Singletop/" title="下一篇: 以古代帝皇来讲单例模式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/30/Aug/">扎心的八月</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/16/Prototype/">设计模式之原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/07/simpleFactory/">哆啦A梦来讲简单工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Strategy/">设计模式之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/Memento/">设计模式之备忘录模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/readBook/">推荐一些读过的技术书籍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/Thinking-in-Java/">读 《Java编程思想》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/Activity/">Activity 基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/10/AndroidTheme/">Android 主题和样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/dispatch/">浅谈事件分发机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/08/AttributeSet/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/07/SurfaceView/">SurfaceView</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018 十三
+            </div>
+            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+            <script>
+                var now = new Date(); 
+                function createtime() { 
+                    var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+                    now.setTime(now.getTime()+250); 
+                    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+                    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+                    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+                    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+                    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+                    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+                    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+                } 
+            setInterval("createtime()",250);
+            </script>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    <script type="application/javascript">
+     var hide = false, leftWidth = 350;
+     function hideLeftCol() {
+       if (hide) {
+         $(".left-col").width(leftWidth);
+         $(".left-col .intrude-less").css('display', '');
+         $("#tocButton").css('display', '');
+         ($('#switch-btn').css('display') === 'block' && $('#switch-area').css('display') === 'block') || $('#toc').slideDown(320);
+         $(".hide-left-col").css("left", leftWidth).html('<i class="fa fa-angle-double-left"></i>');
+         $(".mid-col").css("left", leftWidth)
+         $("#post-nav-button").css("left", leftWidth)
+         $("#post-nav-button > a:nth-child(2)").css("display", "block")
+         hide = false
+       } else {
+         $(".left-col").width(0);
+         $(".left-col .intrude-less").css('display', 'none');
+         $("#toc").css('display', 'none');
+         $("#tocButton").css('display', 'none');
+         $(".hide-left-col").css("left", 0).html('<i class="fa fa-angle-double-right"></i>');
+         $(".mid-col").css("left", 0)
+         $("#post-nav-button").css("left", 0)
+         $("#post-nav-button > a:nth-child(2)").css("display", "none")
+         if ($(".post-list").is(":visible")) {
+           $("#post-nav-button .fa-bars,#post-nav-button .fa-times").toggle();
+           $(".post-list").toggle();
+         }
+         hide = true
+       }
+     }
+     $(".hide-left-col").click(function() {
+       hideLeftCol()
+     });
+   </script>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
