@@ -4,6 +4,186 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/08/17/runOnUiThread/</loc>
+    <lastmod>2018-09-18T13:59:20.998Z</lastmod>
+    <data>
+        <display>
+        <title>runOnUiThread</title>
+        <pubTime>2018-08-17T12:41:01.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/16/IntentService/</loc>
+    <lastmod>2018-09-18T13:59:08.866Z</lastmod>
+    <data>
+        <display>
+        <title>IntentService</title>
+        <pubTime>2018-08-16T12:40:45.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/13/HandlerThread/</loc>
+    <lastmod>2018-09-18T13:59:00.987Z</lastmod>
+    <data>
+        <display>
+        <title>HandlerThread</title>
+        <pubTime>2018-08-13T12:40:30.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
+    <lastmod>2018-09-18T13:58:30.690Z</lastmod>
+    <data>
+        <display>
+        <title>Handler</title>
+        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/11/Command/</loc>
+    <lastmod>2018-09-18T13:56:19.715Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之命令模式</title>
+        <pubTime>2018-08-11T12:26:58.000Z</pubTime>
+        
+        <tag>命令模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/10/AsyncTask/</loc>
+    <lastmod>2018-09-18T13:48:24.619Z</lastmod>
+    <data>
+        <display>
+        <title>AsyncTask 的深入理解</title>
+        <pubTime>2018-08-10T12:26:33.000Z</pubTime>
+        
+        <tag>AsyncTask</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/09/State/</loc>
+    <lastmod>2018-09-18T13:27:51.113Z</lastmod>
+    <data>
+        <display>
+        <title>从富豪财产身家中学习状态模式</title>
+        <pubTime>2018-08-09T12:26:21.000Z</pubTime>
+        
+        <tag>状态模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/08/ThreadPool/</loc>
+    <lastmod>2018-09-18T13:18:04.882Z</lastmod>
+    <data>
+        <display>
+        <title>Android 中的线程池</title>
+        <pubTime>2018-08-08T12:26:02.000Z</pubTime>
+        
+        <tag>线程池</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/07/TemplateMethob/</loc>
+    <lastmod>2018-09-18T12:59:04.408Z</lastmod>
+    <data>
+        <display>
+        <title>从组装枪械中学习模板方法模式</title>
+        <pubTime>2018-08-07T12:25:41.000Z</pubTime>
+        
+        <tag>模板方法模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/31/Iterator/</loc>
+    <lastmod>2018-09-18T12:52:30.421Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之迭代模式</title>
+        <pubTime>2018-07-31T12:25:23.000Z</pubTime>
+        
+        <tag>迭代模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/07/24/Bridge/</loc>
     <lastmod>2018-09-18T12:19:36.113Z</lastmod>
     <data>
