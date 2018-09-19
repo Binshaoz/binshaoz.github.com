@@ -4,6 +4,86 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/08/17/runOnUiThread/</loc>
+    <lastmod>2018-09-19T02:11:38.419Z</lastmod>
+    <data>
+        <display>
+        <title>浅谈 runOnUiThread</title>
+        <pubTime>2018-08-17T12:41:01.000Z</pubTime>
+        
+        <tag>runOnUiThread</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/16/IntentService/</loc>
+    <lastmod>2018-09-19T01:55:54.736Z</lastmod>
+    <data>
+        <display>
+        <title>IntentService 的深入理解</title>
+        <pubTime>2018-08-16T12:40:45.000Z</pubTime>
+        
+        <tag>IntentService</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/13/HandlerThread/</loc>
+    <lastmod>2018-09-19T01:43:17.384Z</lastmod>
+    <data>
+        <display>
+        <title>HandlerThread 的深入理解</title>
+        <pubTime>2018-08-13T12:40:30.000Z</pubTime>
+        
+        <tag>HandlerThread</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
+    <lastmod>2018-09-19T01:23:54.785Z</lastmod>
+    <data>
+        <display>
+        <title>Handler 的深入理解</title>
+        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
+        
+        <tag>Handler</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/08/08/ThreadPool/</loc>
     <lastmod>2018-09-18T14:07:40.215Z</lastmod>
     <data>
@@ -38,66 +118,6 @@
              
               <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/17/runOnUiThread/</loc>
-    <lastmod>2018-09-18T13:59:20.998Z</lastmod>
-    <data>
-        <display>
-        <title>runOnUiThread</title>
-        <pubTime>2018-08-17T12:41:01.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/16/IntentService/</loc>
-    <lastmod>2018-09-18T13:59:08.866Z</lastmod>
-    <data>
-        <display>
-        <title>IntentService</title>
-        <pubTime>2018-08-16T12:40:45.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/13/HandlerThread/</loc>
-    <lastmod>2018-09-18T13:59:00.987Z</lastmod>
-    <data>
-        <display>
-        <title>HandlerThread</title>
-        <pubTime>2018-08-13T12:40:30.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
-    <lastmod>2018-09-18T13:58:30.690Z</lastmod>
-    <data>
-        <display>
-        <title>Handler</title>
-        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
