@@ -14,22 +14,23 @@
 <meta name="author" content="十三" />
 
 
-    
-     
-        <meta name="google-site-verification" content="pl-mFK_BmHHyuGJg8LQjkX9LzzpGoribI4W0tN7ltPQ" />
-    
 
-
-<meta name="description" content="Android Java 读书 生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="十三的个人博客">
-<meta property="og:url" content="http://Binshao.site/index.html">
+<meta name="description" content="Hi，我是十三，最近突然对马克思感兴趣了起来，此前可是一点都不感冒……看来凡事都不要太早下定论了。  &amp;emsp;&amp;emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。  演示效果&amp;emsp;&amp;emsp;老规矩，我们先来看看我们要实现的效果：  &amp;emsp;&amp;emsp;你没">
+<meta name="keywords" content="自定义控件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单实现个购物车商品数量控件">
+<meta property="og:url" content="http://Binshao.site/2018/09/27/NumAddSubView/index.html">
 <meta property="og:site_name" content="十三的个人博客">
-<meta property="og:description" content="Android Java 读书 生活">
+<meta property="og:description" content="Hi，我是十三，最近突然对马克思感兴趣了起来，此前可是一点都不感冒……看来凡事都不要太早下定论了。  &amp;emsp;&amp;emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。  演示效果&amp;emsp;&amp;emsp;老规矩，我们先来看看我们要实现的效果：  &amp;emsp;&amp;emsp;你没">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fvod4lnlehj30zk0np75n.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvodb1dda0g309s08j43e.gif">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg">
+<meta property="og:updated_time" content="2018-09-27T13:14:03.526Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十三的个人博客">
-<meta name="twitter:description" content="Android Java 读书 生活">
+<meta name="twitter:title" content="简单实现个购物车商品数量控件">
+<meta name="twitter:description" content="Hi，我是十三，最近突然对马克思感兴趣了起来，此前可是一点都不感冒……看来凡事都不要太早下定论了。  &amp;emsp;&amp;emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。  演示效果&amp;emsp;&amp;emsp;老规矩，我们先来看看我们要实现的效果：  &amp;emsp;&amp;emsp;你没">
+<meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fvod4lnlehj30zk0np75n.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -57,13 +58,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>十三的个人博客</title>
+<title>简单实现个购物车商品数量控件 | 十三的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -72,8 +71,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -289,240 +288,7 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-Mediator" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/07/27/Mediator/" class="article-date">
-      <time datetime="2018-07-27T06:44:43.000Z" itemprop="datePublished">2018-07-27</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/27/Mediator/">程序猿相亲记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三，最近又把使命召唤的现代战争系列重看了一遍，剧情是真的赞，个人认为使命召唤 4、6、8 这三部曲实在是经典阿，还有荣誉勋章这款游戏也不错，青春阿……    </p>
-</blockquote>
-<p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvdxr768qqj30zk0nsn74.jpg" alt=""></div></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <a class="">置顶</a>
-        </div>
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中介者模式/">中介者模式</a></li></ul>
-       <span class="post-count">总字数2.1k</span>
-       <span class="post-count">预计阅读8分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/07/27/Mediator/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Proxy" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/07/21/Proxy/" class="article-date">
-      <time datetime="2018-07-21T06:24:40.000Z" itemprop="datePublished">2018-07-21</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/21/Proxy/">校园爱情故事后记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三，不知道是不是越长大就更难做到坚持……</p>
-</blockquote>
-<p><div align="center"><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvdodj2pdgj30zk0mtdor.jpg" alt=""></div></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <a class="">置顶</a>
-        </div>
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代理模式/">代理模式</a></li></ul>
-       <span class="post-count">总字数1.9k</span>
-       <span class="post-count">预计阅读7分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/07/21/Proxy/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Observer" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/07/19/Observer/" class="article-date">
-      <time datetime="2018-07-19T05:01:09.000Z" itemprop="datePublished">2018-07-19</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/19/Observer/">十三校园泡妞记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三。一首华仔《暗里着迷》送给大家，怎样，是不是很符合气氛！</p>
-</blockquote>
-<p><div align="center"><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvdmh8muk6j30zk0npaca.jpg" alt=""></div></p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <a class="">置顶</a>
-        </div>
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/观察者模式/">观察者模式</a></li></ul>
-       <span class="post-count">总字数2.5k</span>
-       <span class="post-count">预计阅读9分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/07/19/Observer/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-NumAddSubView" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-NumAddSubView" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2018/09/27/NumAddSubView/" class="article-date">
@@ -540,12 +306,29 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a>
+    <h1 class="article-title" itemprop="name">
+      简单实现个购物车商品数量控件
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自定义控件/">自定义控件</a></li></ul>
+       <span class="post-count">总字数1.6k</span>
+       <span class="post-count">预计阅读7分钟</span>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -577,191 +360,129 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自定义控件/">自定义控件</a></li></ul>
-       <span class="post-count">总字数1.6k</span>
-       <span class="post-count">预计阅读7分钟</span>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="blog-Aug" class="article article-type-blog" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/08/30/Aug/" class="article-date">
-      <time datetime="2018-08-30T01:29:02.000Z" itemprop="datePublished">2018-08-30</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/30/Aug/">扎心的八月</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三，人生中最后一个暑假假期就剩下两天了，余额严重不足感……  </p>
-</blockquote>
-<p>&emsp;&emsp;好些天没来记录了，这段时间都用来养病去了，以至于感觉过的没那么充实却又觉意义深远，今天家这边大雨倾盆，竟然有些凉意。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/时光任意门/">时光任意门</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/健康/">健康</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活杂谈/">生活杂谈</a></li></ul>
-       <span class="post-count">总字数666</span>
-       <span class="post-count">预计阅读2分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/08/30/Aug/#more">阅读全文 >></a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
+        <p><span>发布时间:</span>2018-09-27, 20:02:16</p>
+        <p><span>最后更新:</span>2018-09-27, 21:14:03</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/27/NumAddSubView/" title="简单实现个购物车商品数量控件">http://Binshao.site/2018/09/27/NumAddSubView/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/09/27/NumAddSubView/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-runOnUiThread" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/08/17/runOnUiThread/" class="article-date">
-      <time datetime="2018-08-17T12:41:01.000Z" itemprop="datePublished">2018-08-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/17/runOnUiThread/">浅谈 runOnUiThread</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <blockquote>
-<p>Hi，我是十三，今天对咱来说还是不太友好的，咱还是先回避回避…</p>
-</blockquote>
-<p><div align="center"><img src="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fvem6zdg72j30zk0kgn0m.jpg" alt=""></div></p>
-<p>&emsp;&emsp;上篇学习记录中我们提到了 IntentService 并且是把它大致工作流程简单走了一遍，来一个传送门：<a href="https://binshao.site/2018/08/16/IntentService/">IntentService 的深入理解</a> 。</p>
-<p>&emsp;&emsp;一方面十三是非常害怕哪里理解错或者说是理解的不够深入，但是既然是学习记录我就把学习过程记录下来，也好让自己加深印象，还望各位大牛同学一起指出错误，指点下愚钝的十三。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/runOnUiThread/">runOnUiThread</a></li></ul>
-       <span class="post-count">总字数1.1k</span>
-       <span class="post-count">预计阅读4分钟</span>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2018/08/17/runOnUiThread/#more">阅读全文 >></a>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/08/30/Aug/">
+                    扎心的八月
+                </a>
+            </div>
+        
     </nav>
+
   
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#演示效果"><span class="toc-number">1.</span> <span class="toc-text">演示效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控件布局及自定义属性"><span class="toc-number">2.</span> <span class="toc-text">控件布局及自定义属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义控件代码"><span class="toc-number">3.</span> <span class="toc-text">自定义控件代码</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        
+        <div class="addthis_inline_share_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyMS8xNjI0OA==">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/08/30/Aug/" title="下一篇: 扎心的八月">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/30/Aug/">扎心的八月</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/17/runOnUiThread/">浅谈 runOnUiThread</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/16/IntentService/">IntentService 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/HandlerThread/">HandlerThread 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/12/Handler/">Handler 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/Command/">设计模式之命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/10/AsyncTask/">AsyncTask 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/State/">从富豪财产身家中学习状态模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/08/ThreadPool/">Android 中的线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/TemplateMethob/">从组装枪械中学习模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/Iterator/">设计模式之迭代模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/Responsibility/">从请假流程来学习责任链模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/Mediator/">程序猿相亲记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/25/Adapter/">设计模式之适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/24/Bridge/">秋名山车王 —AE86— 改装记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/Composite/">设计模式之组合模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Facade/">从造人的角度来学习外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/Proxy/">校园爱情故事后记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/Flyweight/">设计模式之享元模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Observer/">十三校园泡妞记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/design-decorator/">爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/16/Prototype/">设计模式之原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/07/simpleFactory/">哆啦A梦来讲简单工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Strategy/">设计模式之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/Memento/">设计模式之备忘录模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/readBook/">推荐一些读过的技术书籍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/Thinking-in-Java/">读 《Java编程思想》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/Activity/">Activity 基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/10/AndroidTheme/">Android 主题和样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/dispatch/">浅谈事件分发机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/08/AttributeSet/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/07/SurfaceView/">SurfaceView</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
