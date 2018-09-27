@@ -15,21 +15,21 @@
 
 
 
-<meta name="description" content="Hi，我是十三，最近突然对马克思感兴趣了起来，此前可是一点都不感冒……看来凡事都不要太早下定论了。  &amp;emsp;&amp;emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。  演示效果&amp;emsp;&amp;emsp;老规矩，我们先来看看我们要实现的效果：  &amp;emsp;&amp;emsp;你没">
+<meta name="description" content="Hi，我是十三，最近突然对马克思感兴趣了起来，此前可是一点都不感冒……看来凡事都不要太早下定论了。  &amp;emsp;&amp;emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。">
 <meta name="keywords" content="自定义控件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单实现个购物车商品数量控件">
 <meta property="og:url" content="http://Binshao.site/2018/09/27/NumAddSubView/index.html">
 <meta property="og:site_name" content="十三的个人博客">
-<meta property="og:description" content="Hi，我是十三，最近突然对马克思感兴趣了起来，此前可是一点都不感冒……看来凡事都不要太早下定论了。  &amp;emsp;&amp;emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。  演示效果&amp;emsp;&amp;emsp;老规矩，我们先来看看我们要实现的效果：  &amp;emsp;&amp;emsp;你没">
+<meta property="og:description" content="Hi，我是十三，最近突然对马克思感兴趣了起来，此前可是一点都不感冒……看来凡事都不要太早下定论了。  &amp;emsp;&amp;emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fvod4lnlehj30zk0np75n.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvodb1dda0g309s08j43e.gif">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg">
-<meta property="og:updated_time" content="2018-09-27T13:14:03.526Z">
+<meta property="og:updated_time" content="2018-09-27T13:23:19.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单实现个购物车商品数量控件">
-<meta name="twitter:description" content="Hi，我是十三，最近突然对马克思感兴趣了起来，此前可是一点都不感冒……看来凡事都不要太早下定论了。  &amp;emsp;&amp;emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。  演示效果&amp;emsp;&amp;emsp;老规矩，我们先来看看我们要实现的效果：  &amp;emsp;&amp;emsp;你没">
+<meta name="twitter:description" content="Hi，我是十三，最近突然对马克思感兴趣了起来，此前可是一点都不感冒……看来凡事都不要太早下定论了。  &amp;emsp;&amp;emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。">
 <meta name="twitter:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fvod4lnlehj30zk0np75n.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -339,6 +339,7 @@
 </blockquote>
 <p>&emsp;&emsp;平时我们在各大电商平台上购物时，购物车清单里的商品数量选择器都很常见，它可以让用户选择购买商品的数量，而在最近学习项目中我们需要用到，索性我们就自己来自定义这个控件。</p>
 <p><div align="center"><img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fvod4lnlehj30zk0np75n.jpg" alt=""></div></p>
+<a id="more"></a>
 <h2 id="演示效果"><a href="#演示效果" class="headerlink" title="演示效果"></a>演示效果</h2><p>&emsp;&emsp;老规矩，我们先来看看我们要实现的效果：</p>
 <p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvodb1dda0g309s08j43e.gif" alt=""></div></p>
 <p>&emsp;&emsp;你没看错，这家平台胆还真肥阿！我们从演示图中可以看到，左右两边分别是一个按钮，点击可以对商品数量进行选择，而中间则是一个 TextView，对选择的商品数量进行展示。其实这个控件还是挺简单的，那么我们分析完后，下面就开始动手撸码。<br><br></p>
@@ -367,7 +368,7 @@
         <p><span>本文标题:</span><a href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
         <p><span>发布时间:</span>2018-09-27, 20:02:16</p>
-        <p><span>最后更新:</span>2018-09-27, 21:14:03</p>
+        <p><span>最后更新:</span>2018-09-27, 21:23:19</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/09/27/NumAddSubView/" title="简单实现个购物车商品数量控件">http://Binshao.site/2018/09/27/NumAddSubView/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/09/27/NumAddSubView/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
