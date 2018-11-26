@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
+    
+    <lastmod>2018-11-26T06:39:27.646Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://Binshao.site/2018/10/29/MiniProgram/</loc>
     
     <lastmod>2018-10-30T04:40:01.065Z</lastmod>
@@ -12,6 +19,13 @@
     <loc>http://Binshao.site/2018/03/10/AndroidTheme/</loc>
     
     <lastmod>2018-10-24T03:55:35.849Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/10/17/RxJava1/</loc>
+    
+    <lastmod>2018-10-17T11:52:02.781Z</lastmod>
     
   </url>
   
@@ -68,13 +82,6 @@
     <loc>http://Binshao.site/2018/08/13/HandlerThread/</loc>
     
     <lastmod>2018-09-19T01:43:17.384Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
-    
-    <lastmod>2018-09-19T01:23:54.785Z</lastmod>
     
   </url>
   

@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
+    <lastmod>2018-11-26T06:39:27.646Z</lastmod>
+    <data>
+        <display>
+        <title>Handler 的深入理解</title>
+        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
+        
+        <tag>Handler</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/10/29/MiniProgram/</loc>
     <lastmod>2018-10-30T04:40:01.065Z</lastmod>
     <data>
@@ -37,6 +57,26 @@
            
              
               <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/10/17/RxJava1/</loc>
+    <lastmod>2018-10-17T11:52:02.781Z</lastmod>
+    <data>
+        <display>
+        <title>RxJava 创建操作符详解</title>
+        <pubTime>2018-10-17T07:25:36.000Z</pubTime>
+        
+        <tag>RxJava 创建操作符</tag>
+         
+         
+           
+             
+              <breadCrumb title="RxJava2" url="http://Binshao.site/categories/RxJava2/"/>
           
         </display>
     </data>
@@ -154,26 +194,6 @@
         <pubTime>2018-08-13T12:40:30.000Z</pubTime>
         
         <tag>HandlerThread</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
-    <lastmod>2018-09-19T01:23:54.785Z</lastmod>
-    <data>
-        <display>
-        <title>Handler 的深入理解</title>
-        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
-        
-        <tag>Handler</tag>
          
          
            

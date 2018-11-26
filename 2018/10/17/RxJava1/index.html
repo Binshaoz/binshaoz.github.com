@@ -15,21 +15,27 @@
 
 
 
-<meta name="description" content="Hi，大家好！再过三天就是五一了，想好去哪浪了没？今天分享学习路上的一些感悟，一首李荣浩的 《老街》 送给大家。">
-<meta name="keywords" content="学习路上">
+<meta name="description" content="Create &amp;emsp;&amp;emsp;关于这个 create 操作符相信大家应该不会陌生，在我们上一篇的学习记录中就是用它来创建被观察者对象，是最基本的操作符。下面我们来看看它的具体使用： 12  Just  The Just operator converts an item into an Observable that emits that item.   对于 just 操作符文档给出的注">
+<meta name="keywords" content="RxJava 创建操作符">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习路上的一些感悟">
-<meta property="og:url" content="http://Binshao.site/2018/04/27/StudyWay/index.html">
+<meta property="og:title" content="RxJava 创建操作符详解">
+<meta property="og:url" content="http://Binshao.site/2018/10/17/RxJava1/index.html">
 <meta property="og:site_name" content="十三的个人博客">
-<meta property="og:description" content="Hi，大家好！再过三天就是五一了，想好去哪浪了没？今天分享学习路上的一些感悟，一首李荣浩的 《老街》 送给大家。">
+<meta property="og:description" content="Create &amp;emsp;&amp;emsp;关于这个 create 操作符相信大家应该不会陌生，在我们上一篇的学习记录中就是用它来创建被观察者对象，是最基本的操作符。下面我们来看看它的具体使用： 12  Just  The Just operator converts an item into an Observable that emits that item.   对于 just 操作符文档给出的注">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvcbcxn4gjj30u00k0n41.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg">
-<meta property="og:updated_time" content="2018-09-17T03:00:19.457Z">
+<meta property="og:image" content="http://reactivex.io/documentation/operators/images/create.c.png">
+<meta property="og:image" content="http://reactivex.io/documentation/operators/images/just.c.png">
+<meta property="og:image" content="http://reactivex.io/documentation/operators/images/defer.c.png">
+<meta property="og:image" content="http://reactivex.io/documentation/operators/images/from.c.png">
+<meta property="og:image" content="http://reactivex.io/documentation/operators/images/interval.c.png">
+<meta property="og:image" content="http://reactivex.io/documentation/operators/images/range.c.png">
+<meta property="og:image" content="http://reactivex.io/documentation/operators/images/repeat.c.png">
+<meta property="og:image" content="http://reactivex.io/documentation/operators/images/timer.c.png">
+<meta property="og:updated_time" content="2018-10-17T11:52:02.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习路上的一些感悟">
-<meta name="twitter:description" content="Hi，大家好！再过三天就是五一了，想好去哪浪了没？今天分享学习路上的一些感悟，一首李荣浩的 《老街》 送给大家。">
-<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvcbcxn4gjj30u00k0n41.jpg">
+<meta name="twitter:title" content="RxJava 创建操作符详解">
+<meta name="twitter:description" content="Create &amp;emsp;&amp;emsp;关于这个 create 操作符相信大家应该不会陌生，在我们上一篇的学习记录中就是用它来创建被观察者对象，是最基本的操作符。下面我们来看看它的具体使用： 12  Just  The Just operator converts an item into an Observable that emits that item.   对于 just 操作符文档给出的注">
+<meta name="twitter:image" content="http://reactivex.io/documentation/operators/images/create.c.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -61,7 +67,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>学习路上的一些感悟 | 十三的个人博客</title>
+<title>RxJava 创建操作符详解 | 十三的个人博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -287,11 +293,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-StudyWay" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-RxJava1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/04/27/StudyWay/" class="article-date">
-      <time datetime="2018-04-27T02:11:44.000Z" itemprop="datePublished">2018-04-27</time>
+      <a href="/2018/10/17/RxJava1/" class="article-date">
+      <time datetime="2018-10-17T07:25:36.000Z" itemprop="datePublished">2018-10-17</time>
 </a>
 
 
@@ -306,7 +312,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      学习路上的一些感悟
+      RxJava 创建操作符详解
     </h1>
   
 
@@ -315,15 +321,15 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/时光任意门/">时光任意门</a>
+    <a class="article-category-link" href="/categories/RxJava2/">RxJava2</a>
     </div>
 
 
         
     <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习路上/">学习路上</a></li></ul>
-       <span class="post-count">总字数518</span>
-       <span class="post-count">预计阅读1分钟</span>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RxJava-创建操作符/">RxJava 创建操作符</a></li></ul>
+       <span class="post-count">总字数568</span>
+       <span class="post-count">预计阅读2分钟</span>
     </div>
 
         <div class="clearfix"></div>
@@ -333,19 +339,58 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <blockquote>
-<p>Hi，大家好！再过三天就是五一了，想好去哪浪了没？今天分享学习路上的一些感悟，一首李荣浩的 《老街》 送给大家。</p>
+        <h2 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h2><p><div align="center"><img src="http://reactivex.io/documentation/operators/images/create.c.png" alt=""></div></p>
+<p>&emsp;&emsp;关于这个 create 操作符相信大家应该不会陌生，在我们上一篇的学习记录中就是用它来创建被观察者对象，是最基本的操作符。下面我们来看看它的具体使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Just"><a href="#Just" class="headerlink" title="Just"></a>Just</h2><p><div align="center"><img src="http://reactivex.io/documentation/operators/images/just.c.png" alt=""></div></p>
+<blockquote>
+<p>The Just operator converts an item into an Observable that emits that item. </p>
 </blockquote>
-<a id="more"></a>
-<p><div align="center"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=133998&auto=1&height=66"></iframe></div></p>
-<p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvcbcxn4gjj30u00k0n41.jpg" alt=""></div></p>
-<p><div align="center" style="font-size: 13px; color: gray">Photo by qjk6538 from Polayoutu</div></p>
-<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>&emsp;&emsp;最近听到有同学抱怨寝室环境不好，加上平时上课觉得老师讲的知识没什么用，还不如自己去自学，上课纯属浪费时间，我认为这是不妥的，在校学习的知识都是基础，我们都知道万丈大楼都是从地基垒起，万变不离其宗，只有打下扎实的基础才能走的更远，虽然基础学习过于枯燥，但不可放弃啊。<br><br></p>
-<h2 id="PotPlayer"><a href="#PotPlayer" class="headerlink" title="PotPlayer"></a>PotPlayer</h2><p>&emsp;&emsp;PotPlayer 是个播放器，它有多强大就不做过多介绍了，最好用就是它的倍速播放，效率提高的可不是一点半点，当然播速是在你能接受范围内，不要只是一味追求速度。不管是看视频也好，看书也罢，每个人都应该有自己的一套学习体系，适合自己的才是最好的，最后，编程是个手艺活，要动手实践，牛逼的奥义在于重复，与大家共勉。<br><br></p>
-<h2 id="做你想做的事"><a href="#做你想做的事" class="headerlink" title="做你想做的事"></a>做你想做的事</h2><p>&emsp;&emsp;难道除了学习就是学习了吗？当然不是，毕竟生活丰富多彩，特别是校园生活，不要为了学习而学习，拒绝“苦行僧”式学习，那样子和机器有什么区别？运动、读书都是值得我们付出时间去做的，我从小就喜欢打乒乓球，坐在电脑前久了就去打上几球，同时我还喜欢旅游，虽然穷逼一个，最想去大理了，觉得那里风景好美。<br><br></p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>&emsp;&emsp;珍惜现在的校园时光，时间过得真快，或许这是人生中最后一次的校园生活，记录下这些感悟，也许在以后的某天翻见会一笑带过。<br><br><br><br></p>
-<hr>
-<p><div align="center"><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fvbqgfo4lwj303l03lmx8.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号</div></p>
+<p>对于 just 操作符文档给出的注释是它可以将传入的对象或一组对象转换为发出事件的<code>Observable</code>，也就是它可以直接发送传入的事件，还是挺方便的，来，我们一起来看看：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Defer"><a href="#Defer" class="headerlink" title="Defer"></a>Defer</h2><p><div align="center"><img src="http://reactivex.io/documentation/operators/images/defer.c.png" alt=""></div></p>
+<blockquote>
+<p>The Defer operator waits until an observer subscribes to it, and then it generates an Observable.</p>
+</blockquote>
+<p>&emsp;&emsp;这个操作符的作用是假如有<code>Observer</code>订阅时，才去为观察者创建新的<code>Observable</code>并且开始发送事件，每一个观察者订阅时都会得到一个新的<code>Observable</code>对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="From"><a href="#From" class="headerlink" title="From"></a>From</h2><p><div align="center"><img src="http://reactivex.io/documentation/operators/images/from.c.png" alt=""></div></p>
+<blockquote>
+<p>convert various other objects and data types into Observables.</p>
+</blockquote>
+<p>&emsp;&emsp;From 操作符可以将各种对象或数据结构转换为<code>Observable</code>对象，我们可以将一组数组里的值转换为<code>Observable</code>对象，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Interval"><a href="#Interval" class="headerlink" title="Interval"></a>Interval</h2><p><div align="center"><img src="http://reactivex.io/documentation/operators/images/interval.c.png" alt=""></div></p>
+<blockquote>
+<p>create an Observable that emits a sequence of integers spaced by a given time interval.</p>
+</blockquote>
+<p>&emsp;&emsp;Interval 操作符创建的<code>Observable</code>会根据我们给定的间隔时间发送事件，类似于定时器的概念，发送事件从 0 开始且无限递增下去。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h2><p><div align="center"><img src="http://reactivex.io/documentation/operators/images/range.c.png" alt=""></div></p>
+<blockquote>
+<p>create an Observable that emits a particular range of sequential integers.</p>
+</blockquote>
+<p>&emsp;&emsp;Range 操作符创建一个发出特定范围且是连续整数的<code>Observable</code>，也就是说我们可以指定其中的选择范围的起点及长度，直接看码就懂了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Repeat"><a href="#Repeat" class="headerlink" title="Repeat"></a>Repeat</h2><p><div align="center"><img src="http://reactivex.io/documentation/operators/images/repeat.c.png" alt=""></div></p>
+<blockquote>
+<p>create an Observable that emits a particular item multiple times.</p>
+</blockquote>
+<p>&emsp;&emsp;Repeat 顾名思义就是重复的意思，那么毫无疑问这个操作符可以创建一个多次发出特定事件的<code>Observable</code>，放码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">testRepeat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Observable.just(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">                .repeat(<span class="number">3</span>,Schedulers.io())</span><br><span class="line">                .subscribe(<span class="keyword">new</span> Subscriber&lt;Integer&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Integer item)</span> </span>&#123;</span><br><span class="line">                        Log.d(<span class="string">"TAG"</span>, <span class="string">"onNext:"</span> + item);</span><br><span class="line">                    &#125;</span><br><span class="line"> </span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable error)</span> </span>&#123;</span><br><span class="line">                        Log.d(<span class="string">"TAG"</span>, <span class="string">"onErr:"</span> + error.getMessage());</span><br><span class="line">                    &#125;</span><br><span class="line"> </span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                        Log.d(<span class="string">"TAG"</span>, <span class="string">"Sequence complete."</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h2><p><div align="center"><img src="http://reactivex.io/documentation/operators/images/timer.c.png" alt=""></div></p>
+<blockquote>
+<p>create an Observable that emits a particular item after a given delay.</p>
+</blockquote>
+<p>&emsp;&emsp;Timer 操作符创建<code>Observable</code>并且同样也是根据指定延迟时间发射事件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -354,13 +399,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></p>
+        <p><span>本文标题:</span><a href="/2018/10/17/RxJava1/">RxJava 创建操作符详解</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
-        <p><span>发布时间:</span>2018-04-27, 10:11:44</p>
-        <p><span>最后更新:</span>2018-09-17, 11:00:19</p>
+        <p><span>发布时间:</span>2018-10-17, 15:25:36</p>
+        <p><span>最后更新:</span>2018-10-17, 19:52:02</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/04/27/StudyWay/" title="学习路上的一些感悟">http://Binshao.site/2018/04/27/StudyWay/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/04/27/StudyWay/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/10/17/RxJava1/" title="RxJava 创建操作符详解">http://Binshao.site/2018/10/17/RxJava1/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/10/17/RxJava1/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -373,15 +418,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/06/09/Thinking-in-Java/">
-                    读 《Java编程思想》
+                <a href="/2018/10/29/MiniProgram/">
+                    我的个人小程序上线了
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/03/13/Activity/">
-                    Activity 基础总结
+                <a href="/2018/10/14/RxJava/">
+                    RxJava2 入门笔记
                 </a>
             </div>
         
@@ -393,7 +438,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PotPlayer"><span class="toc-number">2.</span> <span class="toc-text">PotPlayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#做你想做的事"><span class="toc-number">3.</span> <span class="toc-text">做你想做的事</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create"><span class="toc-number">1.</span> <span class="toc-text">Create</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Just"><span class="toc-number">2.</span> <span class="toc-text">Just</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Defer"><span class="toc-number">3.</span> <span class="toc-text">Defer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#From"><span class="toc-number">4.</span> <span class="toc-text">From</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Interval"><span class="toc-number">5.</span> <span class="toc-text">Interval</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Range"><span class="toc-number">6.</span> <span class="toc-text">Range</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Repeat"><span class="toc-number">7.</span> <span class="toc-text">Repeat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Timer"><span class="toc-number">8.</span> <span class="toc-text">Timer</span></a></li></ol>
         
     </div>
     <style>
@@ -459,7 +504,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/06/09/Thinking-in-Java/" title="上一篇: 读 《Java编程思想》">
+            <a href="/2018/10/29/MiniProgram/" title="上一篇: 我的个人小程序上线了">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -467,7 +512,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/03/13/Activity/" title="下一篇: Activity 基础总结">
+            <a href="/2018/10/14/RxJava/" title="下一篇: RxJava2 入门笔记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
