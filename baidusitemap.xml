@@ -4,6 +4,66 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/07/19/Observer/</loc>
+    <lastmod>2019-01-04T12:01:55.211Z</lastmod>
+    <data>
+        <display>
+        <title>十三校园泡妞记</title>
+        <pubTime>2018-07-19T05:01:09.000Z</pubTime>
+        
+        <tag>观察者模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
+    <lastmod>2019-01-04T12:01:22.416Z</lastmod>
+    <data>
+        <display>
+        <title>Handler 的深入理解</title>
+        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
+        
+        <tag>Handler</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/21/Proxy/</loc>
+    <lastmod>2019-01-04T12:01:17.971Z</lastmod>
+    <data>
+        <display>
+        <title>校园爱情故事后记</title>
+        <pubTime>2018-07-21T06:24:40.000Z</pubTime>
+        
+        <tag>代理模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/10/17/RxJava1/</loc>
     <lastmod>2018-12-11T11:44:35.910Z</lastmod>
     <data>
@@ -17,26 +77,6 @@
            
              
               <breadCrumb title="RxJava2" url="http://Binshao.site/categories/RxJava2/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
-    <lastmod>2018-11-26T06:45:23.996Z</lastmod>
-    <data>
-        <display>
-        <title>Handler 的深入理解</title>
-        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
-        
-        <tag>Handler</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
           
         </display>
     </data>
@@ -446,26 +486,6 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/07/21/Proxy/</loc>
-    <lastmod>2018-09-18T06:38:23.652Z</lastmod>
-    <data>
-        <display>
-        <title>校园爱情故事后记</title>
-        <pubTime>2018-07-21T06:24:40.000Z</pubTime>
-        
-        <tag>代理模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://Binshao.site/2018/07/20/Flyweight/</loc>
     <lastmod>2018-09-18T06:05:50.257Z</lastmod>
     <data>
@@ -474,26 +494,6 @@
         <pubTime>2018-07-20T05:52:45.000Z</pubTime>
         
         <tag>享元模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/07/19/Observer/</loc>
-    <lastmod>2018-09-18T05:48:53.182Z</lastmod>
-    <data>
-        <display>
-        <title>十三校园泡妞记</title>
-        <pubTime>2018-07-19T05:01:09.000Z</pubTime>
-        
-        <tag>观察者模式</tag>
          
          
            

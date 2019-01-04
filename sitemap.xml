@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://Binshao.site/2018/10/17/RxJava1/</loc>
+    <loc>http://Binshao.site/2018/07/19/Observer/</loc>
     
-    <lastmod>2018-12-11T11:44:35.910Z</lastmod>
+    <lastmod>2019-01-04T12:01:55.211Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://Binshao.site/2018/08/12/Handler/</loc>
     
-    <lastmod>2018-11-26T06:45:23.996Z</lastmod>
+    <lastmod>2019-01-04T12:01:22.416Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/21/Proxy/</loc>
+    
+    <lastmod>2019-01-04T12:01:17.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/10/17/RxJava1/</loc>
+    
+    <lastmod>2018-12-11T11:44:35.910Z</lastmod>
     
   </url>
   
@@ -170,23 +184,9 @@
   </url>
   
   <url>
-    <loc>http://Binshao.site/2018/07/21/Proxy/</loc>
-    
-    <lastmod>2018-09-18T06:38:23.652Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://Binshao.site/2018/07/20/Flyweight/</loc>
     
     <lastmod>2018-09-18T06:05:50.257Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/19/Observer/</loc>
-    
-    <lastmod>2018-09-18T05:48:53.182Z</lastmod>
     
   </url>
   
