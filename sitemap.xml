@@ -2,44 +2,296 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://Binshao.site/2018/07/19/Observer/</loc>
+    <loc>http://Binshao.site/2018/08/08/ThreadPool/</loc>
     
-    <lastmod>2019-01-04T12:01:55.211Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
-    
-    <lastmod>2019-01-04T12:01:22.416Z</lastmod>
+    <lastmod>2019-01-24T09:21:14.039Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://Binshao.site/2018/07/21/Proxy/</loc>
+    <loc>http://Binshao.site/2018/06/09/Thinking-in-Java/</loc>
     
-    <lastmod>2019-01-04T12:01:17.971Z</lastmod>
+    <lastmod>2019-01-24T09:20:46.592Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/08/07/TemplateMethob/</loc>
+    
+    <lastmod>2019-01-24T09:20:00.759Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/03/07/SurfaceView/</loc>
+    
+    <lastmod>2019-01-24T09:19:36.577Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/04/27/StudyWay/</loc>
+    
+    <lastmod>2019-01-24T09:18:53.045Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/06/Strategy/</loc>
+    
+    <lastmod>2019-01-24T09:18:00.116Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/08/09/State/</loc>
+    
+    <lastmod>2019-01-24T09:17:42.714Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/15/Singletop/</loc>
+    
+    <lastmod>2019-01-24T09:16:04.409Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/07/simpleFactory/</loc>
+    
+    <lastmod>2019-01-24T09:15:40.258Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://Binshao.site/2018/10/17/RxJava1/</loc>
     
-    <lastmod>2018-12-11T11:44:35.910Z</lastmod>
+    <lastmod>2019-01-24T09:15:17.841Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/10/14/RxJava/</loc>
+    
+    <lastmod>2019-01-24T09:11:28.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/08/17/runOnUiThread/</loc>
+    
+    <lastmod>2019-01-24T09:09:54.462Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/29/Responsibility/</loc>
+    
+    <lastmod>2019-01-24T09:07:55.146Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/06/17/readBook/</loc>
+    
+    <lastmod>2019-01-24T09:07:17.621Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/21/Proxy/</loc>
+    
+    <lastmod>2019-01-24T09:07:04.203Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/16/Prototype/</loc>
+    
+    <lastmod>2019-01-24T09:05:30.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/19/Observer/</loc>
+    
+    <lastmod>2019-01-24T09:04:47.822Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/09/27/NumAddSubView/</loc>
+    
+    <lastmod>2019-01-24T09:02:11.343Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://Binshao.site/2018/10/29/MiniProgram/</loc>
     
-    <lastmod>2018-10-30T04:40:01.065Z</lastmod>
+    <lastmod>2019-01-24T09:00:45.835Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/04/Memento/</loc>
+    
+    <lastmod>2019-01-24T08:53:51.890Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/27/Mediator/</loc>
+    
+    <lastmod>2019-01-24T08:53:22.272Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/31/Iterator/</loc>
+    
+    <lastmod>2019-01-24T08:52:40.751Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/08/16/IntentService/</loc>
+    
+    <lastmod>2019-01-24T08:50:49.513Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/02/17/hello-world/</loc>
+    
+    <lastmod>2019-01-24T08:49:47.967Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/08/13/HandlerThread/</loc>
+    
+    <lastmod>2019-01-24T08:48:40.340Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
+    
+    <lastmod>2019-01-24T08:47:32.411Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/20/Flyweight/</loc>
+    
+    <lastmod>2019-01-24T08:43:18.668Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/22/Facade/</loc>
+    
+    <lastmod>2019-01-24T08:41:01.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/03/09/dispatch/</loc>
+    
+    <lastmod>2019-01-24T08:38:38.280Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/18/design-decorator/</loc>
+    
+    <lastmod>2019-01-24T08:36:16.678Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/09/Creator/</loc>
+    
+    <lastmod>2019-01-24T08:34:30.785Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/23/Composite/</loc>
+    
+    <lastmod>2019-01-24T08:33:59.153Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/08/11/Command/</loc>
+    
+    <lastmod>2019-01-24T08:31:58.491Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/17/Builder/</loc>
+    
+    <lastmod>2019-01-24T08:31:35.082Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/24/Bridge/</loc>
+    
+    <lastmod>2019-01-24T08:30:30.458Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/06/25/blackApple/</loc>
+    
+    <lastmod>2019-01-24T08:28:09.584Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/08/30/Aug/</loc>
+    
+    <lastmod>2019-01-24T08:27:27.663Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/03/08/AttributeSet/</loc>
+    
+    <lastmod>2019-01-24T08:26:32.645Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/08/10/AsyncTask/</loc>
+    
+    <lastmod>2019-01-24T08:24:57.108Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://Binshao.site/2018/03/10/AndroidTheme/</loc>
     
-    <lastmod>2018-10-24T03:55:35.849Z</lastmod>
+    <lastmod>2019-01-24T08:24:19.743Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/07/25/Adapter/</loc>
+    
+    <lastmod>2019-01-24T08:21:48.850Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/03/13/Activity/</loc>
+    
+    <lastmod>2019-01-24T08:20:40.548Z</lastmod>
     
   </url>
   
@@ -51,261 +303,9 @@
   </url>
   
   <url>
-    <loc>http://Binshao.site/2018/10/14/RxJava/</loc>
-    
-    <lastmod>2018-10-15T12:31:06.748Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/09/27/NumAddSubView/</loc>
-    
-    <lastmod>2018-09-27T13:23:19.503Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://Binshao.site/googlecac4f632d41c0a8a.html</loc>
     
     <lastmod>2018-09-21T13:19:49.191Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/02/17/hello-world/</loc>
-    
-    <lastmod>2018-09-20T01:22:50.519Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/17/runOnUiThread/</loc>
-    
-    <lastmod>2018-09-19T02:11:38.419Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/16/IntentService/</loc>
-    
-    <lastmod>2018-09-19T01:55:54.736Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/13/HandlerThread/</loc>
-    
-    <lastmod>2018-09-19T01:43:17.384Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/08/ThreadPool/</loc>
-    
-    <lastmod>2018-09-18T14:07:40.215Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/11/Command/</loc>
-    
-    <lastmod>2018-09-18T14:06:36.183Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/10/AsyncTask/</loc>
-    
-    <lastmod>2018-09-18T13:48:24.619Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/09/State/</loc>
-    
-    <lastmod>2018-09-18T13:27:51.113Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/07/TemplateMethob/</loc>
-    
-    <lastmod>2018-09-18T12:59:04.408Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/31/Iterator/</loc>
-    
-    <lastmod>2018-09-18T12:52:30.421Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/24/Bridge/</loc>
-    
-    <lastmod>2018-09-18T12:19:36.113Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/25/Adapter/</loc>
-    
-    <lastmod>2018-09-18T12:19:06.721Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/29/Responsibility/</loc>
-    
-    <lastmod>2018-09-18T12:18:58.348Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/27/Mediator/</loc>
-    
-    <lastmod>2018-09-18T12:16:20.884Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/23/Composite/</loc>
-    
-    <lastmod>2018-09-18T11:27:56.890Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/22/Facade/</loc>
-    
-    <lastmod>2018-09-18T11:20:46.625Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/20/Flyweight/</loc>
-    
-    <lastmod>2018-09-18T06:05:50.257Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/18/design-decorator/</loc>
-    
-    <lastmod>2018-09-18T05:00:17.862Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/17/Builder/</loc>
-    
-    <lastmod>2018-09-18T01:51:21.070Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/16/Prototype/</loc>
-    
-    <lastmod>2018-09-18T01:37:23.901Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/15/Singletop/</loc>
-    
-    <lastmod>2018-09-17T08:15:37.713Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/09/Creator/</loc>
-    
-    <lastmod>2018-09-17T07:52:28.654Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/07/simpleFactory/</loc>
-    
-    <lastmod>2018-09-17T07:29:56.313Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/06/Strategy/</loc>
-    
-    <lastmod>2018-09-17T07:19:35.090Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/07/04/Memento/</loc>
-    
-    <lastmod>2018-09-17T07:14:48.864Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/06/25/blackApple/</loc>
-    
-    <lastmod>2018-09-17T06:35:54.510Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/06/17/readBook/</loc>
-    
-    <lastmod>2018-09-17T05:31:38.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/06/09/Thinking-in-Java/</loc>
-    
-    <lastmod>2018-09-17T04:42:03.267Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/04/27/StudyWay/</loc>
-    
-    <lastmod>2018-09-17T03:00:19.457Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/03/13/Activity/</loc>
-    
-    <lastmod>2018-09-17T02:04:02.355Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/03/09/dispatch/</loc>
-    
-    <lastmod>2018-09-16T15:05:48.632Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/03/08/AttributeSet/</loc>
-    
-    <lastmod>2018-09-16T14:50:50.901Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/03/07/SurfaceView/</loc>
-    
-    <lastmod>2018-09-16T14:43:51.467Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/08/30/Aug/</loc>
-    
-    <lastmod>2018-09-16T14:34:27.735Z</lastmod>
     
   </url>
   
