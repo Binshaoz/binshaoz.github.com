@@ -1,4 +1,628 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><!--[if lt IE 9]>
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
         <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]--><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="author" content="十三"><meta name="description" content="Hi，我是十三，昨天回家了，一早起来继续搬砖，嘿嘿。"><meta name="keywords" content="单例模式"><meta property="og:type" content="article"><meta property="og:title" content="以古代帝皇来讲单例模式"><meta property="og:url" content="http://Binshao.site/2018/07/15/Singletop/index.html"><meta property="og:site_name" content="十三的个人博客"><meta property="og:description" content="Hi，我是十三，昨天回家了，一早起来继续搬砖，嘿嘿。"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvclb9i4tyj30zk0k1n44.jpg"><meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fzhqzgq9tuj303l03lglm.jpg"><meta property="og:updated_time" content="2019-01-24T09:16:04.409Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="以古代帝皇来讲单例模式"><meta name="twitter:description" content="Hi，我是十三，昨天回家了，一早起来继续搬砖，嘿嘿。"><meta name="twitter:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvclb9i4tyj30zk0k1n44.jpg"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="alternate" href="/atom.xml" title="十三的个人博客" type="application/atom+xml"><link rel="shortcut icon" href="/favicon.ico"><link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet"><script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><link href="//cdn.bootcss.com/pace/1.0.2/themes/orange/pace-theme-minimal.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"><title>以古代帝皇来讲单例模式 | 十三的个人博客</title><script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script><script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script><script>var yiliaConfig={fancybox:!0,animate:!0,isHome:!1,isPost:!0,isArchive:!1,isTag:!1,isCategory:!1,fancybox_js:"//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",scrollreveal:"//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",search:!0}</script><script>yiliaConfig.jquery_ui=[!0,"//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js","//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"]</script><script>yiliaConfig.rootUrl="/"</script><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9ca89eb39b844f"></script></head></html><body><div id="container"><div class="left-col"><div class="overlay"></div><div class="intrude-less"><header id="header" class="inner"><a href="/" class="profilepic"><img src="/img/icon.png" class="animated zoomIn"></a><hgroup><h1 class="header-author"><a href="/">十三</a></h1></hgroup><p class="header-subtitle">我不在彩虹，彩虹在我.</p><form id="search-form"><input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false"> <i class="fa fa-times" onclick="resetSearch()"></i></form><div id="local-search-result"></div><p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p><div id="switch-btn" class="switch-btn"><div class="icon"><div class="icon-ctn"><div class="icon-wrap icon-house" data-idx="0"><div class="birdhouse"></div><div class="birdhouse_holes"></div></div><div class="icon-wrap icon-ribbon hide" data-idx="1"><div class="ribbon"></div></div><div class="icon-wrap icon-link hide" data-idx="2"><div class="loopback_l"></div><div class="loopback_r"></div></div><div class="icon-wrap icon-me hide" data-idx="3"><div class="user"></div><div class="shoulder"></div></div></div></div><div class="tips-box hide"><div class="tips-arrow"></div><ul class="tips-inner"><li>菜单</li><li>标签</li><li>友情链接</li><li>关于我</li></ul></div></div><div id="switch-area" class="switch-area"><div class="switch-wrap"><section class="switch-part switch-part1"><nav class="header-menu"><ul><li><a href="/">主页</a></li><li><a href="/archives/">所有文章</a></li><li><a href="/tags/">标签云</a></li><li><a href="/about/">关于我</a></li></ul></nav><nav class="header-nav"><ul class="social"><a class="fa Email" href="mailto:123@123.com" title="Email"></a> <a class="fa 新浪微博" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a> <a class="fa 简书" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a> <a class="fa CSDN" href="https://blog.csdn.net/LeetRock" title="CSDN"></a> <a class="fa RSS" href="/atom.xml" title="RSS"></a></ul></nav></section><section class="switch-part switch-part2"><div class="widget tagcloud" id="js-tagcloud"><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-主题和样式/">Android 主题和样式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-书籍/">Android 书籍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义属性/">Android 自定义属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler/">Handler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HandlerThread/">HandlerThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntentService/">IntentService</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java编程思想/">Java编程思想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava-创建操作符/">RxJava 创建操作符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava2-入门/">RxJava2 入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SurfaceView/">SurfaceView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/runOnUiThread/">runOnUiThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件分发/">事件分发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/享元模式/">享元模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理模式/">代理模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘录模式/">备忘录模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/外观模式/">外观模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路上/">学习路上</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/桥接模式/">桥接模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板方法模式/">模板方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/状态模式/">状态模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活杂谈/">生活杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略模式/">策略模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单工厂模式/">简单工厂模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程池/">线程池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合模式/">组合模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/装饰模式/">装饰模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/责任链模式/">责任链模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/迭代模式/">迭代模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul></div></section><section class="switch-part switch-part3"><div id="js-friends"><a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a> <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a> <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a></div></section><section class="switch-part switch-part4"><div id="js-aboutme">Hi，我是十三！努力成为 Android 老司机 ing...生活不止技术，喜欢看书、旅游、听歌！</div></section></div></div></header></div></div><div class="hide-left-col" title="隐藏侧栏"><i class="fa fa-angle-double-left"></i></div><div class="mid-col"><nav id="mobile-nav"><div class="overlay"><div class="slider-trigger"></div><h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">十三</a></h1></div><div class="intrude-less"><header id="header" class="inner"><a href="/" class="profilepic"><img src="/img/icon.png" class="animated zoomIn"></a><hgroup><h1 class="header-author"><a href="/" title="回到主页">十三</a></h1></hgroup><p class="header-subtitle">我不在彩虹，彩虹在我.</p><nav class="header-menu"><ul><li><a href="/">主页</a></li><li><a href="/archives/">所有文章</a></li><li><a href="/tags/">标签云</a></li><li><a href="/about/">关于我</a></li><div class="clearfix"></div></ul></nav><nav class="header-nav"><ul class="social"><a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a> <a class="fa 新浪微博" target="_blank" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a> <a class="fa 简书" target="_blank" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a> <a class="fa CSDN" target="_blank" href="https://blog.csdn.net/LeetRock" title="CSDN"></a> <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a></ul></nav></header></div><link class="menu-list" tags="标签" friends="友情链接" about="关于我"></nav><div class="body-wrap"><article id="post-Singletop" class="article article-type-post" itemscope itemprop="blogPost"><div class="article-meta"><a href="/2018/07/15/Singletop/" class="article-date"><time datetime="2018-07-15T06:13:01.000Z" itemprop="datePublished">2018-07-15</time></a></div><div class="article-inner"><input type="hidden" class="isFancy"><header class="article-header"><h1 class="article-title" itemprop="name">以古代帝皇来讲单例模式</h1></header><div class="article-info article-info-post"><div class="article-category tagcloud"><a class="article-category-link" href="/categories/设计模式/">设计模式</a></div><div class="article-tag tagcloud" style="display:flex;flex-wrap:wrap"><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例模式/">单例模式</a></li></ul><span class="post-count">总字数1.7k</span> <span class="post-count">预计阅读6分钟</span></div><div class="clearfix"></div></div><div class="article-entry" itemprop="articleBody"><blockquote><p>Hi，我是十三，昨天回家了，一早起来继续搬砖，嘿嘿。</p></blockquote><p></p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fvclb9i4tyj30zk0k1n44.jpg" alt=""><p></p><a id="more"></a><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>&emsp;&emsp;这是设计模式系列的第 五 篇学习记录，不知道各位大家喜欢读历史吗？十三就非常喜欢看历史，比如《资治通鉴》、《东周列国记》、《三国演义》等等，还记得上小学那会儿在底下看书看得入迷，只是时间一晃就再也不是红领巾了…</p><p>&emsp;&emsp;读史书中总是能看到各个朝代的皇帝，三宫六院，掌握着最高权力，站在食物链顶端俯视着天下，咱还是想想就好…那么对应在软件领域，我们怎么以代码形式来描述呢？</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Secretary</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"大臣：吾皇万岁万岁万万岁!"</span>); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        King k = <span class="keyword">new</span> King();</span><br><span class="line">        k.setName(<span class="string">"秦始皇"</span>);</span><br><span class="line"></span><br><span class="line">        Secretary s = <span class="keyword">new</span> Secretary();</span><br><span class="line">        s.say();</span><br><span class="line">        k.say();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;那么运行程序就可以看到 ：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">大臣：吾皇万岁万岁万万岁!</span><br><span class="line">秦始皇: 众爱卿平身.</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;但是我们还忽略了一点就是，我们都知道每个朝代都只能有一个皇上，如果我们像上面那样子来写的话，就会有多个君主这样的情况发生，我们来演示下情况 ：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Secretary s = <span class="keyword">new</span> Secretary();</span><br><span class="line">        s.say();</span><br><span class="line"></span><br><span class="line">        King king = <span class="keyword">new</span> King();</span><br><span class="line">        king.setName(<span class="string">"秦始皇"</span>);</span><br><span class="line">        king.say();</span><br><span class="line"></span><br><span class="line">        King k = <span class="keyword">new</span> King();</span><br><span class="line">        k.setName(<span class="string">"汉武帝"</span>);</span><br><span class="line">        k.say();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">大臣：吾皇万岁万岁万万岁!</span><br><span class="line">秦始皇: 众爱卿平身.</span><br><span class="line">汉武帝: 众爱卿平身.</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;一个朝代两个皇帝？这估计下面的大臣一脸懵逼…所谓一山不能容二虎，除非是母老虎，那么我们怎么才能避免上面的情况发生呢？——没错，你猜对了，单例模式。<br><br></p><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>&emsp;&emsp;单例模式是一种对象创建型模式，使用单例模式，可以保证为一个类只生成唯一的实例对象，保证一个类只有一个实例存在，同时提供能对该实例加以访问的全局访问方法。</p><p>&emsp;&emsp;好，那么我们就一起来动手写一写这个单例类 ：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> King k = <span class="keyword">new</span> King();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;我们通过这样来改写，它便是一种单例模式的写法，实际上这种写法叫做饿汉式写法，饿汉饿汉，顾名思义，你看，一上来就直接 new 了个对象，能不饥饿？那么我们在 main 方法里测试下看看 :</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Secretary s = <span class="keyword">new</span> Secretary();</span><br><span class="line">        s.say();</span><br><span class="line"></span><br><span class="line">        King king = King.getInstance();</span><br><span class="line">        king.setName(<span class="string">"秦始皇"</span>);</span><br><span class="line"></span><br><span class="line">        King k = King.getInstance();</span><br><span class="line">        k.setName(<span class="string">"汉武帝"</span>);</span><br><span class="line">        king.say();</span><br><span class="line">        k.say();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">大臣：吾皇万岁万岁万万岁!</span><br><span class="line">汉武帝: 众爱卿平身.</span><br><span class="line">汉武帝: 众爱卿平身.</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;我们来看，通过单例类我们去获得了唯一的实例对象，即使我们想修改成两个君主也是修改不了的，这样一来就避免了上面的情况。这种写法在类加载时就完成了初始化，所以类加载较慢但获取对象的速度快，单例模式除了饿汉式写法，还有其他一些写法。<br><br></p><h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><p>来，骚年上码 ：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> King k;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> k = <span class="keyword">new</span> King();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;上面就是懒汉式写法，它声明了个静态对象，在用户第一次调用时初始化，在第一次加载的时候它需要实例化，并且在多线程里可是线程不安全的，我们都知道 CPU 调度，那么该怎么改良呢，来把锁试试，第一反应。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> King k;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> k = <span class="keyword">new</span> King();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;这样一来我们解决了多线程中访问的问题，可如果这样线程每次调用方法都需要进行同步，无疑会造成不必要的开销。没事，接下来我们开大招。<br><br></p><h2 id="双重锁定-DLC"><a href="#双重锁定-DLC" class="headerlink" title="双重锁定 (DLC)"></a>双重锁定 (DLC)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> King k;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (King.class) &#123;</span><br><span class="line">                <span class="keyword">return</span> k = <span class="keyword">new</span> King();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;我们在方法里进行了两次判空，第一次是为了判断实例是否存在，第二次则是判断实例是否为空，通过这样的方式可以保证多线程的安全。写到这，心想这已经是最好的写法，NO，NO，没有最好只有更好，当然了，每种写法都各有其利弊。<br><br></p><h2 id="静态内部类单例模式"><a href="#静态内部类单例模式" class="headerlink" title="静态内部类单例模式"></a>静态内部类单例模式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> KingHolder.Instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KingHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> King Instance = <span class="keyword">new</span> King();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;只有第一次调用方法时才会去初始化实例对象，不仅确保线程安全并且保证类实例对象的唯一性。<br><br></p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>&emsp;&emsp;单例模式的学习笔记就做到这里了，单例模式在我们平常开发中非常常见，所以也不做太多介绍了。<br><br><br><br></p><hr><p></p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fzhqzgq9tuj303l03lglm.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号<p></p></div></div></div></div><div class="copyright"><p><span>本文标题:</span><a href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></p><p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p><p><span>发布时间:</span>2018-07-15, 14:13:01</p><p><span>最后更新:</span>2019-01-24, 17:16:04</p><p><span>原始链接:</span><a class="post-url" href="/2018/07/15/Singletop/" title="以古代帝皇来讲单例模式">http://Binshao.site/2018/07/15/Singletop/</a> <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/07/15/Singletop/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span><script>var clipboard=new Clipboard(".copy-path")</script></p><p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。</p></div><nav id="article-nav"><div id="article-nav-newer" class="article-nav-title"><a href="/2018/07/16/Prototype/">设计模式之原型模式</a></div><div id="article-nav-older" class="article-nav-title"><a href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></div></nav></article><div id="toc" class="toc-article"><strong class="toc-title">文章目录</strong><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式"><span class="toc-number">2.</span> <span class="toc-text">单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#懒汉式"><span class="toc-number">3.</span> <span class="toc-text">懒汉式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双重锁定-DLC"><span class="toc-number">4.</span> <span class="toc-text">双重锁定 (DLC)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态内部类单例模式"><span class="toc-number">5.</span> <span class="toc-text">静态内部类单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li></ol></div><style>.left-col .switch-area,.left-col .switch-btn{display:none}.toc-level-3 i,.toc-level-3 ol{display:none!important}</style><input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录"><script>yiliaConfig.toc=["隐藏目录","显示目录",!0]</script><div class="share"><div class="addthis_inline_share_toolbox"></div></div><section class="livere" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyMS8xNjI0OA=="><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><noscript>为正常使用来必力评论功能请激活JavaScript</noscript></div></section><div class="scroll" id="post-nav-button"><a href="/2018/07/16/Prototype/" title="上一篇: 设计模式之原型模式"><i class="fa fa-angle-left"></i> </a><a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a> <a href="/2018/07/09/Creator/" title="下一篇: 设计模式之工厂方法模式"><i class="fa fa-angle-right"></i></a></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/MiniProgram/">我的个人小程序上线了</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/17/RxJava1/">RxJava 创建操作符详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/RxJava/">RxJava2 入门笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/30/Aug/">扎心的八月</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/17/runOnUiThread/">浅谈 runOnUiThread</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/16/IntentService/">IntentService 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/HandlerThread/">HandlerThread 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/12/Handler/">Handler 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/Command/">设计模式之命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/10/AsyncTask/">AsyncTask 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/State/">从富豪财产身家中学习状态模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/08/ThreadPool/">Android 中的线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/TemplateMethob/">从组装枪械中学习模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/Iterator/">设计模式之迭代模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/Responsibility/">从请假流程来学习责任链模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/Mediator/">程序猿相亲记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/25/Adapter/">设计模式之适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/24/Bridge/">秋名山车王 —AE86— 改装记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/Composite/">设计模式之组合模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Facade/">从造人的角度来学习外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/Proxy/">校园爱情故事后记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/Flyweight/">设计模式之享元模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Observer/">十三校园泡妞记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/design-decorator/">爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/16/Prototype/">设计模式之原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/07/simpleFactory/">哆啦A梦来讲简单工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Strategy/">设计模式之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/Memento/">设计模式之备忘录模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/readBook/">推荐一些读过的技术书籍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/Thinking-in-Java/">读 《Java编程思想》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/Activity/">Activity 基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/10/AndroidTheme/">Android 主题和样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/dispatch/">浅谈事件分发机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/08/AttributeSet/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/07/SurfaceView/">SurfaceView</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/hello-world/">Hello World</a></li></ul><script></script></div><footer id="footer"><div class="outer"><div id="footer-info"><div class="footer-left"><i class="fa fa-copyright"></i> 2018-2019 十三</div><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span><script>var now=new Date;function createtime(){var n=new Date("02/14/2018 12:49:00");now.setTime(now.getTime()+250),days=(now-n)/1e3/60/60/24,dnum=Math.floor(days),hours=(now-n)/1e3/60/60-24*dnum,hnum=Math.floor(hours),1==String(hnum).length&&(hnum="0"+hnum),minutes=(now-n)/1e3/60-1440*dnum-60*hnum,mnum=Math.floor(minutes),1==String(mnum).length&&(mnum="0"+mnum),seconds=(now-n)/1e3-86400*dnum-3600*hnum-60*mnum,snum=Math.round(seconds),1==String(snum).length&&(snum="0"+snum),document.getElementById("timeDate").innerHTML="本站已安全运行 "+dnum+" 天 ",document.getElementById("times").innerHTML=hnum+" 小时 "+mnum+" 分 "+snum+" 秒"}setInterval("createtime()",250)</script><div class="footer-right"><a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a> Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i></div></div><div class="visit"><span id="busuanzi_container_site_pv" style="display:none"><span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span> </span></span><span>| </span><span id="busuanzi_container_page_pv" style="display:none"><span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span></span></span></div></div></footer></div><script type="application/javascript">var hide=!1,leftWidth=350;function hideLeftCol(){hide=hide?($(".left-col").width(leftWidth),$(".left-col .intrude-less").css("display",""),$("#tocButton").css("display",""),"block"===$("#switch-btn").css("display")&&"block"===$("#switch-area").css("display")||$("#toc").slideDown(320),$(".hide-left-col").css("left",leftWidth).html('<i class="fa fa-angle-double-left"></i>'),$(".mid-col").css("left",leftWidth),$("#post-nav-button").css("left",leftWidth),$("#post-nav-button > a:nth-child(2)").css("display","block"),!1):($(".left-col").width(0),$(".left-col .intrude-less").css("display","none"),$("#toc").css("display","none"),$("#tocButton").css("display","none"),$(".hide-left-col").css("left",0).html('<i class="fa fa-angle-double-right"></i>'),$(".mid-col").css("left",0),$("#post-nav-button").css("left",0),$("#post-nav-button > a:nth-child(2)").css("display","none"),$(".post-list").is(":visible")&&($("#post-nav-button .fa-bars,#post-nav-button .fa-times").toggle(),$(".post-list").toggle()),!0)}$(".hide-left-col").click(function(){hideLeftCol()})</script><script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script><div class="scroll" id="scroll"><a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a> <a href="#comments" onclick="load$hide()" title="查看评论"><i class="fa fa-comments-o"></i></a> <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a></div><script>var oOpenInNew={archives:".archive-article-title",miniArchives:"a.post-list-link",friends:"#js-friends a",socail:".social a"};for(var x in oOpenInNew)$(oOpenInNew[x]).attr("target","_blank")</script><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body>
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="十三" />
+
+
+
+<meta name="description" content="Hi，我是十三，昨天回家了，一早起来继续搬砖，嘿嘿。">
+<meta name="keywords" content="单例模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以古代帝皇来讲单例模式">
+<meta property="og:url" content="http://Binshao.site/2018/07/15/Singletop/index.html">
+<meta property="og:site_name" content="十三的个人博客">
+<meta property="og:description" content="Hi，我是十三，昨天回家了，一早起来继续搬砖，嘿嘿。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvclb9i4tyj30zk0k1n44.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fzhqzgq9tuj303l03lglm.jpg">
+<meta property="og:updated_time" content="2019-01-24T09:16:04.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="以古代帝皇来讲单例模式">
+<meta name="twitter:description" content="Hi，我是十三，昨天回家了，一早起来继续搬砖，嘿嘿。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvclb9i4tyj30zk0k1n44.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="十三的个人博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/orange/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>以古代帝皇来讲单例模式 | 十三的个人博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9ca89eb39b844f"></script>
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/icon.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">十三</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa 简书" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a>
+                            
+                                <a class="fa CSDN" href="https://blog.csdn.net/LeetRock" title="CSDN"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-主题和样式/">Android 主题和样式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-书籍/">Android 书籍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义属性/">Android 自定义属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler/">Handler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HandlerThread/">HandlerThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntentService/">IntentService</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java编程思想/">Java编程思想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava-创建操作符/">RxJava 创建操作符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava2-入门/">RxJava2 入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SurfaceView/">SurfaceView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/runOnUiThread/">runOnUiThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件分发/">事件分发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/享元模式/">享元模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理模式/">代理模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘录模式/">备忘录模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/外观模式/">外观模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路上/">学习路上</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/桥接模式/">桥接模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板方法模式/">模板方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/状态模式/">状态模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活杂谈/">生活杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略模式/">策略模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单工厂模式/">简单工厂模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程池/">线程池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合模式/">组合模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/装饰模式/">装饰模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/责任链模式/">责任链模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/迭代模式/">迭代模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Hi，我是十三！努力成为 Android 老司机 ing...生活不止技术，喜欢看书、旅游、听歌！</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="hide-left-col" title="隐藏侧栏">
+     <i class="fa fa-angle-double-left"></i>
+   </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">十三</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/icon.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">十三</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="https://blog.csdn.net/LeetRock" title="CSDN"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Singletop" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/15/Singletop/" class="article-date">
+      <time datetime="2018-07-15T06:13:01.000Z" itemprop="datePublished">2018-07-15</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      以古代帝皇来讲单例模式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例模式/">单例模式</a></li></ul>
+       <span class="post-count">总字数1.7k</span>
+       <span class="post-count">预计阅读6分钟</span>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>Hi，我是十三，昨天回家了，一早起来继续搬砖，嘿嘿。</p>
+</blockquote>
+<p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fvclb9i4tyj30zk0k1n44.jpg" alt=""></div></p>
+<a id="more"></a>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>&emsp;&emsp;这是设计模式系列的第 五 篇学习记录，不知道各位大家喜欢读历史吗？十三就非常喜欢看历史，比如《资治通鉴》、《东周列国记》、《三国演义》等等，还记得上小学那会儿在底下看书看得入迷，只是时间一晃就再也不是红领巾了…</p>
+<p>&emsp;&emsp;读史书中总是能看到各个朝代的皇帝，三宫六院，掌握着最高权力，站在食物链顶端俯视着天下，咱还是想想就好…那么对应在软件领域，我们怎么以代码形式来描述呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Secretary</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"大臣：吾皇万岁万岁万万岁!"</span>); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        King k = <span class="keyword">new</span> King();</span><br><span class="line">        k.setName(<span class="string">"秦始皇"</span>);</span><br><span class="line"></span><br><span class="line">        Secretary s = <span class="keyword">new</span> Secretary();</span><br><span class="line">        s.say();</span><br><span class="line">        k.say();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;那么运行程序就可以看到 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">大臣：吾皇万岁万岁万万岁!</span><br><span class="line">秦始皇: 众爱卿平身.</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;但是我们还忽略了一点就是，我们都知道每个朝代都只能有一个皇上，如果我们像上面那样子来写的话，就会有多个君主这样的情况发生，我们来演示下情况 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Secretary s = <span class="keyword">new</span> Secretary();</span><br><span class="line">        s.say();</span><br><span class="line"></span><br><span class="line">        King king = <span class="keyword">new</span> King();</span><br><span class="line">        king.setName(<span class="string">"秦始皇"</span>);</span><br><span class="line">        king.say();</span><br><span class="line"></span><br><span class="line">        King k = <span class="keyword">new</span> King();</span><br><span class="line">        k.setName(<span class="string">"汉武帝"</span>);</span><br><span class="line">        k.say();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">大臣：吾皇万岁万岁万万岁!</span><br><span class="line">秦始皇: 众爱卿平身.</span><br><span class="line">汉武帝: 众爱卿平身.</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;一个朝代两个皇帝？这估计下面的大臣一脸懵逼…所谓一山不能容二虎，除非是母老虎，那么我们怎么才能避免上面的情况发生呢？——没错，你猜对了，单例模式。<br><br></p>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>&emsp;&emsp;单例模式是一种对象创建型模式，使用单例模式，可以保证为一个类只生成唯一的实例对象，保证一个类只有一个实例存在，同时提供能对该实例加以访问的全局访问方法。</p>
+<p>&emsp;&emsp;好，那么我们就一起来动手写一写这个单例类 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> King k = <span class="keyword">new</span> King();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们通过这样来改写，它便是一种单例模式的写法，实际上这种写法叫做饿汉式写法，饿汉饿汉，顾名思义，你看，一上来就直接 new 了个对象，能不饥饿？那么我们在 main 方法里测试下看看 :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Secretary s = <span class="keyword">new</span> Secretary();</span><br><span class="line">        s.say();</span><br><span class="line"></span><br><span class="line">        King king = King.getInstance();</span><br><span class="line">        king.setName(<span class="string">"秦始皇"</span>);</span><br><span class="line"></span><br><span class="line">        King k = King.getInstance();</span><br><span class="line">        k.setName(<span class="string">"汉武帝"</span>);</span><br><span class="line">        king.say();</span><br><span class="line">        k.say();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">大臣：吾皇万岁万岁万万岁!</span><br><span class="line">汉武帝: 众爱卿平身.</span><br><span class="line">汉武帝: 众爱卿平身.</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们来看，通过单例类我们去获得了唯一的实例对象，即使我们想修改成两个君主也是修改不了的，这样一来就避免了上面的情况。这种写法在类加载时就完成了初始化，所以类加载较慢但获取对象的速度快，单例模式除了饿汉式写法，还有其他一些写法。<br><br></p>
+<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><p>来，骚年上码 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> King k;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> k = <span class="keyword">new</span> King();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;上面就是懒汉式写法，它声明了个静态对象，在用户第一次调用时初始化，在第一次加载的时候它需要实例化，并且在多线程里可是线程不安全的，我们都知道 CPU 调度，那么该怎么改良呢，来把锁试试，第一反应。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> King k;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> k = <span class="keyword">new</span> King();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这样一来我们解决了多线程中访问的问题，可如果这样线程每次调用方法都需要进行同步，无疑会造成不必要的开销。没事，接下来我们开大招。<br><br></p>
+<h2 id="双重锁定-DLC"><a href="#双重锁定-DLC" class="headerlink" title="双重锁定 (DLC)"></a>双重锁定 (DLC)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> King k;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (King.class) &#123;</span><br><span class="line">                <span class="keyword">return</span> k = <span class="keyword">new</span> King();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们在方法里进行了两次判空，第一次是为了判断实例是否存在，第二次则是判断实例是否为空，通过这样的方式可以保证多线程的安全。写到这，心想这已经是最好的写法，NO，NO，没有最好只有更好，当然了，每种写法都各有其利弊。<br><br></p>
+<h2 id="静态内部类单例模式"><a href="#静态内部类单例模式" class="headerlink" title="静态内部类单例模式"></a>静态内部类单例模式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">King</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，保证不被实例化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">King</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供一个全局的静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> King <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> KingHolder.Instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KingHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> King Instance = <span class="keyword">new</span> King();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">": 众爱卿平身."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;只有第一次调用方法时才会去初始化实例对象，不仅确保线程安全并且保证类实例对象的唯一性。<br><br></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>&emsp;&emsp;单例模式的学习笔记就做到这里了，单例模式在我们平常开发中非常常见，所以也不做太多介绍了。<br><br><br><br></p>
+<hr>
+<p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fzhqzgq9tuj303l03lglm.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号</div></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
+        <p><span>发布时间:</span>2018-07-15, 14:13:01</p>
+        <p><span>最后更新:</span>2019-01-24, 17:16:04</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/15/Singletop/" title="以古代帝皇来讲单例模式">http://Binshao.site/2018/07/15/Singletop/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/07/15/Singletop/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/07/16/Prototype/">
+                    设计模式之原型模式
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/07/09/Creator/">
+                    设计模式之工厂方法模式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式"><span class="toc-number">2.</span> <span class="toc-text">单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#懒汉式"><span class="toc-number">3.</span> <span class="toc-text">懒汉式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双重锁定-DLC"><span class="toc-number">4.</span> <span class="toc-text">双重锁定 (DLC)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态内部类单例模式"><span class="toc-number">5.</span> <span class="toc-text">静态内部类单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        
+        <div class="addthis_inline_share_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyMS8xNjI0OA==">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/07/16/Prototype/" title="上一篇: 设计模式之原型模式">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/07/09/Creator/" title="下一篇: 设计模式之工厂方法模式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/MiniProgram/">我的个人小程序上线了</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/17/RxJava1/">RxJava 创建操作符详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/RxJava/">RxJava2 入门笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/30/Aug/">扎心的八月</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/17/runOnUiThread/">浅谈 runOnUiThread</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/16/IntentService/">IntentService 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/HandlerThread/">HandlerThread 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/12/Handler/">Handler 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/Command/">设计模式之命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/10/AsyncTask/">AsyncTask 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/State/">从富豪财产身家中学习状态模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/08/ThreadPool/">Android 中的线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/TemplateMethob/">从组装枪械中学习模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/Iterator/">设计模式之迭代模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/Responsibility/">从请假流程来学习责任链模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/Mediator/">程序猿相亲记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/25/Adapter/">设计模式之适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/24/Bridge/">秋名山车王 —AE86— 改装记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/Composite/">设计模式之组合模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Facade/">从造人的角度来学习外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/Proxy/">校园爱情故事后记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/Flyweight/">设计模式之享元模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Observer/">十三校园泡妞记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/design-decorator/">爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/16/Prototype/">设计模式之原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/07/simpleFactory/">哆啦A梦来讲简单工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Strategy/">设计模式之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/Memento/">设计模式之备忘录模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/readBook/">推荐一些读过的技术书籍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/Thinking-in-Java/">读 《Java编程思想》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/Activity/">Activity 基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/10/AndroidTheme/">Android 主题和样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/dispatch/">浅谈事件分发机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/08/AttributeSet/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/07/SurfaceView/">SurfaceView</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018-2019 十三
+            </div>
+            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+            <script>
+                var now = new Date(); 
+                function createtime() { 
+                    var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+                    now.setTime(now.getTime()+250); 
+                    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+                    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+                    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+                    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+                    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+                    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+                    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+                } 
+            setInterval("createtime()",250);
+            </script>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    <script type="application/javascript">
+     var hide = false, leftWidth = 350;
+     function hideLeftCol() {
+       if (hide) {
+         $(".left-col").width(leftWidth);
+         $(".left-col .intrude-less").css('display', '');
+         $("#tocButton").css('display', '');
+         ($('#switch-btn').css('display') === 'block' && $('#switch-area').css('display') === 'block') || $('#toc').slideDown(320);
+         $(".hide-left-col").css("left", leftWidth).html('<i class="fa fa-angle-double-left"></i>');
+         $(".mid-col").css("left", leftWidth)
+         $("#post-nav-button").css("left", leftWidth)
+         $("#post-nav-button > a:nth-child(2)").css("display", "block")
+         hide = false
+       } else {
+         $(".left-col").width(0);
+         $(".left-col .intrude-less").css('display', 'none');
+         $("#toc").css('display', 'none');
+         $("#tocButton").css('display', 'none');
+         $(".hide-left-col").css("left", 0).html('<i class="fa fa-angle-double-right"></i>');
+         $(".mid-col").css("left", 0)
+         $("#post-nav-button").css("left", 0)
+         $("#post-nav-button > a:nth-child(2)").css("display", "none")
+         if ($(".post-list").is(":visible")) {
+           $("#post-nav-button .fa-bars,#post-nav-button .fa-times").toggle();
+           $(".post-list").toggle();
+         }
+         hide = true
+       }
+     }
+     $(".hide-left-col").click(function() {
+       hideLeftCol()
+     });
+   </script>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

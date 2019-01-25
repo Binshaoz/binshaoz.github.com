@@ -1,4 +1,639 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><!--[if lt IE 9]>
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
         <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]--><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="author" content="十三"><meta name="description" content="Hi，我是十三，今天工地上的砖格外烫手，天气依旧还是那么炎热，我不想努力了……"><meta name="keywords" content="迭代模式"><meta property="og:type" content="article"><meta property="og:title" content="设计模式之迭代模式"><meta property="og:url" content="http://Binshao.site/2018/07/31/Iterator/index.html"><meta property="og:site_name" content="十三的个人博客"><meta property="og:description" content="Hi，我是十三，今天工地上的砖格外烫手，天气依旧还是那么炎热，我不想努力了……"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvdzdi4zj8j30zk0nqdkl.jpg"><meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fzhqzgq9tuj303l03lglm.jpg"><meta property="og:updated_time" content="2019-01-24T08:52:40.751Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="设计模式之迭代模式"><meta name="twitter:description" content="Hi，我是十三，今天工地上的砖格外烫手，天气依旧还是那么炎热，我不想努力了……"><meta name="twitter:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvdzdi4zj8j30zk0nqdkl.jpg"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="alternate" href="/atom.xml" title="十三的个人博客" type="application/atom+xml"><link rel="shortcut icon" href="/favicon.ico"><link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet"><script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><link href="//cdn.bootcss.com/pace/1.0.2/themes/orange/pace-theme-minimal.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"><title>设计模式之迭代模式 | 十三的个人博客</title><script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script><script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script><script>var yiliaConfig={fancybox:!0,animate:!0,isHome:!1,isPost:!0,isArchive:!1,isTag:!1,isCategory:!1,fancybox_js:"//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",scrollreveal:"//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",search:!0}</script><script>yiliaConfig.jquery_ui=[!0,"//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js","//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"]</script><script>yiliaConfig.rootUrl="/"</script><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9ca89eb39b844f"></script></head></html><body><div id="container"><div class="left-col"><div class="overlay"></div><div class="intrude-less"><header id="header" class="inner"><a href="/" class="profilepic"><img src="/img/icon.png" class="animated zoomIn"></a><hgroup><h1 class="header-author"><a href="/">十三</a></h1></hgroup><p class="header-subtitle">我不在彩虹，彩虹在我.</p><form id="search-form"><input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false"> <i class="fa fa-times" onclick="resetSearch()"></i></form><div id="local-search-result"></div><p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p><div id="switch-btn" class="switch-btn"><div class="icon"><div class="icon-ctn"><div class="icon-wrap icon-house" data-idx="0"><div class="birdhouse"></div><div class="birdhouse_holes"></div></div><div class="icon-wrap icon-ribbon hide" data-idx="1"><div class="ribbon"></div></div><div class="icon-wrap icon-link hide" data-idx="2"><div class="loopback_l"></div><div class="loopback_r"></div></div><div class="icon-wrap icon-me hide" data-idx="3"><div class="user"></div><div class="shoulder"></div></div></div></div><div class="tips-box hide"><div class="tips-arrow"></div><ul class="tips-inner"><li>菜单</li><li>标签</li><li>友情链接</li><li>关于我</li></ul></div></div><div id="switch-area" class="switch-area"><div class="switch-wrap"><section class="switch-part switch-part1"><nav class="header-menu"><ul><li><a href="/">主页</a></li><li><a href="/archives/">所有文章</a></li><li><a href="/tags/">标签云</a></li><li><a href="/about/">关于我</a></li></ul></nav><nav class="header-nav"><ul class="social"><a class="fa Email" href="mailto:123@123.com" title="Email"></a> <a class="fa 新浪微博" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a> <a class="fa 简书" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a> <a class="fa CSDN" href="https://blog.csdn.net/LeetRock" title="CSDN"></a> <a class="fa RSS" href="/atom.xml" title="RSS"></a></ul></nav></section><section class="switch-part switch-part2"><div class="widget tagcloud" id="js-tagcloud"><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-主题和样式/">Android 主题和样式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-书籍/">Android 书籍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义属性/">Android 自定义属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler/">Handler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HandlerThread/">HandlerThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntentService/">IntentService</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java编程思想/">Java编程思想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava-创建操作符/">RxJava 创建操作符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava2-入门/">RxJava2 入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SurfaceView/">SurfaceView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/runOnUiThread/">runOnUiThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件分发/">事件分发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/享元模式/">享元模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理模式/">代理模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘录模式/">备忘录模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/外观模式/">外观模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路上/">学习路上</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/桥接模式/">桥接模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板方法模式/">模板方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/状态模式/">状态模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活杂谈/">生活杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略模式/">策略模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单工厂模式/">简单工厂模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程池/">线程池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合模式/">组合模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/装饰模式/">装饰模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/责任链模式/">责任链模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/迭代模式/">迭代模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul></div></section><section class="switch-part switch-part3"><div id="js-friends"><a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a> <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a> <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a></div></section><section class="switch-part switch-part4"><div id="js-aboutme">Hi，我是十三！努力成为 Android 老司机 ing...生活不止技术，喜欢看书、旅游、听歌！</div></section></div></div></header></div></div><div class="hide-left-col" title="隐藏侧栏"><i class="fa fa-angle-double-left"></i></div><div class="mid-col"><nav id="mobile-nav"><div class="overlay"><div class="slider-trigger"></div><h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">十三</a></h1></div><div class="intrude-less"><header id="header" class="inner"><a href="/" class="profilepic"><img src="/img/icon.png" class="animated zoomIn"></a><hgroup><h1 class="header-author"><a href="/" title="回到主页">十三</a></h1></hgroup><p class="header-subtitle">我不在彩虹，彩虹在我.</p><nav class="header-menu"><ul><li><a href="/">主页</a></li><li><a href="/archives/">所有文章</a></li><li><a href="/tags/">标签云</a></li><li><a href="/about/">关于我</a></li><div class="clearfix"></div></ul></nav><nav class="header-nav"><ul class="social"><a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a> <a class="fa 新浪微博" target="_blank" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a> <a class="fa 简书" target="_blank" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a> <a class="fa CSDN" target="_blank" href="https://blog.csdn.net/LeetRock" title="CSDN"></a> <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a></ul></nav></header></div><link class="menu-list" tags="标签" friends="友情链接" about="关于我"></nav><div class="body-wrap"><article id="post-Iterator" class="article article-type-post" itemscope itemprop="blogPost"><div class="article-meta"><a href="/2018/07/31/Iterator/" class="article-date"><time datetime="2018-07-31T12:25:23.000Z" itemprop="datePublished">2018-07-31</time></a></div><div class="article-inner"><input type="hidden" class="isFancy"><header class="article-header"><h1 class="article-title" itemprop="name">设计模式之迭代模式</h1></header><div class="article-info article-info-post"><div class="article-category tagcloud"><a class="article-category-link" href="/categories/设计模式/">设计模式</a></div><div class="article-tag tagcloud" style="display:flex;flex-wrap:wrap"><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/迭代模式/">迭代模式</a></li></ul><span class="post-count">总字数2.3k</span> <span class="post-count">预计阅读9分钟</span></div><div class="clearfix"></div></div><div class="article-entry" itemprop="articleBody"><blockquote><p>Hi，我是十三，今天工地上的砖格外烫手，天气依旧还是那么炎热，我不想努力了……</p></blockquote><p></p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fvdzdi4zj8j30zk0nqdkl.jpg" alt=""><p></p><a id="more"></a><p><br></p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;热热热，热到爆炸，热到融化，这天气真的一年比一年还热，受不了啊！好吧，咱还是要学习的，今天我们学习迭代器模式，废话不多说，开搞！</p><p>&emsp;&emsp;首先我们先以一个小例子开头，十三喜欢看书，平时没事会去淘书找好书来读，会把要找的书写成个书单，书单上有书籍的详细信息等，那么就用代码演示下这个过程：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String ISBN;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> price;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(String iSBN, String name, <span class="keyword">double</span> price)</span> </span>&#123;</span><br><span class="line">        ISBN = iSBN;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.price = price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getISBN</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ISBN;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setISBN</span><span class="params">(String iSBN)</span> </span>&#123;</span><br><span class="line">        ISBN = iSBN;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPrice</span><span class="params">(<span class="keyword">double</span> price)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.price = price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"ISBN:"</span> + ISBN + <span class="string">" BookName:"</span> + name + <span class="string">"  price:"</span> + price);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;这里是对应书籍这个类，它的代码非常简单，都是些字段属性及构造函数，以及还有个打印书籍详细的方法，这个待会我们要用到，接着继续往下：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Book&gt; bookList;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BookList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bookList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        bookList.add(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bookIndex = bookList.indexOf(book);</span><br><span class="line">        bookList.remove(bookIndex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &gt;= bookList.size()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">getNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> bookList.get(index++);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;接下来的这个类就相当于是个书单类，因为书单肯定不止一本书，所以这里为了方便我们就用容器来装载我们的书籍，可以看到它分别有添加和删除两个方法，那么我们怎么知道书单共有多少本书籍呢？没错，第一反应就是遍历就可以了，所以这里最后我们在容器类里添加了可访问的遍历方法。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BookList list = <span class="keyword">new</span> BookList();</span><br><span class="line"></span><br><span class="line">        Book bookA = <span class="keyword">new</span> Book(<span class="string">"01013"</span>, <span class="string">"Java从入门到放弃"</span>, <span class="number">90</span>);</span><br><span class="line">        Book bookB = <span class="keyword">new</span> Book(<span class="string">"01039"</span>, <span class="string">"颈椎病康复指南"</span>, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">        list.addBook(bookA);</span><br><span class="line">        list.addBook(bookB);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(list.hasNext()) &#123;</span><br><span class="line">            Book book = list.getNext();</span><br><span class="line">            book.display();</span><br><span class="line">        &#125;       </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;这里我们就可以来看看我们书单，首先实例化两本书籍对象，并把它们添加到容器中，接着我们进行遍历得到书单信息，在我们的书单容器中都已经提供可访问的遍历方法，所以我们可以直接调用就可以了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 输出结果：</span><br><span class="line">ISBN:01013 BookName:Java从入门到放弃  price:90.0</span><br><span class="line">ISBN:01039 BookName:颈椎病康复指南    price:60.0</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;通过打印信息，我们可以看到书单上详细情况，但是我们回过头来想想，在我们的容器类中，我们提供了书籍的添加和删除等本身具有的方法，不仅如此，我们还在容器类中提供遍历访问的功能，容器类承担了太多的功能，不太符合我们的单一职责原则，那我们就来改写看看：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Book&gt; bookList;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BookList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bookList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        bookList.add(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bookIndex = bookList.indexOf(book);</span><br><span class="line">        bookList.remove(bookIndex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Book&gt; <span class="title">getBookList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> bookList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;既然你说我书单类太多功能，那我就不提供遍历方法了，我直接返回我整个书单容器给你，你自己遍历去吧！书单类怒了…</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BookList list = <span class="keyword">new</span> BookList();</span><br><span class="line"></span><br><span class="line">        Book bookA = <span class="keyword">new</span> Book(<span class="string">"01013"</span>, <span class="string">"Java从入门到放弃"</span>, <span class="number">90</span>);</span><br><span class="line">        Book bookB = <span class="keyword">new</span> Book(<span class="string">"01039"</span>, <span class="string">"颈椎病康复指南"</span>, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">        list.addBook(bookA);</span><br><span class="line">        list.addBook(bookB);</span><br><span class="line"></span><br><span class="line">        List&lt;Book&gt; bookData = list.getBookList();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bookData.size(); i++) &#123;</span><br><span class="line">            Book book = bookData.get(i);</span><br><span class="line">            book.display();</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;这样一来，不再提供遍历方法我们只好自己实现遍历，虽说这样书单类减少了不少功能，但是这样做的话则直接暴露数据细节给外部。是时候了，该出大招了。<br><br></p><h2 id="迭代器模式-Iterator"><a href="#迭代器模式-Iterator" class="headerlink" title="迭代器模式 (Iterator)"></a>迭代器模式 (Iterator)</h2><p>&emsp;&emsp;<code>迭代器模式提供一种方法顺序访问一个聚合对象中各个元素，而又不暴露该对象的内部表示。</code>简单来说，迭代器模式提供一种有效的方法，可以屏蔽聚集对象集合的容器类的实现细节，还能对容器内包含的对象元素按顺序进行有效的遍历访问。</p><p>迭代器模式的角色和职责 ：</p><ul><li><p>Iterator (迭代器接口)：该接口必须定义实现迭代功能的最小定义方法集.</p></li><li><p>ConcreteIterator (迭代器实现类)：迭代器接口的实现类，可以根据具体情况加以实现.</p></li><li><p>Aggregate (容器接口)：抽象聚集类.</p></li><li><p>ConcreteAggregate (容器实现类)：具体聚集类，继承 Aggregate.</p></li></ul><p>&emsp;&emsp;那我们来使用迭代器模式对我们刚刚的例子进行改写：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Book&gt; bookList;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BookList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bookList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        bookList.add(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bookIndex = bookList.indexOf(book);</span><br><span class="line">        bookList.remove(bookIndex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Itr();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (index &gt;= bookList.size()) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> bookList.get(index++);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;这里为了方便，我们直接使用 JDK 提供的类库 Iterator，你没看错，事实上 Java 已经把这个模式做在语言里了。这里我们定义了个匿名类 Itr 它实现了 Iterator 这个接口，之所以为匿名内部类是因为我们要实现遍历得需要容器的详细信息，也就是我们书单容器的大小等，不然我们从何做起？</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BookList list = <span class="keyword">new</span> BookList();</span><br><span class="line"></span><br><span class="line">        Book bookA = <span class="keyword">new</span> Book(<span class="string">"01013"</span>, <span class="string">"Java从入门到放弃"</span>, <span class="number">90</span>);</span><br><span class="line">        Book bookB = <span class="keyword">new</span> Book(<span class="string">"01039"</span>, <span class="string">"颈椎病康复指南"</span>, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">        list.addBook(bookA);</span><br><span class="line">        list.addBook(bookB);</span><br><span class="line"></span><br><span class="line">        Iterator iter = list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">            Book book = (Book) iter.next();</span><br><span class="line">            book.display();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 输出结果：</span><br><span class="line">ISBN:01013 BookName:Java从入门到放弃  price:90.0</span><br><span class="line">ISBN:01039 BookName:颈椎病康复指南    price:60.0</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;同样我们来运行，也能得到相同的结果，相比于之前的写法，我们让容器只需实现本身的基本功能，把迭代功能委让给外部类实现，符合类的设计原则，隐藏容器的实现细节。<br><br></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;最后我们来简单总结下。</p><p>&emsp;&emsp;当需要访问一个聚集对象，而且不管这些对象是什么都需要遍历的时候，就应该考虑用迭代器模式，总地来说，迭代器模式模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据。平时我们访问数组、集合等数据时，事实上，许多语言都对它进行过封装，这使得迭代器模式不太经常使用，但是我们却可能天天都在用。</p><p>&emsp;&emsp;来一个以前刚学 Java 时学到 Iterator 的 Demo：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextIterator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">"One"</span>);</span><br><span class="line">        list.add(<span class="string">"#"</span>);</span><br><span class="line">        list.add(<span class="string">"Two"</span>);</span><br><span class="line">        list.add(<span class="string">"#"</span>);</span><br><span class="line">        list.add(<span class="string">"Three"</span>);</span><br><span class="line">        list.add(<span class="string">"#"</span>);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * iterator()方法</span></span><br><span class="line"><span class="comment">         * 该方法会返回一个Iterator的实现类实例，用于遍历当前集合</span></span><br><span class="line"><span class="comment">         * </span></span><br><span class="line"><span class="comment">         * Iterator在java.util包下</span></span><br><span class="line"><span class="comment">         * 其是一个接口，定义了遍历器应有的方法</span></span><br><span class="line"><span class="comment">         * 不同的集合返回的Iterator不都是一个子类实现</span></span><br><span class="line"><span class="comment">         * </span></span><br><span class="line"><span class="comment">         * 迭代器的使用方式:先问后拿</span></span><br><span class="line"><span class="comment">         * 问:boolean hashNext()</span></span><br><span class="line"><span class="comment">         *   该方法询问迭代器当前集合是否还有元素</span></span><br><span class="line"><span class="comment">         * 拿:Object next()</span></span><br><span class="line"><span class="comment">         *   该方法会获取当前元素</span></span><br><span class="line"><span class="comment">         * 迭代器的迭代方法是为while循环量身定制的</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Iterator it = list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())<span class="comment">//集合中是否还有下一个元素</span></span><br><span class="line">        &#123;</span><br><span class="line">            String element = (String)it.next();<span class="comment">//有就将其取出</span></span><br><span class="line">            <span class="comment">//需要造型，因为当前集合没有添加泛型，只要有泛型，此处迭代不需加String</span></span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 在迭代器迭代的过程中，我们不能通过集合的增删等操作来改变该集合的元素数量！</span></span><br><span class="line"><span class="comment">             * 否则会引发迭代异常！若想删除迭代出来的元素，只能通过Iterator</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            System.out.println(element);</span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"#"</span>.equals(element))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//list.remove(element);//不可以</span></span><br><span class="line">                <span class="comment">/**</span></span><br><span class="line"><span class="comment">                 * 迭代器的remove()方法可以将刚刚获取的元素1从集合中删除，但是不能</span></span><br><span class="line"><span class="comment">                 * 重复调用两次!</span></span><br><span class="line"><span class="comment">                 */</span></span><br><span class="line">                it.remove();<span class="comment">//删除当前位置的元素</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(list);   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 运行结果：</span><br><span class="line">One</span><br><span class="line">#</span><br><span class="line">Two</span><br><span class="line">#</span><br><span class="line">Three</span><br><span class="line">#</span><br><span class="line">[One, Two, Three]</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;哈哈，怀恋。想起当初啃 Java 语法的时候，有时候想过为什么会这样，怎么搞的呢？到后来随着学习的深入，或许之前的疑惑也慢慢拨开了，同时也发现自己不懂的也就越多……<br><br><br><br></p><hr><p></p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fzhqzgq9tuj303l03lglm.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号<p></p></div></div></div></div><div class="copyright"><p><span>本文标题:</span><a href="/2018/07/31/Iterator/">设计模式之迭代模式</a></p><p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p><p><span>发布时间:</span>2018-07-31, 20:25:23</p><p><span>最后更新:</span>2019-01-24, 16:52:40</p><p><span>原始链接:</span><a class="post-url" href="/2018/07/31/Iterator/" title="设计模式之迭代模式">http://Binshao.site/2018/07/31/Iterator/</a> <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/07/31/Iterator/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span><script>var clipboard=new Clipboard(".copy-path")</script></p><p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。</p></div><nav id="article-nav"><div id="article-nav-newer" class="article-nav-title"><a href="/2018/08/07/TemplateMethob/">从组装枪械中学习模板方法模式</a></div><div id="article-nav-older" class="article-nav-title"><a href="/2018/07/29/Responsibility/">从请假流程来学习责任链模式</a></div></nav></article><div id="toc" class="toc-article"><strong class="toc-title">文章目录</strong><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器模式-Iterator"><span class="toc-number">2.</span> <span class="toc-text">迭代器模式 (Iterator)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol></div><style>.left-col .switch-area,.left-col .switch-btn{display:none}.toc-level-3 i,.toc-level-3 ol{display:none!important}</style><input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录"><script>yiliaConfig.toc=["隐藏目录","显示目录",!0]</script><div class="share"><div class="addthis_inline_share_toolbox"></div></div><section class="livere" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyMS8xNjI0OA=="><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><noscript>为正常使用来必力评论功能请激活JavaScript</noscript></div></section><div class="scroll" id="post-nav-button"><a href="/2018/08/07/TemplateMethob/" title="上一篇: 从组装枪械中学习模板方法模式"><i class="fa fa-angle-left"></i> </a><a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a> <a href="/2018/07/29/Responsibility/" title="下一篇: 从请假流程来学习责任链模式"><i class="fa fa-angle-right"></i></a></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/MiniProgram/">我的个人小程序上线了</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/17/RxJava1/">RxJava 创建操作符详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/RxJava/">RxJava2 入门笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/30/Aug/">扎心的八月</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/17/runOnUiThread/">浅谈 runOnUiThread</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/16/IntentService/">IntentService 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/HandlerThread/">HandlerThread 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/12/Handler/">Handler 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/Command/">设计模式之命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/10/AsyncTask/">AsyncTask 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/State/">从富豪财产身家中学习状态模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/08/ThreadPool/">Android 中的线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/TemplateMethob/">从组装枪械中学习模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/Iterator/">设计模式之迭代模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/Responsibility/">从请假流程来学习责任链模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/Mediator/">程序猿相亲记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/25/Adapter/">设计模式之适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/24/Bridge/">秋名山车王 —AE86— 改装记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/Composite/">设计模式之组合模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Facade/">从造人的角度来学习外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/Proxy/">校园爱情故事后记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/Flyweight/">设计模式之享元模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Observer/">十三校园泡妞记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/design-decorator/">爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/16/Prototype/">设计模式之原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/07/simpleFactory/">哆啦A梦来讲简单工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Strategy/">设计模式之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/Memento/">设计模式之备忘录模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/readBook/">推荐一些读过的技术书籍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/Thinking-in-Java/">读 《Java编程思想》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/Activity/">Activity 基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/10/AndroidTheme/">Android 主题和样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/dispatch/">浅谈事件分发机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/08/AttributeSet/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/07/SurfaceView/">SurfaceView</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/hello-world/">Hello World</a></li></ul><script></script></div><footer id="footer"><div class="outer"><div id="footer-info"><div class="footer-left"><i class="fa fa-copyright"></i> 2018-2019 十三</div><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span><script>var now=new Date;function createtime(){var n=new Date("02/14/2018 12:49:00");now.setTime(now.getTime()+250),days=(now-n)/1e3/60/60/24,dnum=Math.floor(days),hours=(now-n)/1e3/60/60-24*dnum,hnum=Math.floor(hours),1==String(hnum).length&&(hnum="0"+hnum),minutes=(now-n)/1e3/60-1440*dnum-60*hnum,mnum=Math.floor(minutes),1==String(mnum).length&&(mnum="0"+mnum),seconds=(now-n)/1e3-86400*dnum-3600*hnum-60*mnum,snum=Math.round(seconds),1==String(snum).length&&(snum="0"+snum),document.getElementById("timeDate").innerHTML="本站已安全运行 "+dnum+" 天 ",document.getElementById("times").innerHTML=hnum+" 小时 "+mnum+" 分 "+snum+" 秒"}setInterval("createtime()",250)</script><div class="footer-right"><a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a> Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i></div></div><div class="visit"><span id="busuanzi_container_site_pv" style="display:none"><span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span> </span></span><span>| </span><span id="busuanzi_container_page_pv" style="display:none"><span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span></span></span></div></div></footer></div><script type="application/javascript">var hide=!1,leftWidth=350;function hideLeftCol(){hide=hide?($(".left-col").width(leftWidth),$(".left-col .intrude-less").css("display",""),$("#tocButton").css("display",""),"block"===$("#switch-btn").css("display")&&"block"===$("#switch-area").css("display")||$("#toc").slideDown(320),$(".hide-left-col").css("left",leftWidth).html('<i class="fa fa-angle-double-left"></i>'),$(".mid-col").css("left",leftWidth),$("#post-nav-button").css("left",leftWidth),$("#post-nav-button > a:nth-child(2)").css("display","block"),!1):($(".left-col").width(0),$(".left-col .intrude-less").css("display","none"),$("#toc").css("display","none"),$("#tocButton").css("display","none"),$(".hide-left-col").css("left",0).html('<i class="fa fa-angle-double-right"></i>'),$(".mid-col").css("left",0),$("#post-nav-button").css("left",0),$("#post-nav-button > a:nth-child(2)").css("display","none"),$(".post-list").is(":visible")&&($("#post-nav-button .fa-bars,#post-nav-button .fa-times").toggle(),$(".post-list").toggle()),!0)}$(".hide-left-col").click(function(){hideLeftCol()})</script><script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script><div class="scroll" id="scroll"><a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a> <a href="#comments" onclick="load$hide()" title="查看评论"><i class="fa fa-comments-o"></i></a> <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a></div><script>var oOpenInNew={archives:".archive-article-title",miniArchives:"a.post-list-link",friends:"#js-friends a",socail:".social a"};for(var x in oOpenInNew)$(oOpenInNew[x]).attr("target","_blank")</script><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body>
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="十三" />
+
+
+
+<meta name="description" content="Hi，我是十三，今天工地上的砖格外烫手，天气依旧还是那么炎热，我不想努力了……">
+<meta name="keywords" content="迭代模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式之迭代模式">
+<meta property="og:url" content="http://Binshao.site/2018/07/31/Iterator/index.html">
+<meta property="og:site_name" content="十三的个人博客">
+<meta property="og:description" content="Hi，我是十三，今天工地上的砖格外烫手，天气依旧还是那么炎热，我不想努力了……">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvdzdi4zj8j30zk0nqdkl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fzhqzgq9tuj303l03lglm.jpg">
+<meta property="og:updated_time" content="2019-01-24T08:52:40.751Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式之迭代模式">
+<meta name="twitter:description" content="Hi，我是十三，今天工地上的砖格外烫手，天气依旧还是那么炎热，我不想努力了……">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/0072Lfvtly1fvdzdi4zj8j30zk0nqdkl.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="十三的个人博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/orange/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>设计模式之迭代模式 | 十三的个人博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9ca89eb39b844f"></script>
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/icon.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">十三</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa 简书" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a>
+                            
+                                <a class="fa CSDN" href="https://blog.csdn.net/LeetRock" title="CSDN"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-主题和样式/">Android 主题和样式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-书籍/">Android 书籍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义属性/">Android 自定义属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler/">Handler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HandlerThread/">HandlerThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntentService/">IntentService</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java编程思想/">Java编程思想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava-创建操作符/">RxJava 创建操作符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava2-入门/">RxJava2 入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SurfaceView/">SurfaceView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/runOnUiThread/">runOnUiThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件分发/">事件分发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/享元模式/">享元模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理模式/">代理模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘录模式/">备忘录模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/外观模式/">外观模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路上/">学习路上</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/桥接模式/">桥接模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板方法模式/">模板方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/状态模式/">状态模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活杂谈/">生活杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略模式/">策略模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单工厂模式/">简单工厂模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程池/">线程池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合模式/">组合模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/装饰模式/">装饰模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/责任链模式/">责任链模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/迭代模式/">迭代模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Hi，我是十三！努力成为 Android 老司机 ing...生活不止技术，喜欢看书、旅游、听歌！</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="hide-left-col" title="隐藏侧栏">
+     <i class="fa fa-angle-double-left"></i>
+   </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">十三</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/icon.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">十三</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="https://blog.csdn.net/LeetRock" title="CSDN"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Iterator" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/31/Iterator/" class="article-date">
+      <time datetime="2018-07-31T12:25:23.000Z" itemprop="datePublished">2018-07-31</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      设计模式之迭代模式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/迭代模式/">迭代模式</a></li></ul>
+       <span class="post-count">总字数2.3k</span>
+       <span class="post-count">预计阅读9分钟</span>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>Hi，我是十三，今天工地上的砖格外烫手，天气依旧还是那么炎热，我不想努力了……</p>
+</blockquote>
+<p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fvdzdi4zj8j30zk0nqdkl.jpg" alt=""></div></p>
+<a id="more"></a>
+<p><br>    </p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;热热热，热到爆炸，热到融化，这天气真的一年比一年还热，受不了啊！好吧，咱还是要学习的，今天我们学习迭代器模式，废话不多说，开搞！</p>
+<p>&emsp;&emsp;首先我们先以一个小例子开头，十三喜欢看书，平时没事会去淘书找好书来读，会把要找的书写成个书单，书单上有书籍的详细信息等，那么就用代码演示下这个过程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String ISBN;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> price;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(String iSBN, String name, <span class="keyword">double</span> price)</span> </span>&#123;</span><br><span class="line">        ISBN = iSBN;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.price = price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getISBN</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ISBN;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setISBN</span><span class="params">(String iSBN)</span> </span>&#123;</span><br><span class="line">        ISBN = iSBN;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPrice</span><span class="params">(<span class="keyword">double</span> price)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.price = price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"ISBN:"</span> + ISBN + <span class="string">" BookName:"</span> + name + <span class="string">"  price:"</span> + price);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里是对应书籍这个类，它的代码非常简单，都是些字段属性及构造函数，以及还有个打印书籍详细的方法，这个待会我们要用到，接着继续往下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Book&gt; bookList;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BookList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bookList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        bookList.add(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bookIndex = bookList.indexOf(book);</span><br><span class="line">        bookList.remove(bookIndex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &gt;= bookList.size()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">getNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> bookList.get(index++);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;接下来的这个类就相当于是个书单类，因为书单肯定不止一本书，所以这里为了方便我们就用容器来装载我们的书籍，可以看到它分别有添加和删除两个方法，那么我们怎么知道书单共有多少本书籍呢？没错，第一反应就是遍历就可以了，所以这里最后我们在容器类里添加了可访问的遍历方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BookList list = <span class="keyword">new</span> BookList();</span><br><span class="line"></span><br><span class="line">        Book bookA = <span class="keyword">new</span> Book(<span class="string">"01013"</span>, <span class="string">"Java从入门到放弃"</span>, <span class="number">90</span>);</span><br><span class="line">        Book bookB = <span class="keyword">new</span> Book(<span class="string">"01039"</span>, <span class="string">"颈椎病康复指南"</span>, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">        list.addBook(bookA);</span><br><span class="line">        list.addBook(bookB);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(list.hasNext()) &#123;</span><br><span class="line">            Book book = list.getNext();</span><br><span class="line">            book.display();</span><br><span class="line">        &#125;       </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里我们就可以来看看我们书单，首先实例化两本书籍对象，并把它们添加到容器中，接着我们进行遍历得到书单信息，在我们的书单容器中都已经提供可访问的遍历方法，所以我们可以直接调用就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 输出结果：</span><br><span class="line">ISBN:01013 BookName:Java从入门到放弃  price:90.0</span><br><span class="line">ISBN:01039 BookName:颈椎病康复指南    price:60.0</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;通过打印信息，我们可以看到书单上详细情况，但是我们回过头来想想，在我们的容器类中，我们提供了书籍的添加和删除等本身具有的方法，不仅如此，我们还在容器类中提供遍历访问的功能，容器类承担了太多的功能，不太符合我们的单一职责原则，那我们就来改写看看：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Book&gt; bookList;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BookList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bookList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        bookList.add(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bookIndex = bookList.indexOf(book);</span><br><span class="line">        bookList.remove(bookIndex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Book&gt; <span class="title">getBookList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> bookList;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;既然你说我书单类太多功能，那我就不提供遍历方法了，我直接返回我整个书单容器给你，你自己遍历去吧！书单类怒了…</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BookList list = <span class="keyword">new</span> BookList();</span><br><span class="line"></span><br><span class="line">        Book bookA = <span class="keyword">new</span> Book(<span class="string">"01013"</span>, <span class="string">"Java从入门到放弃"</span>, <span class="number">90</span>);</span><br><span class="line">        Book bookB = <span class="keyword">new</span> Book(<span class="string">"01039"</span>, <span class="string">"颈椎病康复指南"</span>, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">        list.addBook(bookA);</span><br><span class="line">        list.addBook(bookB);</span><br><span class="line"></span><br><span class="line">        List&lt;Book&gt; bookData = list.getBookList();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bookData.size(); i++) &#123;</span><br><span class="line">            Book book = bookData.get(i);</span><br><span class="line">            book.display();</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这样一来，不再提供遍历方法我们只好自己实现遍历，虽说这样书单类减少了不少功能，但是这样做的话则直接暴露数据细节给外部。是时候了，该出大招了。<br><br></p>
+<h2 id="迭代器模式-Iterator"><a href="#迭代器模式-Iterator" class="headerlink" title="迭代器模式 (Iterator)"></a>迭代器模式 (Iterator)</h2><p>&emsp;&emsp;<code>迭代器模式提供一种方法顺序访问一个聚合对象中各个元素，而又不暴露该对象的内部表示。</code>简单来说，迭代器模式提供一种有效的方法，可以屏蔽聚集对象集合的容器类的实现细节，还能对容器内包含的对象元素按顺序进行有效的遍历访问。</p>
+<p>迭代器模式的角色和职责 ：</p>
+<ul>
+<li><p>Iterator (迭代器接口)：该接口必须定义实现迭代功能的最小定义方法集.</p>
+</li>
+<li><p>ConcreteIterator (迭代器实现类)：迭代器接口的实现类，可以根据具体情况加以实现.</p>
+</li>
+<li><p>Aggregate (容器接口)：抽象聚集类.</p>
+</li>
+<li><p>ConcreteAggregate (容器实现类)：具体聚集类，继承 Aggregate.</p>
+</li>
+</ul>
+<p>&emsp;&emsp;那我们来使用迭代器模式对我们刚刚的例子进行改写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Book&gt; bookList;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BookList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bookList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        bookList.add(book);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteBook</span><span class="params">(Book book)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bookIndex = bookList.indexOf(book);</span><br><span class="line">        bookList.remove(bookIndex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Itr();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (index &gt;= bookList.size()) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> bookList.get(index++);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里为了方便，我们直接使用 JDK 提供的类库 Iterator，你没看错，事实上 Java 已经把这个模式做在语言里了。这里我们定义了个匿名类 Itr 它实现了 Iterator 这个接口，之所以为匿名内部类是因为我们要实现遍历得需要容器的详细信息，也就是我们书单容器的大小等，不然我们从何做起？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BookList list = <span class="keyword">new</span> BookList();</span><br><span class="line"></span><br><span class="line">        Book bookA = <span class="keyword">new</span> Book(<span class="string">"01013"</span>, <span class="string">"Java从入门到放弃"</span>, <span class="number">90</span>);</span><br><span class="line">        Book bookB = <span class="keyword">new</span> Book(<span class="string">"01039"</span>, <span class="string">"颈椎病康复指南"</span>, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">        list.addBook(bookA);</span><br><span class="line">        list.addBook(bookB);</span><br><span class="line"></span><br><span class="line">        Iterator iter = list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">            Book book = (Book) iter.next();</span><br><span class="line">            book.display();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 输出结果：</span><br><span class="line">ISBN:01013 BookName:Java从入门到放弃  price:90.0</span><br><span class="line">ISBN:01039 BookName:颈椎病康复指南    price:60.0</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;同样我们来运行，也能得到相同的结果，相比于之前的写法，我们让容器只需实现本身的基本功能，把迭代功能委让给外部类实现，符合类的设计原则，隐藏容器的实现细节。<br><br></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;最后我们来简单总结下。</p>
+<p>&emsp;&emsp;当需要访问一个聚集对象，而且不管这些对象是什么都需要遍历的时候，就应该考虑用迭代器模式，总地来说，迭代器模式模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据。平时我们访问数组、集合等数据时，事实上，许多语言都对它进行过封装，这使得迭代器模式不太经常使用，但是我们却可能天天都在用。</p>
+<p>&emsp;&emsp;来一个以前刚学 Java 时学到 Iterator 的 Demo：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextIterator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        list.add(<span class="string">"One"</span>);</span><br><span class="line">        list.add(<span class="string">"#"</span>);</span><br><span class="line">        list.add(<span class="string">"Two"</span>);</span><br><span class="line">        list.add(<span class="string">"#"</span>);</span><br><span class="line">        list.add(<span class="string">"Three"</span>);</span><br><span class="line">        list.add(<span class="string">"#"</span>);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * iterator()方法</span></span><br><span class="line"><span class="comment">         * 该方法会返回一个Iterator的实现类实例，用于遍历当前集合</span></span><br><span class="line"><span class="comment">         * </span></span><br><span class="line"><span class="comment">         * Iterator在java.util包下</span></span><br><span class="line"><span class="comment">         * 其是一个接口，定义了遍历器应有的方法</span></span><br><span class="line"><span class="comment">         * 不同的集合返回的Iterator不都是一个子类实现</span></span><br><span class="line"><span class="comment">         * </span></span><br><span class="line"><span class="comment">         * 迭代器的使用方式:先问后拿</span></span><br><span class="line"><span class="comment">         * 问:boolean hashNext()</span></span><br><span class="line"><span class="comment">         *   该方法询问迭代器当前集合是否还有元素</span></span><br><span class="line"><span class="comment">         * 拿:Object next()</span></span><br><span class="line"><span class="comment">         *   该方法会获取当前元素</span></span><br><span class="line"><span class="comment">         * 迭代器的迭代方法是为while循环量身定制的</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Iterator it = list.iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())<span class="comment">//集合中是否还有下一个元素</span></span><br><span class="line">        &#123;</span><br><span class="line">            String element = (String)it.next();<span class="comment">//有就将其取出</span></span><br><span class="line">            <span class="comment">//需要造型，因为当前集合没有添加泛型，只要有泛型，此处迭代不需加String</span></span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 在迭代器迭代的过程中，我们不能通过集合的增删等操作来改变该集合的元素数量！</span></span><br><span class="line"><span class="comment">             * 否则会引发迭代异常！若想删除迭代出来的元素，只能通过Iterator</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            System.out.println(element);</span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"#"</span>.equals(element))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//list.remove(element);//不可以</span></span><br><span class="line">                <span class="comment">/**</span></span><br><span class="line"><span class="comment">                 * 迭代器的remove()方法可以将刚刚获取的元素1从集合中删除，但是不能</span></span><br><span class="line"><span class="comment">                 * 重复调用两次!</span></span><br><span class="line"><span class="comment">                 */</span></span><br><span class="line">                it.remove();<span class="comment">//删除当前位置的元素</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(list);   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 运行结果：</span><br><span class="line">One</span><br><span class="line">#</span><br><span class="line">Two</span><br><span class="line">#</span><br><span class="line">Three</span><br><span class="line">#</span><br><span class="line">[One, Two, Three]</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;哈哈，怀恋。想起当初啃 Java 语法的时候，有时候想过为什么会这样，怎么搞的呢？到后来随着学习的深入，或许之前的疑惑也慢慢拨开了，同时也发现自己不懂的也就越多……<br><br><br><br></p>
+<hr>
+<p><div align="center"><img src="https://ws1.sinaimg.cn/large/0072Lfvtly1fzhqzgq9tuj303l03lglm.jpg" alt="扫一扫点击关注"><br>十三的记事本<br>欢迎大家关注我的公众号</div></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/07/31/Iterator/">设计模式之迭代模式</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
+        <p><span>发布时间:</span>2018-07-31, 20:25:23</p>
+        <p><span>最后更新:</span>2019-01-24, 16:52:40</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/31/Iterator/" title="设计模式之迭代模式">http://Binshao.site/2018/07/31/Iterator/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2018/07/31/Iterator/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/08/07/TemplateMethob/">
+                    从组装枪械中学习模板方法模式
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/07/29/Responsibility/">
+                    从请假流程来学习责任链模式
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器模式-Iterator"><span class="toc-number">2.</span> <span class="toc-text">迭代器模式 (Iterator)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        
+        <div class="addthis_inline_share_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyMS8xNjI0OA==">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/08/07/TemplateMethob/" title="上一篇: 从组装枪械中学习模板方法模式">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/07/29/Responsibility/" title="下一篇: 从请假流程来学习责任链模式">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/MiniProgram/">我的个人小程序上线了</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/17/RxJava1/">RxJava 创建操作符详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/RxJava/">RxJava2 入门笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/30/Aug/">扎心的八月</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/17/runOnUiThread/">浅谈 runOnUiThread</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/16/IntentService/">IntentService 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/HandlerThread/">HandlerThread 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/12/Handler/">Handler 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/Command/">设计模式之命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/10/AsyncTask/">AsyncTask 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/State/">从富豪财产身家中学习状态模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/08/ThreadPool/">Android 中的线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/TemplateMethob/">从组装枪械中学习模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/Iterator/">设计模式之迭代模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/Responsibility/">从请假流程来学习责任链模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/Mediator/">程序猿相亲记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/25/Adapter/">设计模式之适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/24/Bridge/">秋名山车王 —AE86— 改装记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/Composite/">设计模式之组合模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Facade/">从造人的角度来学习外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/Proxy/">校园爱情故事后记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/Flyweight/">设计模式之享元模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Observer/">十三校园泡妞记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/design-decorator/">爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/16/Prototype/">设计模式之原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/07/simpleFactory/">哆啦A梦来讲简单工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Strategy/">设计模式之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/Memento/">设计模式之备忘录模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/readBook/">推荐一些读过的技术书籍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/Thinking-in-Java/">读 《Java编程思想》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/Activity/">Activity 基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/10/AndroidTheme/">Android 主题和样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/dispatch/">浅谈事件分发机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/08/AttributeSet/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/07/SurfaceView/">SurfaceView</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018-2019 十三
+            </div>
+            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+            <script>
+                var now = new Date(); 
+                function createtime() { 
+                    var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+                    now.setTime(now.getTime()+250); 
+                    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+                    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+                    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+                    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+                    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+                    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+                    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+                } 
+            setInterval("createtime()",250);
+            </script>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    <script type="application/javascript">
+     var hide = false, leftWidth = 350;
+     function hideLeftCol() {
+       if (hide) {
+         $(".left-col").width(leftWidth);
+         $(".left-col .intrude-less").css('display', '');
+         $("#tocButton").css('display', '');
+         ($('#switch-btn').css('display') === 'block' && $('#switch-area').css('display') === 'block') || $('#toc').slideDown(320);
+         $(".hide-left-col").css("left", leftWidth).html('<i class="fa fa-angle-double-left"></i>');
+         $(".mid-col").css("left", leftWidth)
+         $("#post-nav-button").css("left", leftWidth)
+         $("#post-nav-button > a:nth-child(2)").css("display", "block")
+         hide = false
+       } else {
+         $(".left-col").width(0);
+         $(".left-col .intrude-less").css('display', 'none');
+         $("#toc").css('display', 'none');
+         $("#tocButton").css('display', 'none');
+         $(".hide-left-col").css("left", 0).html('<i class="fa fa-angle-double-right"></i>');
+         $(".mid-col").css("left", 0)
+         $("#post-nav-button").css("left", 0)
+         $("#post-nav-button > a:nth-child(2)").css("display", "none")
+         if ($(".post-list").is(":visible")) {
+           $("#post-nav-button .fa-bars,#post-nav-button .fa-times").toggle();
+           $(".post-list").toggle();
+         }
+         hide = true
+       }
+     }
+     $(".hide-left-col").click(function() {
+       hideLeftCol()
+     });
+   </script>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
