@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="十三" />
+
+
+
+<meta name="description" content="&amp;emsp;&amp;emsp;注解是 Java SE5 版本中引入的一个特性，注解也被称为元数据，它为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据，可以提供用来完整地描述程序所需的信息，并且能对包、类、接口、字段、方法参数以及局部变量等进行注解。">
+<meta name="keywords" content="注解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于 Java 注解及原理简析">
+<meta property="og:url" content="http://Binshao.site/2019/04/01/Annotation/index.html">
+<meta property="og:site_name" content="十三的个人博客">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;注解是 Java SE5 版本中引入的一个特性，注解也被称为元数据，它为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据，可以提供用来完整地描述程序所需的信息，并且能对包、类、接口、字段、方法参数以及局部变量等进行注解。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1mw294m9wj30j60cstb6.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1mxb1voijj30p7082aah.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1my3ne6cnj31aa0u0thi.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1n2rew9knj31ei08k74v.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1n2vh5ewdj30v90bdt9p.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1n4z9xt2aj30ji02bdfr.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1n76182sjj30l7089t9h.jpg">
+<meta property="og:updated_time" content="2019-04-01T13:37:43.742Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于 Java 注解及原理简析">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;注解是 Java SE5 版本中引入的一个特性，注解也被称为元数据，它为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据，可以提供用来完整地描述程序所需的信息，并且能对包、类、接口、字段、方法参数以及局部变量等进行注解。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1mw294m9wj30j60cstb6.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="十三的个人博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/orange/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>关于 Java 注解及原理简析 | 十三的个人博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9ca89eb39b844f"></script>
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/icon.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">十三</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa 简书" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a>
+                            
+                                <a class="fa CSDN" href="https://blog.csdn.net/LeetRock" title="CSDN"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-主题和样式/">Android 主题和样式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-书籍/">Android 书籍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义属性/">Android 自定义属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler/">Handler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HandlerThread/">HandlerThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntentService/">IntentService</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java编程思想/">Java编程思想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava-创建操作符/">RxJava 创建操作符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava2-入门/">RxJava2 入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SurfaceView/">SurfaceView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/runOnUiThread/">runOnUiThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件分发/">事件分发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/享元模式/">享元模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理模式/">代理模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内部类-Java/">内部类 Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘录模式/">备忘录模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/外观模式/">外观模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路上/">学习路上</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/桥接模式/">桥接模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板方法模式/">模板方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/注解/">注解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/状态模式/">状态模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活杂谈/">生活杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略模式/">策略模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单工厂模式/">简单工厂模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程池/">线程池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合模式/">组合模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/装饰模式/">装饰模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/责任链模式/">责任链模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/迭代模式/">迭代模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Hi，我是十三！努力成为 Android 老司机 ing...生活不止技术，喜欢看书、旅游、听歌！</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="hide-left-col" title="隐藏侧栏">
+     <i class="fa fa-angle-double-left"></i>
+   </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">十三</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/icon.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">十三</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="https://blog.csdn.net/LeetRock" title="CSDN"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Annotation" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/01/Annotation/" class="article-date">
+      <time datetime="2019-04-01T01:05:25.000Z" itemprop="datePublished">2019-04-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于 Java 注解及原理简析
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/注解/">注解</a></li></ul>
+       <span class="post-count">总字数4.3k</span>
+       <span class="post-count">预计阅读20分钟</span>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>&emsp;&emsp;注解是 Java SE5 版本中引入的一个特性，<code>注解也被称为元数据，它为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据</code>，可以提供用来完整地描述程序所需的信息，并且能对包、类、接口、字段、方法参数以及局部变量等进行注解。</p>
+<a id="more"></a>
+<p><img src="https://ws1.sinaimg.cn/large/0071ouepgy1g1mw294m9wj30j60cstb6.jpg" alt=""></p>
+<p><br></p>
+<h2 id="注解使用"><a href="#注解使用" class="headerlink" title="注解使用"></a>注解使用</h2><p>&emsp;&emsp;Java 中也有内置的注解，例如我们常见 @Override、@Deprecated、@SuppressWarnings，它们的作用分别如下：</p>
+<ul>
+<li>@Override：标明当前的方法定义将覆盖父类中的方法；</li>
+<li>@Deprecated：标明某个类或方法是过时抛弃的；</li>
+<li>@SuppressWarnings：表示关闭不当的编译器警告信息；</li>
+</ul>
+<p>&emsp;&emsp;它们的使用非常简单，只要在需要注解的地方使用注解即可，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloAnnotation</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"我覆盖了父类中的方法."</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;虽然 Java 定义了一些注解，但主要还需要我们自己自定义注解并且按自己的方式来使用它们，下面我们就来学习实现自定义注解 @TestAnnotation，可以通过它向某个类中注入字符串，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> TestAnnotation &#123;</span><br><span class="line">    <span class="function">String <span class="title">show</span><span class="params">()</span> <span class="keyword">default</span> "<span class="keyword">null</span>"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;从上面我们可以发现，注解的定义和定义接口的方式好像，唯一不同的是它还要 @符号。一个注解总体上可以分为三部分：元注解、注解体、注解元素，我们以上面的例子为例分别介绍：</p>
+<p><img src="https://ws1.sinaimg.cn/large/0071ouepgy1g1mxb1voijj30p7082aah.jpg" alt=""></p>
+<p>&emsp;&emsp;定义注解时，会需要一些元注解，元注解专门负责注解其他的注解，上面例子中用到的 @Target 用来标明我们定义的这个注解应用于什么地方(例如一个类或方法)，@Retention 用来定义该注解在哪个级别可用，例如是在源码 SOURCE、类文件 CLASS 中或者是运行时 RUNTIME。</p>
+<p>&emsp;&emsp;注解体则没什么好说的，注解元素看起来则就好像是接口的方法，不同的是我们可以指定默认值，如果在注解某个类或方法时没有给出具体的元素值，那么默认就会使用此元素的默认值，实际上元素不能有不确定值，要么具有默认值，要么就是在使用注解时指定元素值。此外还需要注意的是，注解元素对可用的类型很挑剔，只允许如下类型：</p>
+<ul>
+<li>所有基本类型（int、float、boolean 等)；</li>
+<li>String；</li>
+<li>Class；</li>
+<li>enum；</li>
+<li>Annotation；</li>
+<li>以上类型的数组；</li>
+</ul>
+<p>&emsp;&emsp;定义好注解后，我们来看看使用注解的情况：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TestAnnotation</span>(show = <span class="string">"Hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        TestAnnotation annotation = Main.class.getAnnotation(TestAnnotation.class);</span><br><span class="line">        System.out.println(annotation.show());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行结果：Hello</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;因为我们传入了值所以没有输出元素的默认值，到这里这个简单的小实验就完成了，关于元注解的属性下面给出一张介绍图，用到时查一查就够了：</p>
+<p><img src="https://ws1.sinaimg.cn/large/0071ouepgy1g1my3ne6cnj31aa0u0thi.jpg" alt=""></p>
+<p><br></p>
+<h2 id="原理简析"><a href="#原理简析" class="headerlink" title="原理简析"></a>原理简析</h2><p>&emsp;&emsp;在前面我们自定义了一个简单的注解，我们好奇注解是怎么实现的，它又是怎么得到我们传入的值，下面我们就来简单分析下(主要还是太菜了…)。首先回到上面的自定义注解的例子中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> TestAnnotation &#123;</span><br><span class="line">    <span class="function">String <span class="title">show</span><span class="params">()</span> <span class="keyword">default</span> "<span class="keyword">null</span>"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试类</span></span><br><span class="line"><span class="meta">@TestAnnotation</span>(show = <span class="string">"Hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        TestAnnotation annotation = Main.class.getAnnotation(TestAnnotation.class);</span><br><span class="line">        System.out.println(annotation.show());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们对 Main 类进行注解，接着通过反射 <code>TestAnnotation annotation = Main.class.getAnnotation(TestAnnotation.class);</code>传入参数注解类生成实例并去获取注解声明时的数值，冥冥之中似乎觉得和 Class 类有什么关系，我们知道编译器会把我们编写好的 Java 源码编译成 class 文件，这也是我们刚入门 Java 经常看到 “一次编写，到处运行” 这个口号的原因，那么下面去瞅瞅注解被编译后的 class 文件，首先使用命令 <code>javac TestAnnotation.java</code>先把这个类文件编译成 class 文件，接下来再使用<code>javap TestAnnotation.class</code>命令查看编译后的文件，输出如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Compiled from <span class="string">"TestAnnotation.java"</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">com</span>.<span class="title">example</span>.<span class="title">binshao</span>.<span class="title">TestAnnotation</span> <span class="keyword">extends</span> <span class="title">java</span>.<span class="title">lang</span>.<span class="title">annotation</span>.<span class="title">Annotation</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">abstract</span> java.lang.<span class="function">String <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以看到我们这个注解被编译后，就是一个继承 <code>java.lang.annotation.Annotation</code> 的接口，事实上 Annotation 也是一个接口，它的声明如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Annotation</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">toString</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line">    Class&lt;? extends Annotation&gt; annotationType();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;那么问题来了，既然它们是接口那么是不能生成实例对象的，那么前面我们通过反射去获取的 Annotation 实例是什么呢？接口……生成对象……等下，会不会是使用到了动态代理机制呢？那么接下来通过 Debug 的形式探探究竟：</p>
+<p><img src="https://ws1.sinaimg.cn/large/0071ouepgy1g1n2rew9knj31ei08k74v.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/0071ouepgy1g1n2vh5ewdj30v90bdt9p.jpg" alt=""></p>
+<p>&emsp;&emsp;可以看到 TestAnnotation 注解的实例确实是生成了动态代理类的对象，那么接下来我们去看看这个生成的代理类 $Proxy1，在代码中添加代码<code>System.setProperty(&quot;sun.misc.ProxyGenerator.saveGeneratedFiles&quot;, &quot;true&quot;);</code>就可以导出文件，查看如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> $<span class="title">Proxy1</span> <span class="keyword">extends</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">TestAnnotation</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Method m1;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Method m3;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Method m2;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Method m4;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Method m0;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> $Proxy1(InvocationHandler var1) <span class="keyword">throws</span>  &#123;</span><br><span class="line">        <span class="keyword">super</span>(var1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object var1)</span> <span class="keyword">throws</span>  </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (Boolean)<span class="keyword">super</span>.h.invoke(<span class="keyword">this</span>, m1, <span class="keyword">new</span> Object[]&#123;var1&#125;);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RuntimeException | Error var3) &#123;</span><br><span class="line">            <span class="keyword">throw</span> var3;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var4) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UndeclaredThrowableException(var4);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">show</span><span class="params">()</span> <span class="keyword">throws</span>  </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (String)<span class="keyword">super</span>.h.invoke(<span class="keyword">this</span>, m3, (Object[])<span class="keyword">null</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RuntimeException | Error var2) &#123;</span><br><span class="line">            <span class="keyword">throw</span> var2;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var3) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">toString</span><span class="params">()</span> <span class="keyword">throws</span>  </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (String)<span class="keyword">super</span>.h.invoke(<span class="keyword">this</span>, m2, (Object[])<span class="keyword">null</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RuntimeException | Error var2) &#123;</span><br><span class="line">            <span class="keyword">throw</span> var2;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var3) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Class <span class="title">annotationType</span><span class="params">()</span> <span class="keyword">throws</span>  </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (Class)<span class="keyword">super</span>.h.invoke(<span class="keyword">this</span>, m4, (Object[])<span class="keyword">null</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RuntimeException | Error var2) &#123;</span><br><span class="line">            <span class="keyword">throw</span> var2;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var3) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> <span class="keyword">throws</span>  </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (Integer)<span class="keyword">super</span>.h.invoke(<span class="keyword">this</span>, m0, (Object[])<span class="keyword">null</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RuntimeException | Error var2) &#123;</span><br><span class="line">            <span class="keyword">throw</span> var2;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var3) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            m1 = Class.forName(<span class="string">"java.lang.Object"</span>).getMethod(<span class="string">"equals"</span>, Class.forName(<span class="string">"java.lang.Object"</span>));</span><br><span class="line">            m3 = Class.forName(<span class="string">"com.example.binshao.TestAnnotation"</span>).getMethod(<span class="string">"show"</span>);</span><br><span class="line">            m2 = Class.forName(<span class="string">"java.lang.Object"</span>).getMethod(<span class="string">"toString"</span>);</span><br><span class="line">            m4 = Class.forName(<span class="string">"com.example.binshao.TestAnnotation"</span>).getMethod(<span class="string">"annotationType"</span>);</span><br><span class="line">            m0 = Class.forName(<span class="string">"java.lang.Object"</span>).getMethod(<span class="string">"hashCode"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException var2) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchMethodError(var2.getMessage());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException var3) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NoClassDefFoundError(var3.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;从代码第一行处我们也可以看到自定义注解 TestAnnotation 是一个接口，而这个 $Proxy1 动态代理类就是它实现类，并且它还实现了 Annotation 接口声明的方法，那么到这里，<code>我们已经知道了注解其实是一个继承了 Annotation 接口的特殊接口，当通过反射获取注解的时候，它会返回运行时生成的动态代理类，那么这个代理类就是我们这个注解的具体实现类</code>。</p>
+<p><br></p>
+<h3 id="反射注解流程"><a href="#反射注解流程" class="headerlink" title="反射注解流程"></a>反射注解流程</h3><p>&emsp;&emsp;通过前面我们知道获取注解时，我们是通过动态代理机制生成的代理类对象去调用自定义注解中的注解元素，而我们知道在动态代理机制中，代理方法的调用最终会传递给绑定的 InvocationHandler 接口实例中的 invoke 方法处理，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> $<span class="title">Proxy1</span> <span class="keyword">extends</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">TestAnnotation</span> </span>&#123;</span><br><span class="line">	......</span><br><span class="line">    <span class="keyword">public</span> $Proxy1(InvocationHandler var1) <span class="keyword">throws</span>  &#123;</span><br><span class="line">        <span class="keyword">super</span>(var1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">show</span><span class="params">()</span> <span class="keyword">throws</span>  </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (String)<span class="keyword">super</span>.h.invoke(<span class="keyword">this</span>, m3, (Object[])<span class="keyword">null</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RuntimeException | Error var2) &#123;</span><br><span class="line">            <span class="keyword">throw</span> var2;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var3) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;那么在上卖弄代码 9 行处，从中可以看到 show() 方法似乎调用某个 h 对象的 invoke 方法，我们好奇这个 h 对象是什么？要不，通过 Debug 去看看：</p>
+<p><img src="https://ws1.sinaimg.cn/large/0071ouepgy1g1n4z9xt2aj30ji02bdfr.jpg" alt=""></p>
+<p>&emsp;&emsp;从 Debug 的结果来看，这个 h 对象是 AnnotationInvocationHandler 的实例，那么它又是在什么地方蹦出来的呢？看的一脸懵逼，带着目前所知道的线索，回到前面我们通过反射获取注解实例时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TestAnnotation</span>(show = <span class="string">"Hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.setProperty(<span class="string">"sun.misc.ProxyGenerator.saveGeneratedFiles"</span>, <span class="string">"true"</span>);</span><br><span class="line">        TestAnnotation annotation = Main.class.getAnnotation(TestAnnotation.class);</span><br><span class="line">        System.out.println(annotation.show());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;在代码 6 行处我们通过反射 class#getAnnotation 得到实例对象，而它最后是会一路调用到<code>sun.reflect.annotation.AnnotationParser#parseAnnotations 方法</code>，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;Class&lt;? extends Annotation&gt;, Annotation&gt; parseAnnotations(<span class="keyword">byte</span>[] var0, ConstantPool var1, Class&lt;?&gt; var2) &#123;</span><br><span class="line">        <span class="keyword">if</span> (var0 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> Collections.emptyMap();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> parseAnnotations2(var0, var1, var2, (Class[])<span class="keyword">null</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (BufferUnderflowException var4) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> AnnotationFormatError(<span class="string">"Unexpected end of annotations."</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IllegalArgumentException var5) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> AnnotationFormatError(var5);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;如名字所言，解析注解，6行处又调用<code>parseAnnotations2</code>，这里我们先看懂流程就可，不陷于具体实现，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Map&lt;Class&lt;? extends Annotation&gt;, Annotation&gt; parseAnnotations2(<span class="keyword">byte</span>[] var0, ConstantPool var1, Class&lt;?&gt; var2, Class&lt;? extends Annotation&gt;[] var3) &#123;</span><br><span class="line">        LinkedHashMap var4 = <span class="keyword">new</span> LinkedHashMap();</span><br><span class="line">        ByteBuffer var5 = ByteBuffer.wrap(var0);</span><br><span class="line">        <span class="keyword">int</span> var6 = var5.getShort() &amp; <span class="string">'\uffff'</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> var7 = <span class="number">0</span>; var7 &lt; var6; ++var7) &#123;</span><br><span class="line">            Annotation var8 = parseAnnotation2(var5, var1, var2, <span class="keyword">false</span>, var3);</span><br><span class="line">            <span class="keyword">if</span> (var8 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                Class var9 = var8.annotationType();</span><br><span class="line">                <span class="keyword">if</span> (AnnotationType.getInstance(var9).retention() == RetentionPolicy.RUNTIME &amp;&amp; var4.put(var9, var8) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> AnnotationFormatError(<span class="string">"Duplicate annotation for class: "</span> + var9 + <span class="string">": "</span> + var8);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> var4;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;代码 7 行处又是一个调用<code>parseAnnotation2</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Annotation <span class="title">parseAnnotation2</span><span class="params">(ByteBuffer var0, ConstantPool var1, Class&lt;?&gt; var2, <span class="keyword">boolean</span> var3, Class&lt;? extends Annotation&gt;[] var4)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> var5 = var0.getShort() &amp; <span class="string">'\uffff'</span>;</span><br><span class="line">        Class var6 = <span class="keyword">null</span>;</span><br><span class="line">        String var7 = <span class="string">"[unknown]"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                var7 = var1.getUTF8At(var5);</span><br><span class="line">                var6 = parseSig(var7, var2);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IllegalArgumentException var18) &#123;</span><br><span class="line">                var6 = var1.getClassAt(var5);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoClassDefFoundError var19) &#123;</span><br><span class="line">            <span class="keyword">if</span> (var3) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> TypeNotPresentException(var7, var19);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            skipAnnotation(var0, <span class="keyword">false</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (TypeNotPresentException var20) &#123;</span><br><span class="line">            <span class="keyword">if</span> (var3) &#123;</span><br><span class="line">                <span class="keyword">throw</span> var20;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            skipAnnotation(var0, <span class="keyword">false</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (var4 != <span class="keyword">null</span> &amp;&amp; !contains(var4, var6)) &#123;</span><br><span class="line">            skipAnnotation(var0, <span class="keyword">false</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            AnnotationType var8 = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                var8 = AnnotationType.getInstance(var6);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IllegalArgumentException var17) &#123;</span><br><span class="line">                skipAnnotation(var0, <span class="keyword">false</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Map var9 = var8.memberTypes();</span><br><span class="line">            LinkedHashMap var10 = <span class="keyword">new</span> LinkedHashMap(var8.memberDefaults());</span><br><span class="line">            <span class="keyword">int</span> var11 = var0.getShort() &amp; <span class="string">'\uffff'</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> var12 = <span class="number">0</span>; var12 &lt; var11; ++var12) &#123;</span><br><span class="line">                <span class="keyword">int</span> var13 = var0.getShort() &amp; <span class="string">'\uffff'</span>;</span><br><span class="line">                String var14 = var1.getUTF8At(var13);</span><br><span class="line">                Class var15 = (Class)var9.get(var14);</span><br><span class="line">                <span class="keyword">if</span> (var15 == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    skipMemberValue(var0);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    Object var16 = parseMemberValue(var15, var0, var1, var2);</span><br><span class="line">                    <span class="keyword">if</span> (var16 <span class="keyword">instanceof</span> AnnotationTypeMismatchExceptionProxy) &#123;</span><br><span class="line">                        ((AnnotationTypeMismatchExceptionProxy)var16).setMember((Method)var8.members().get(var14));</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    var10.put(var14, var16);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> annotationForMap(var6, var10);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;呼~ 代码真长瑟瑟发抖，这里需要注意的是在代码 53 行处 <code>parseMemberValue</code>这个方法，这个方法后面需要用到，这里做个记号：</p>
+<blockquote>
+<p>To DO List : parseMemberValue()</p>
+</blockquote>
+<p>&emsp;&emsp;最后于代码 62 行处又调用了 <code>annotationForMap</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Annotation <span class="title">annotationForMap</span><span class="params">(<span class="keyword">final</span> Class&lt;? extends Annotation&gt; var0, <span class="keyword">final</span> Map&lt;String, Object&gt; var1)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (Annotation)AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Annotation&gt;() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> Annotation <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> (Annotation)Proxy.newProxyInstance(var0.getClassLoader(), <span class="keyword">new</span> Class[]&#123;var0&#125;, <span class="keyword">new</span> AnnotationInvocationHandler(var0, var1));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;似乎是看到曙光，我们可以在代码 4 行处可以看到，原来前面说到的使用动态代理机制实例化注解接口是在这里使用的，这也证明了前面的结论，接着还能看到 AnnotationInvocationHandler 在这里实例化，我们可以看看它的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnnotationInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span>, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">   ......</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object var1, Method var2, Object[] var3)</span> </span>&#123;</span><br><span class="line">        String var4 = var2.getName();</span><br><span class="line">        Class[] var5 = var2.getParameterTypes();</span><br><span class="line">        <span class="keyword">if</span> (var4.equals(<span class="string">"equals"</span>) &amp;&amp; var5.length == <span class="number">1</span> &amp;&amp; var5[<span class="number">0</span>] == Object.class) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.equalsImpl(var3[<span class="number">0</span>]);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (var5.length != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError(<span class="string">"Too many parameters for an annotation method"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">byte</span> var7 = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">switch</span>(var4.hashCode()) &#123;</span><br><span class="line">            <span class="keyword">case</span> -<span class="number">1776922004</span>:</span><br><span class="line">                <span class="keyword">if</span> (var4.equals(<span class="string">"toString"</span>)) &#123;</span><br><span class="line">                    var7 = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">147696667</span>:</span><br><span class="line">                <span class="keyword">if</span> (var4.equals(<span class="string">"hashCode"</span>)) &#123;</span><br><span class="line">                    var7 = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1444986633</span>:</span><br><span class="line">                <span class="keyword">if</span> (var4.equals(<span class="string">"annotationType"</span>)) &#123;</span><br><span class="line">                    var7 = <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">switch</span>(var7) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.toStringImpl();</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.hashCodeImpl();</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.type;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                Object var6 = <span class="keyword">this</span>.memberValues.get(var4);</span><br><span class="line">                <span class="keyword">if</span> (var6 == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IncompleteAnnotationException(<span class="keyword">this</span>.type, var4);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (var6 <span class="keyword">instanceof</span> ExceptionProxy) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> ((ExceptionProxy)var6).generateException();</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (var6.getClass().isArray() &amp;&amp; Array.getLength(var6) != <span class="number">0</span>) &#123;</span><br><span class="line">                        var6 = <span class="keyword">this</span>.cloneArray(var6);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">return</span> var6;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;前面我们说到，最后方法的调用最终会传递交由给 invoke 方法处理，实际上 invoke() 方法主要做的还是从 memberValues(LinkedHashMap) 这个 Map 取出数据，而这个我们打上 Debug 断点来看看 invoke 方法处理过程：</p>
+<p><img src="https://ws1.sinaimg.cn/large/0071ouepgy1g1n76182sjj30l7089t9h.jpg" alt=""></p>
+<p>&emsp;&emsp;可以发现我们自定义注解中的注解元素 show() 中的数值是从一个 memberValues(LinkedHashMap) 中取出的，而且这个 Map 是以我们的注解元素名作为 key 和对应的元素值作为 value。那么我们也许会想，Map 中存储的数据是怎么从自定义的注解得到的？还记得上面我们做记号的 <code>parseMemberValue()</code>方法，我们可以从中得到答案，它的方法源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">parseMemberValue</span><span class="params">(Class&lt;?&gt; var0, ByteBuffer var1, ConstantPool var2, Class&lt;?&gt; var3)</span> </span>&#123;</span><br><span class="line">        Object var4 = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">byte</span> var5 = var1.get();</span><br><span class="line">        <span class="keyword">switch</span>(var5) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">64</span>:</span><br><span class="line">            var4 = parseAnnotation(var1, var2, var3, <span class="keyword">true</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">91</span>:</span><br><span class="line">            <span class="keyword">return</span> parseArray(var0, var1, var2, var3);</span><br><span class="line">        <span class="keyword">case</span> <span class="number">99</span>:</span><br><span class="line">            var4 = parseClassValue(var1, var2, var3);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">101</span>:</span><br><span class="line">            <span class="keyword">return</span> parseEnumValue(var0, var1, var2, var3);</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            var4 = parseConst(var5, var1, var2);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!(var4 <span class="keyword">instanceof</span> ExceptionProxy) &amp;&amp; !var0.isInstance(var4)) &#123;</span><br><span class="line">            var4 = <span class="keyword">new</span> AnnotationTypeMismatchExceptionProxy(var4.getClass() + <span class="string">"["</span> + var4 + <span class="string">"]"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> var4;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;满脸的懵逼，没事儿，我们看到代码 16 处又调用了 parseConst() 方法，而这个方法正如其名 Const，它是 Java 常量池，也就是我们测试注解类 Main 中的常量池，而我们也正是在 Main 类中使用了自定义注解，使用到的这些注解随着编译器处理并附加到 class 结构中，而 class 文件结构是严格有序的格式，唯一可以附加信息到 class 结构中的方式就是保存到 class 结构的 attributes 属性中。</p>
+<p>&emsp;&emsp;那么既然编译后的 class 文件有关系，那么接下来我们看看通过命令<code>javap -verbose Main.class</code>去查看它的编译后的字节码，如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">$ javap -verbose Main.class</span><br><span class="line">Classfile /D:/IntelliJ IDEA/CodeSave/Demo/out/production/Demo/com/example/binshao/Main.class</span><br><span class="line">  Last modified <span class="number">2019</span>-<span class="number">4</span>-<span class="number">1</span>; size <span class="number">1007</span> bytes</span><br><span class="line">  MD5 checksum <span class="number">3</span>c28484e2b796842a0ede3a0f74cbe16</span><br><span class="line">  Compiled from <span class="string">"Main.java"</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">example</span>.<span class="title">binshao</span>.<span class="title">Main</span></span></span><br><span class="line">  minor version: 0</span><br><span class="line">  major version: <span class="number">52</span></span><br><span class="line">  flags: ACC_PUBLIC, ACC_SUPER</span><br><span class="line">Constant pool: <span class="comment">// 常量池</span></span><br><span class="line">   #1 = Methodref          #11.#30        // java/lang/Object."&lt;init&gt;":()V</span><br><span class="line">   #2 = String             #31            // sun.misc.ProxyGenerator.saveGeneratedFiles</span><br><span class="line">   #3 = String             #32            // true</span><br><span class="line">   #4 = Methodref          #33.#34        // java/lang/System.setProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;</span><br><span class="line">   #5 = Class              #35            // com/example/binshao/Main</span><br><span class="line">   #6 = Class              #36            // com/example/binshao/TestAnnotation</span><br><span class="line">   #7 = Methodref          #37.#38        // java/lang/Class.getAnnotation:(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;</span><br><span class="line">   #8 = Fieldref           #33.#39        // java/lang/System.out:Ljava/io/PrintStream;</span><br><span class="line">   #9 = InterfaceMethodref #6.#40         // com/example/binshao/TestAnnotation.show:()Ljava/lang/String;</span><br><span class="line">  #10 = Methodref          #41.#42        // java/io/PrintStream.println:(Ljava/lang/String;)V</span><br><span class="line">  #11 = Class              #43            // java/lang/Object</span><br><span class="line">  #12 = Utf8               &lt;init&gt;</span><br><span class="line">  #13 = Utf8               ()V</span><br><span class="line">  #14 = Utf8               Code</span><br><span class="line">  #15 = Utf8               LineNumberTable</span><br><span class="line">  #16 = Utf8               LocalVariableTable</span><br><span class="line">  #17 = Utf8               this</span><br><span class="line">  #18 = Utf8               Lcom/example/binshao/Main;</span><br><span class="line">  #19 = Utf8               main</span><br><span class="line">  #20 = Utf8               ([Ljava/lang/String;)V</span><br><span class="line">  #21 = Utf8               args</span><br><span class="line">  #22 = Utf8               [Ljava/lang/String;</span><br><span class="line">  #23 = Utf8               annotation</span><br><span class="line">  #24 = Utf8               Lcom/example/binshao/TestAnnotation;</span><br><span class="line">  #25 = Utf8               SourceFile</span><br><span class="line">  #26 = Utf8               Main.java</span><br><span class="line">  #27 = Utf8               RuntimeVisibleAnnotations</span><br><span class="line">  #28 = Utf8               show</span><br><span class="line">  #29 = Utf8               Hello</span><br><span class="line">  #30 = NameAndType        #12:#13        // "&lt;init&gt;":()V</span><br><span class="line">  #31 = Utf8               sun.misc.ProxyGenerator.saveGeneratedFiles</span><br><span class="line">  #32 = Utf8               true</span><br><span class="line">  #33 = Class              #44            // java/lang/System</span><br><span class="line">  #34 = NameAndType        #45:#46        // setProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;</span><br><span class="line">  #35 = Utf8               com/example/binshao/Main</span><br><span class="line">  #36 = Utf8               com/example/binshao/TestAnnotation</span><br><span class="line">  #37 = Class              #47            // java/lang/Class</span><br><span class="line">  #38 = NameAndType        #48:#49        // getAnnotation:(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;</span><br><span class="line">  #39 = NameAndType        #50:#51        // out:Ljava/io/PrintStream;</span><br><span class="line">  #40 = NameAndType        #28:#52        // show:()Ljava/lang/String;</span><br><span class="line">  #41 = Class              #53            // java/io/PrintStream</span><br><span class="line">  #42 = NameAndType        #54:#55        // println:(Ljava/lang/String;)V</span><br><span class="line">  #43 = Utf8               java/lang/Object</span><br><span class="line">  #44 = Utf8               java/lang/System</span><br><span class="line">  #45 = Utf8               setProperty</span><br><span class="line">  #46 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;</span><br><span class="line">  #47 = Utf8               java/lang/Class</span><br><span class="line">  #48 = Utf8               getAnnotation</span><br><span class="line">  #49 = Utf8               (Ljava/lang/Class;)Ljava/lang/annotation/Annotation;</span><br><span class="line">  #50 = Utf8               out</span><br><span class="line">  #51 = Utf8               Ljava/io/PrintStream;</span><br><span class="line">  #52 = Utf8               ()Ljava/lang/String;</span><br><span class="line">  #53 = Utf8               java/io/PrintStream</span><br><span class="line">  #54 = Utf8               println</span><br><span class="line">  #55 = Utf8               (Ljava/lang/String;)V</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> com.example.binshao.Main();</span><br><span class="line">    descriptor: ()V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack=<span class="number">1</span>, locals=<span class="number">1</span>, args_size=<span class="number">1</span></span><br><span class="line">         <span class="number">0</span>: aload_0</span><br><span class="line">         1: invokespecial #1                  // Method java/lang/Object."&lt;init&gt;":()V</span><br><span class="line">         <span class="number">4</span>: <span class="keyword">return</span></span><br><span class="line">      LineNumberTable:</span><br><span class="line">        line <span class="number">4</span>: <span class="number">0</span></span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            <span class="number">0</span>       <span class="number">5</span>     <span class="number">0</span>  <span class="keyword">this</span>   Lcom/example/binshao/Main;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(java.lang.String[])</span></span>;</span><br><span class="line">    descriptor: ([Ljava/lang/String;)V</span><br><span class="line">    flags: ACC_PUBLIC, ACC_STATIC</span><br><span class="line">    Code:</span><br><span class="line">      stack=<span class="number">2</span>, locals=<span class="number">2</span>, args_size=<span class="number">1</span></span><br><span class="line">         0: ldc           #2                  // String sun.misc.ProxyGenerator.saveGeneratedFiles</span><br><span class="line">         2: ldc           #3                  // String true</span><br><span class="line">         4: invokestatic  #4                  // Method java/lang/System.setProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;</span><br><span class="line">         <span class="number">7</span>: pop</span><br><span class="line">         8: ldc           #5                  // class com/example/binshao/Main</span><br><span class="line">        10: ldc           #6                  // class com/example/binshao/TestAnnotation</span><br><span class="line">        12: invokevirtual #7                  // Method java/lang/Class.getAnnotation:(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;</span><br><span class="line">        15: checkcast     #6                  // class com/example/binshao/TestAnnotation</span><br><span class="line">        <span class="number">18</span>: astore_1</span><br><span class="line">        19: getstatic     #8                  // Field java/lang/System.out:Ljava/io/PrintStream;</span><br><span class="line">        <span class="number">22</span>: aload_1</span><br><span class="line">        23: invokeinterface #9,  1            // InterfaceMethod com/example/binshao/TestAnnotation.show:()Ljava/lang/String;</span><br><span class="line">        28: invokevirtual #10                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V</span><br><span class="line">        <span class="number">31</span>: <span class="keyword">return</span></span><br><span class="line">      LineNumberTable:</span><br><span class="line">        line <span class="number">7</span>: <span class="number">0</span></span><br><span class="line">        line <span class="number">8</span>: <span class="number">8</span></span><br><span class="line">        line <span class="number">9</span>: <span class="number">19</span></span><br><span class="line">        line <span class="number">10</span>: <span class="number">31</span></span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            <span class="number">0</span>      <span class="number">32</span>     <span class="number">0</span>  args   [Ljava/lang/String;</span><br><span class="line">           <span class="number">19</span>      <span class="number">13</span>     <span class="number">1</span> annotation   Lcom/example/binshao/TestAnnotation;</span><br><span class="line">&#125;</span><br><span class="line">SourceFile: <span class="string">"Main.java"</span></span><br><span class="line">RuntimeVisibleAnnotations:</span><br><span class="line">  0: #24(#28=s#29)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们看到代码 111 行处的<code>RuntimeVisibleAnnotations</code>这么个属性，而它的值为<code>#24(#28=s#29)</code>，而对应上面的字节码中：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#24 = Utf8               Lcom/example/binshao/TestAnnotation;</span><br><span class="line">#28 = Utf8               show</span><br><span class="line">#29 = Utf8               Hello</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以发现这个<code>RuntimeVisibleAnnotations</code>这个属性的值就是我们在测试类 Main 中添加的注解值，而它最后是存在常量池中，而在前面我们看的一脸懵逼的源码，诸如<code>parseAnnotations</code>方法大概就是去处理 class 文件中<code>RuntimeVisibleAnnotations</code>属性了，而这也是作为存储在 Map 中的数据。</p>
+<p><br></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>&emsp;&emsp;注解事实上就是一个继承自 Annotation 的特殊接口，它最后会通过动态代理机制生成代理类，我们通过代理类调用注解的注解元素时，会使得调用 AnnotationInvocationHandler 中的 invoke() 方法，而在 invoke() 方法中会从 memberValues 这个 Map 中去取出数据，而这个数据的来源则是通过解析 RuntimeVisibleAnnotations 获得的，也就是来源自常量池中。引用知名大牛 R 大的话来说：</p>
+<blockquote>
+<p>注解就是接口 + Map，然后通过动态代理    将它们进行组合。</p>
+</blockquote>
+<p><br><br><br></p>
+<hr>
+<p>参考文献：<br>《Thinking in Java》<br><a href="https://rednaxelafx.iteye.com/blog/1148983" target="_blank" rel="noopener">Java annotation的实例是什么类</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/04/01/Annotation/">关于 Java 注解及原理简析</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
+        <p><span>发布时间:</span>2019-04-01, 09:05:25</p>
+        <p><span>最后更新:</span>2019-04-01, 21:37:43</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/01/Annotation/" title="关于 Java 注解及原理简析">http://Binshao.site/2019/04/01/Annotation/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2019/04/01/Annotation/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/03/28/InnerClass/">
+                    搞懂 Java 内部类
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注解使用"><span class="toc-number">1.</span> <span class="toc-text">注解使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理简析"><span class="toc-number">2.</span> <span class="toc-text">原理简析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反射注解流程"><span class="toc-number">2.1.</span> <span class="toc-text">反射注解流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">2.2.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        
+        <div class="addthis_inline_share_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyMS8xNjI0OA==">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/03/28/InnerClass/" title="下一篇: 搞懂 Java 内部类">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Annotation/">关于 Java 注解及原理简析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/InnerClass/">搞懂 Java 内部类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/01/IPC/">Android 跨进程通信机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/MiniProgram/">我的个人小程序上线了</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/17/RxJava1/">RxJava 创建操作符详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/RxJava/">RxJava2 入门笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/30/Aug/">扎心的八月</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/17/runOnUiThread/">浅谈 runOnUiThread</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/16/IntentService/">IntentService 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/HandlerThread/">HandlerThread 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/12/Handler/">Handler 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/Command/">设计模式之命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/10/AsyncTask/">AsyncTask 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/State/">从富豪财产身家中学习状态模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/08/ThreadPool/">Android 中的线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/TemplateMethob/">从组装枪械中学习模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/Iterator/">设计模式之迭代模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/Responsibility/">从请假流程来学习责任链模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/Mediator/">程序猿相亲记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/25/Adapter/">设计模式之适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/24/Bridge/">秋名山车王 —AE86— 改装记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/Composite/">设计模式之组合模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Facade/">从造人的角度来学习外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/Proxy/">校园爱情故事后记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/Flyweight/">设计模式之享元模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Observer/">十三校园泡妞记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/design-decorator/">爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/16/Prototype/">设计模式之原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/07/simpleFactory/">哆啦A梦来讲简单工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Strategy/">设计模式之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/Memento/">设计模式之备忘录模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/readBook/">推荐一些读过的技术书籍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/Thinking-in-Java/">读 《Java编程思想》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/Activity/">Activity 基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/10/AndroidTheme/">Android 主题和样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/dispatch/">浅谈事件分发机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/08/AttributeSet/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/07/SurfaceView/">SurfaceView</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018-2019 十三
+            </div>
+            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+            <script>
+                var now = new Date(); 
+                function createtime() { 
+                    var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+                    now.setTime(now.getTime()+250); 
+                    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+                    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+                    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+                    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+                    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+                    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+                    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+                } 
+            setInterval("createtime()",250);
+            </script>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    <script type="application/javascript">
+     var hide = false, leftWidth = 350;
+     function hideLeftCol() {
+       if (hide) {
+         $(".left-col").width(leftWidth);
+         $(".left-col .intrude-less").css('display', '');
+         $("#tocButton").css('display', '');
+         ($('#switch-btn').css('display') === 'block' && $('#switch-area').css('display') === 'block') || $('#toc').slideDown(320);
+         $(".hide-left-col").css("left", leftWidth).html('<i class="fa fa-angle-double-left"></i>');
+         $(".mid-col").css("left", leftWidth)
+         $("#post-nav-button").css("left", leftWidth)
+         $("#post-nav-button > a:nth-child(2)").css("display", "block")
+         hide = false
+       } else {
+         $(".left-col").width(0);
+         $(".left-col .intrude-less").css('display', 'none');
+         $("#toc").css('display', 'none');
+         $("#tocButton").css('display', 'none');
+         $(".hide-left-col").css("left", 0).html('<i class="fa fa-angle-double-right"></i>');
+         $(".mid-col").css("left", 0)
+         $("#post-nav-button").css("left", 0)
+         $("#post-nav-button > a:nth-child(2)").css("display", "none")
+         if ($(".post-list").is(":visible")) {
+           $("#post-nav-button .fa-bars,#post-nav-button .fa-times").toggle();
+           $(".post-list").toggle();
+         }
+         hide = true
+       }
+     }
+     $(".hide-left-col").click(function() {
+       hideLeftCol()
+     });
+   </script>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
