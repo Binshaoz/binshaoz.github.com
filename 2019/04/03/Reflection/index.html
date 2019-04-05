@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="十三" />
+
+
+
+<meta name="description" content="&amp;emsp;&amp;emsp;运行时类型信息使得你可以在程序运行时发现和使用类型信息，反射就是指程序在运行时能够动态地获取一个类的类型信息的一种操作，反射机制允许我们动态地调用某个对象的的方法或构造方法以及对象属性等，而无需在编译时确定调用的对象类型，在很多的框架中都有反射的身影存在。">
+<meta name="keywords" content="反射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="反射，程序员的快乐">
+<meta property="og:url" content="http://Binshao.site/2019/04/03/Reflection/index.html">
+<meta property="og:site_name" content="十三的个人博客">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;运行时类型信息使得你可以在程序运行时发现和使用类型信息，反射就是指程序在运行时能够动态地获取一个类的类型信息的一种操作，反射机制允许我们动态地调用某个对象的的方法或构造方法以及对象属性等，而无需在编译时确定调用的对象类型，在很多的框架中都有反射的身影存在。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1qce124t4j30j60csgp5.jpg">
+<meta property="og:updated_time" content="2019-04-05T03:40:38.007Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="反射，程序员的快乐">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;运行时类型信息使得你可以在程序运行时发现和使用类型信息，反射就是指程序在运行时能够动态地获取一个类的类型信息的一种操作，反射机制允许我们动态地调用某个对象的的方法或构造方法以及对象属性等，而无需在编译时确定调用的对象类型，在很多的框架中都有反射的身影存在。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/0071ouepgy1g1qce124t4j30j60csgp5.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="十三的个人博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/orange/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>反射，程序员的快乐 | 十三的个人博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9ca89eb39b844f"></script>
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/icon.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">十三</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa 简书" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a>
+                            
+                                <a class="fa CSDN" href="https://blog.csdn.net/LeetRock" title="CSDN"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-主题和样式/">Android 主题和样式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-书籍/">Android 书籍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-自定义属性/">Android 自定义属性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AsyncTask/">AsyncTask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler/">Handler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HandlerThread/">HandlerThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello-World/">Hello World</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPC/">IPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IntentService/">IntentService</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java编程思想/">Java编程思想</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava-创建操作符/">RxJava 创建操作符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava2-入门/">RxJava2 入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SurfaceView/">SurfaceView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/runOnUiThread/">runOnUiThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件分发/">事件分发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/享元模式/">享元模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理模式/">代理模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健康/">健康</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内部类-Java/">内部类 Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/原型模式/">原型模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反射/">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/命令模式/">命令模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/备忘录模式/">备忘录模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/外观模式/">外观模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路上/">学习路上</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/建造者模式/">建造者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/桥接模式/">桥接模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模板方法模式/">模板方法模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/注解/">注解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/状态模式/">状态模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活杂谈/">生活杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/策略模式/">策略模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单工厂模式/">简单工厂模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线程池/">线程池</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/组合模式/">组合模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自定义控件/">自定义控件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/装饰模式/">装饰模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/责任链模式/">责任链模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/迭代模式/">迭代模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/适配器模式/">适配器模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/黑苹果/">黑苹果</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Hi，我是十三！努力成为 Android 老司机 ing...生活不止技术，喜欢看书、旅游、听歌！</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="hide-left-col" title="隐藏侧栏">
+     <i class="fa fa-angle-double-left"></i>
+   </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">十三</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/icon.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">十三</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">我不在彩虹，彩虹在我.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="https://weibo.com/5117390625/profile?topnav=1&wvr=6" title="新浪微博"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="https://www.jianshu.com/u/f34c30fda8cb" title="简书"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="https://blog.csdn.net/LeetRock" title="CSDN"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Reflection" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/03/Reflection/" class="article-date">
+      <time datetime="2019-04-03T12:55:15.000Z" itemprop="datePublished">2019-04-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      反射，程序员的快乐
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud" style="display: flex; flex-wrap: wrap">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/反射/">反射</a></li></ul>
+       <span class="post-count">总字数2.5k</span>
+       <span class="post-count">预计阅读10分钟</span>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>&emsp;&emsp;运行时类型信息使得你可以在程序运行时发现和使用类型信息，反射就是指程序在运行时能够动态地获取一个类的类型信息的一种操作，反射机制允许我们动态地调用某个对象的的方法或构造方法以及对象属性等，而无需在编译时确定调用的对象类型，在很多的框架中都有反射的身影存在。</p>
+<a id="more"></a>
+<p><div align="center"><img src="https://ws1.sinaimg.cn/large/0071ouepgy1g1qce124t4j30j60csgp5.jpg" alt=""></div></p>
+<p><br></p>
+<h2 id="反射有何用"><a href="#反射有何用" class="headerlink" title="反射有何用"></a>反射有何用</h2><p>&emsp;&emsp;在平时，如果我们要创建或使用某个类的时候，通常我们都知道这个类张什么样，都能做什么，于是就直接对这个类进行实例化，接下来再进行一系列的编码操作，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 直接进行初始化</span></span><br><span class="line">    Person person = <span class="keyword">new</span> Person();</span><br><span class="line">	person.setName(<span class="string">"十三"</span>);</span><br><span class="line">	System.out.println(person.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;在上面代码中因为我们对 Person 类了若指掌可以直接实例化对象，而它的类声明如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Person name : "</span> + getName();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;很简单的一个类，到最后该类会交由编译器生成字节码并会加载到 JVM 中运行，每个类在 JVM 中都有自己的一个 Class 对象，而 Class 对象是在由 JVM 加载类时构造的，Class 对象包含了与类有关的信息，实际上也就是我们常见的 .class 文件，而我们也正是使用 Class 对象来创建类的对象，这背后是因为我们掌握了类的足有信息，在类编译时已经知道关于该类的确切类型，所以可以利用这些信息进行操作。</p>
+<p>&emsp;&emsp;那么当我们不知道初始化的类对象是什么时，也就无法和上面一样直接就能进行实例化操作，也就是说在编译时程序无法知道该对象属于具体哪个类，或者某个类在程序生成代码后才出现时，因为没有相关的信息，无法使用这些类，那么就要使用反射机制来进行反射调用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 通过传入完整包名获取 Class 类型</span></span><br><span class="line">    Class clz = Class.forName(<span class="string">"Demo.Person"</span>);</span><br><span class="line">    <span class="comment">// 获取指定方法</span></span><br><span class="line">	Method setNameMethod = clz.getDeclaredMethod(<span class="string">"setName"</span>, String.class);</span><br><span class="line">    <span class="comment">// 获取类构造方法</span></span><br><span class="line">	Constructor personConstructor = clz.getConstructor();</span><br><span class="line">    <span class="comment">// 利用反射创建实例</span></span><br><span class="line">	Object personObj = personConstructor.newInstance();</span><br><span class="line">    <span class="comment">// 利用 invoke 方法去调用方法</span></span><br><span class="line">	setNameMethod.invoke(personObj, <span class="string">"LL"</span>);</span><br><span class="line">	Method getNameMethod = clz.getMethod(<span class="string">"getName"</span>);</span><br><span class="line">	System.out.println(getNameMethod.invoke(personObj));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;从上面的代码中我们利用反射调用 setName() 方法并且传值，然后又使用反射调用 getName() 方法输出值，至于更详细的反射 API 这里也就不再进行详述了。Class 类与 java.lang.reflect 类库对反射进行支持，该类库包含 Field、Method 及 Constructor 类，这些类型的对象是由 JVM 在运行时创建的，用以表示未知类里对应的成员，接下来可以使用 Constructor 创建新的对象，用相关的的 get() 和 set() 方法读取或修改 Field 对象关联字段，用 invoke() 方法调用与 Method 对象关联的方法，这样，类信息就能在运行时完全确定下来，而在编译时不需要知道任何事情。</p>
+<p>&emsp;&emsp;在《Thinking in Java》一书中曾说到：</p>
+<blockquote>
+<p>反射机制并没有什么神奇之处，当通过反射与一个未知类型的对象打交道时，JVM 只是简单地检查这个对象，看它属于哪个特定的类，再用它做其他事情之前必须先加载那个类的 Class 对象，那个类的 .class 文件对于 JVM 来说必须是可获取的：要么在本地，要么在网络。普通方式和反射调用区别在于，编译器在编译时打开和检查 .class 文件，而对于反射机制来说，.class 文件在编译时是不可获取的，所以是在运行时打开和检查 .class 文件。</p>
+</blockquote>
+<p><br></p>
+<h2 id="反射调用的流程"><a href="#反射调用的流程" class="headerlink" title="反射调用的流程"></a>反射调用的流程</h2><p>&emsp;&emsp;在上面我们利用反射机制进行反射调用，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 通过传入完整包名获取 Class 类型</span></span><br><span class="line">    Class clz = Class.forName(<span class="string">"Demo.Person"</span>);</span><br><span class="line">    <span class="comment">// 获取指定方法</span></span><br><span class="line">	Method setNameMethod = clz.getDeclaredMethod(<span class="string">"setName"</span>, String.class);</span><br><span class="line">    <span class="comment">// 获取类构造方法</span></span><br><span class="line">	Constructor personConstructor = clz.getConstructor();</span><br><span class="line">    <span class="comment">// 利用反射创建实例</span></span><br><span class="line">	Object personObj = personConstructor.newInstance();</span><br><span class="line">    <span class="comment">// 利用 invoke 方法去调用方法</span></span><br><span class="line">	setNameMethod.invoke(personObj, <span class="string">"LL"</span>);</span><br><span class="line">	Method getNameMethod = clz.getMethod(<span class="string">"getName"</span>);</span><br><span class="line">	System.out.println(getNameMethod.invoke(personObj));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;首先在代码 5 行处，我们调用 Class 类的 getDeclaredMethod() 方法可以获取指定的方法名和参数的方法类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">transient</span> Method <span class="title">getDeclaredMethod</span><span class="params">(String s, Class aclass[])</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> NoSuchMethodException, SecurityException </span>&#123;</span><br><span class="line">		checkMemberAccess(<span class="number">1</span>, Reflection.getCallerClass(), <span class="keyword">true</span>);</span><br><span class="line">		Method method = searchMethods(privateGetDeclaredMethods(<span class="keyword">false</span>), s, aclass);</span><br><span class="line">		<span class="keyword">if</span> (method == <span class="keyword">null</span>)</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> NoSuchMethodException((<span class="keyword">new</span> StringBuilder()).append(getName()).append(<span class="string">"."</span>).append(s)</span><br><span class="line">					.append(argumentTypesToString(aclass)).toString());</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> method;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;看到代码 4 行处，方法 privateGetDeclaredMethods() 作为参数传入 searchMethods() 方法中，而这个privateGetDeclaredMethods() 方法主要是从 JVM 缓存中查找并返回 Class 中的方法，searchMethods() 方法如名所示，则从返回的方法中查找匹配的方法的对象。</p>
+<p>&emsp;&emsp;在最后我们通过 invoke() 方法调用与 Method 相关联的方法，那么进入 Method 中查看 invoke() 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">transient</span> Object <span class="title">invoke</span><span class="params">(Object obj, Object aobj[])</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> IllegalAccessException, IllegalArgumentException, InvocationTargetException </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!override &amp;&amp; !Reflection.quickCheckMemberAccess(clazz, modifiers)) &#123;</span><br><span class="line">			Class class1 = Reflection.getCallerClass();</span><br><span class="line">			checkAccess(class1, clazz, obj, modifiers);</span><br><span class="line">		&#125;</span><br><span class="line">		MethodAccessor methodaccessor = methodAccessor;</span><br><span class="line">		<span class="keyword">if</span> (methodaccessor == <span class="keyword">null</span>)</span><br><span class="line">			methodaccessor = acquireMethodAccessor();</span><br><span class="line">		<span class="keyword">return</span> methodaccessor.invoke(obj, aobj);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;在代码 8 行处会对 methodaccessor 进行非空判断，第一次开始前它是为空的，需要调用 acquireMethodAccessor() 方法去创建，让我们看到代码 10 行处时发现，最后是调用 methodaccessor.invoke() 方法，并不是自己去处理的，那么我看到这个 MethodAccessor 的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodAccessor</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Object <span class="title">invoke</span><span class="params">(Object obj, Object aobj[])</span> <span class="keyword">throws</span> IllegalArgumentException, InvocationTargetException</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;实际上它是一个接口，它的 invoke() 方法与 Method.invoke() 方法是对应的，因为在上面提到，后者在最后是调用了前者，那么 methodaccessor.invoke() 究竟调用的是谁？我们需要看看 acquireMethodAccessor() 方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> MethodAccessor <span class="title">acquireMethodAccessor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		MethodAccessor methodaccessor = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">if</span> (root != <span class="keyword">null</span>)</span><br><span class="line">			methodaccessor = root.getMethodAccessor();</span><br><span class="line">		<span class="keyword">if</span> (methodaccessor != <span class="keyword">null</span>) &#123;</span><br><span class="line">			methodAccessor = methodaccessor;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			methodaccessor = reflectionFactory.newMethodAccessor(<span class="keyword">this</span>);</span><br><span class="line">			setMethodAccessor(methodaccessor);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> methodaccessor;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;看到自代码 8 行处，创建 MethodAccessor 的实例是通过 ReflectionFactory 类的 newMethodAccessor() 方法进行创建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> MethodAccessor <span class="title">newMethodAccessor</span><span class="params">(Method method)</span> </span>&#123;</span><br><span class="line">		checkInitted();</span><br><span class="line">		<span class="keyword">if</span> (noInflation &amp;&amp; !ReflectUtil.isVMAnonymousClass(method.getDeclaringClass())) &#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="keyword">new</span> MethodAccessorGenerator()).generateMethod(method.getDeclaringClass(), method.getName(),</span><br><span class="line">					method.getParameterTypes(), method.getReturnType(), method.getExceptionTypes(),</span><br><span class="line">					method.getModifiers());</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			NativeMethodAccessorImpl nativemethodaccessorimpl = <span class="keyword">new</span> NativeMethodAccessorImpl(method);</span><br><span class="line">			DelegatingMethodAccessorImpl delegatingmethodaccessorimpl = <span class="keyword">new</span> DelegatingMethodAccessorImpl(</span><br><span class="line">					nativemethodaccessorimpl);</span><br><span class="line">			nativemethodaccessorimpl.setParent(delegatingmethodaccessorimpl);</span><br><span class="line">			<span class="keyword">return</span> delegatingmethodaccessorimpl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;首先看到在 newMethodAccessor() 方法中首先对 noInflation 进行判断，它的默认值为 false，此外，这里我们还需要留意多一个属性：<code>inflationThreshold</code>，这个属性后面我们需要用到，关于它们的声明如下，也是在该类中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> noInflation = <span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> inflationThreshold = <span class="number">15</span>;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;所以会跳到代码 7 行处的 else 判断，首先生成 NativeMethodAccessorImpl 类的实例对象，然后它又被作为参数传入 DelegatingMethodAccessorImpl 类对象中，而方法最后返回的也是该对象。</p>
+<p>&emsp;&emsp;事实上，DelegatingMethodAccessorImpl 类对象就是一个代理对象，主要负责调用被代理对象 delegate 的 invoke() 方法，它的源码声明如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DelegatingMethodAccessorImpl</span> <span class="keyword">extends</span> <span class="title">MethodAccessorImpl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	DelegatingMethodAccessorImpl(MethodAccessorImpl methodaccessorimpl) &#123;</span><br><span class="line">		setDelegate(methodaccessorimpl);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object obj, Object aobj[])</span> <span class="keyword">throws</span> IllegalArgumentException, InvocationTargetException </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> _flddelegate.invoke(obj, aobj);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setDelegate</span><span class="params">(MethodAccessorImpl methodaccessorimpl)</span> </span>&#123;</span><br><span class="line">		_flddelegate = methodaccessorimpl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> MethodAccessorImpl _flddelegate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;在代码 3 行处看到它的构造方法，构造方法中会把传入的 MethodAccessorImpl 类被代理对象作为 setDelegate() 方法参数并调用此方法，这样接着调用 invoke() 方法时，那么就会去调用该被代理对象的 invoke() 方法。</p>
+<p>&emsp;&emsp;而在上面我们提到，NativeMethodAccessorImpl 类的实例对象被作为参数传入 DelegatingMethodAccessorImpl 类对象中，也就是说当前被代理对象是 NativeMethodAccessorImpl 类的实例对象，那么毫无疑问最终 Method 的 invoke() 方法调用的就是 NativeMethodAccessorImpl 类的 invoke() 方法了，我们看看它的源码声明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NativeMethodAccessorImpl</span> <span class="keyword">extends</span> <span class="title">MethodAccessorImpl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	NativeMethodAccessorImpl(Method method1) &#123;</span><br><span class="line">		method = method1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object obj, Object aobj[])</span> <span class="keyword">throws</span> IllegalArgumentException, InvocationTargetException </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (++numInvocations &gt; ReflectionFactory.inflationThreshold()</span><br><span class="line">				&amp;&amp; !ReflectUtil.isVMAnonymousClass(method.getDeclaringClass())) &#123;</span><br><span class="line">			MethodAccessorImpl methodaccessorimpl = (MethodAccessorImpl) (<span class="keyword">new</span> MethodAccessorGenerator()).generateMethod(</span><br><span class="line">					method.getDeclaringClass(), method.getName(), method.getParameterTypes(), method.getReturnType(),</span><br><span class="line">					method.getExceptionTypes(), method.getModifiers());</span><br><span class="line">			parent.setDelegate(methodaccessorimpl);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> invoke0(method, obj, aobj);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setParent</span><span class="params">(DelegatingMethodAccessorImpl delegatingmethodaccessorimpl)</span> </span>&#123;</span><br><span class="line">		parent = delegatingmethodaccessorimpl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> Object <span class="title">invoke0</span><span class="params">(Method method1, Object obj, Object aobj[])</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> Method method;</span><br><span class="line">	<span class="keyword">private</span> DelegatingMethodAccessorImpl parent;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> numInvocations;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;首先可以看到在 invoke() 方法中首先会对我们前面在 ReflectionFactory 类中的 inflationThreshold() 方法，该方法会返回 inflationThreshold 的数值 15，假如调用 invoke() 方法没有超过 15 次，那么就继续调用 invoke0() 方法，此方法是一个 native 方法，它是在 JVM 由 C/C++ 语言实现的；而一旦超过 15 次调用后，则会通过 MethodAccessorGenerator 类中的 generateMethod() 方法生成一个 MethodAccessorImpl 类对象，并且设置为被代理对象，这样当我们继续调用 invoke() 方法时就会调用当前新建对象的 invoke() 方法。</p>
+<p>&emsp;&emsp;到此，我们知道实际上 MethodAccessor 对象其实就是生成反射类的入口(MethodAccessorImpl 类实现了 MethodAccessor 接口)，而它的实现有 Native 版本 和 Java 版本，Native 版本一开始启动快，但随着运行时间变长，其速度也开始变慢；而 Java 版本则与之是相反的，一开始加载慢，但长久来说其性能比 Native 版本要好。</p>
+<p>&emsp;&emsp;综合两个版本的特性，当第一次加载时是使用 NativeMethodAccessorImpl 类实现的 Native 版本，而随着反射调用次数超过 15 次后，就改换为 Java 版本去实现反射，以此来达到最大性能。</p>
+<p><br><br><br></p>
+<hr>
+<p>参考文献：<br>《Thinking in Java》<br><a href="https://rednaxelafx.iteye.com/blog/548536" target="_blank" rel="noopener">关于反射调用方法的一个log</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/04/03/Reflection/">反射，程序员的快乐</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">十三</a></p>
+        <p><span>发布时间:</span>2019-04-03, 20:55:15</p>
+        <p><span>最后更新:</span>2019-04-05, 11:40:38</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/03/Reflection/" title="反射，程序员的快乐">http://Binshao.site/2019/04/03/Reflection/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Binshao.site/2019/04/03/Reflection/　　作者: 十三" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/04/01/Annotation/">
+                    关于 Java 注解及其原理简析
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#反射有何用"><span class="toc-number">1.</span> <span class="toc-text">反射有何用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射调用的流程"><span class="toc-number">2.</span> <span class="toc-text">反射调用的流程</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+
+    
+        
+        <div class="addthis_inline_share_toolbox"></div>
+    
+</div>
+
+
+
+
+
+
+
+    
+      <section class="livere" id="comments">
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyMS8xNjI0OA==">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/04/01/Annotation/" title="下一篇: 关于 Java 注解及其原理简析">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/Reflection/">反射，程序员的快乐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/Annotation/">关于 Java 注解及其原理简析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/InnerClass/">搞懂 Java 内部类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/01/IPC/">Android 跨进程通信机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/MiniProgram/">我的个人小程序上线了</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/17/RxJava1/">RxJava 创建操作符详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/14/RxJava/">RxJava2 入门笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/NumAddSubView/">简单实现个购物车商品数量控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/30/Aug/">扎心的八月</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/17/runOnUiThread/">浅谈 runOnUiThread</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/16/IntentService/">IntentService 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/13/HandlerThread/">HandlerThread 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/12/Handler/">Handler 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/Command/">设计模式之命令模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/10/AsyncTask/">AsyncTask 的深入理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/09/State/">从富豪财产身家中学习状态模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/08/ThreadPool/">Android 中的线程池</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/TemplateMethob/">从组装枪械中学习模板方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/Iterator/">设计模式之迭代模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/29/Responsibility/">从请假流程来学习责任链模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/Mediator/">程序猿相亲记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/25/Adapter/">设计模式之适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/24/Bridge/">秋名山车王 —AE86— 改装记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/Composite/">设计模式之组合模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/22/Facade/">从造人的角度来学习外观模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/Proxy/">校园爱情故事后记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/Flyweight/">设计模式之享元模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/19/Observer/">十三校园泡妞记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/design-decorator/">爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/Builder/">买不起房就自己“盖房”来聊聊建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/16/Prototype/">设计模式之原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/15/Singletop/">以古代帝皇来讲单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/Creator/">设计模式之工厂方法模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/07/simpleFactory/">哆啦A梦来讲简单工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/06/Strategy/">设计模式之策略模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/Memento/">设计模式之备忘录模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/25/blackApple/">黑苹果踩坑指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/17/readBook/">推荐一些读过的技术书籍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/09/Thinking-in-Java/">读 《Java编程思想》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/StudyWay/">学习路上的一些感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/Activity/">Activity 基础总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/10/AndroidTheme/">Android 主题和样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/09/dispatch/">浅谈事件分发机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/08/AttributeSet/">Android 自定义属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/07/SurfaceView/">SurfaceView</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/17/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2018-2019 十三
+            </div>
+            <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+            <script>
+                var now = new Date(); 
+                function createtime() { 
+                    var grt= new Date("02/14/2018 12:49:00");//此处修改你的建站时间或者网站上线时间 
+                    now.setTime(now.getTime()+250); 
+                    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+                    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+                    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+                    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+                    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+                    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+                    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+                    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+                } 
+            setInterval("createtime()",250);
+            </script>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    <script type="application/javascript">
+     var hide = false, leftWidth = 350;
+     function hideLeftCol() {
+       if (hide) {
+         $(".left-col").width(leftWidth);
+         $(".left-col .intrude-less").css('display', '');
+         $("#tocButton").css('display', '');
+         ($('#switch-btn').css('display') === 'block' && $('#switch-area').css('display') === 'block') || $('#toc').slideDown(320);
+         $(".hide-left-col").css("left", leftWidth).html('<i class="fa fa-angle-double-left"></i>');
+         $(".mid-col").css("left", leftWidth)
+         $("#post-nav-button").css("left", leftWidth)
+         $("#post-nav-button > a:nth-child(2)").css("display", "block")
+         hide = false
+       } else {
+         $(".left-col").width(0);
+         $(".left-col .intrude-less").css('display', 'none');
+         $("#toc").css('display', 'none');
+         $("#tocButton").css('display', 'none');
+         $(".hide-left-col").css("left", 0).html('<i class="fa fa-angle-double-right"></i>');
+         $(".mid-col").css("left", 0)
+         $("#post-nav-button").css("left", 0)
+         $("#post-nav-button > a:nth-child(2)").css("display", "none")
+         if ($(".post-list").is(":visible")) {
+           $("#post-nav-button .fa-bars,#post-nav-button .fa-times").toggle();
+           $(".post-list").toggle();
+         }
+         hide = true
+       }
+     }
+     $(".hide-left-col").click(function() {
+       hideLeftCol()
+     });
+   </script>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
