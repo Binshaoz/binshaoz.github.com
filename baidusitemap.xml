@@ -4,128 +4,8 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
-    <lastmod>2019-04-26T12:43:58.549Z</lastmod>
-    <data>
-        <display>
-        <title>Handler 的深入理解</title>
-        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
-        
-        <tag>Handler</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/03/13/Activity/</loc>
-    <lastmod>2019-04-26T04:06:51.938Z</lastmod>
-    <data>
-        <display>
-        <title>Activity 基础总结</title>
-        <pubTime>2018-03-13T01:39:18.000Z</pubTime>
-        
-        <tag>Activity</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2019/04/03/Reflection/</loc>
-    <lastmod>2019-04-05T03:40:38.007Z</lastmod>
-    <data>
-        <display>
-        <title>反射，程序员的快乐</title>
-        <pubTime>2019-04-03T12:55:15.000Z</pubTime>
-        
-        <tag>反射</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://Binshao.site/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2019/04/01/Annotation/</loc>
-    <lastmod>2019-04-01T13:54:29.740Z</lastmod>
-    <data>
-        <display>
-        <title>关于 Java 注解及其原理简析</title>
-        <pubTime>2019-04-01T01:05:25.000Z</pubTime>
-        
-        <tag>注解</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://Binshao.site/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2019/03/28/InnerClass/</loc>
-    <lastmod>2019-03-29T02:16:32.520Z</lastmod>
-    <data>
-        <display>
-        <title>搞懂 Java 内部类</title>
-        <pubTime>2019-03-28T05:01:18.000Z</pubTime>
-        
-        <tag>内部类 Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://Binshao.site/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2019/02/01/IPC/</loc>
-    <lastmod>2019-02-02T08:49:48.605Z</lastmod>
-    <data>
-        <display>
-        <title>Android 跨进程通信机制</title>
-        <pubTime>2019-02-01T06:18:45.000Z</pubTime>
-        
-        <tag>IPC</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://Binshao.site/2018/08/08/ThreadPool/</loc>
-    <lastmod>2019-01-24T09:21:14.039Z</lastmod>
+    <lastmod>2019-04-26T13:06:30.368Z</lastmod>
     <data>
         <display>
         <title>Android 中的线程池</title>
@@ -144,148 +24,8 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/06/09/Thinking-in-Java/</loc>
-    <lastmod>2019-01-24T09:20:46.592Z</lastmod>
-    <data>
-        <display>
-        <title>读 《Java编程思想》</title>
-        <pubTime>2018-06-09T04:33:01.000Z</pubTime>
-        
-        <tag>Java编程思想</tag>
-         
-         
-           
-             
-              <breadCrumb title="书籍" url="http://Binshao.site/categories/%E4%B9%A6%E7%B1%8D/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/07/TemplateMethob/</loc>
-    <lastmod>2019-01-24T09:20:00.759Z</lastmod>
-    <data>
-        <display>
-        <title>从组装枪械中学习模板方法模式</title>
-        <pubTime>2018-08-07T12:25:41.000Z</pubTime>
-        
-        <tag>模板方法模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/03/07/SurfaceView/</loc>
-    <lastmod>2019-01-24T09:19:36.577Z</lastmod>
-    <data>
-        <display>
-        <title>SurfaceView</title>
-        <pubTime>2018-03-07T10:47:39.000Z</pubTime>
-        
-        <tag>SurfaceView</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/04/27/StudyWay/</loc>
-    <lastmod>2019-01-24T09:18:53.045Z</lastmod>
-    <data>
-        <display>
-        <title>学习路上的一些感悟</title>
-        <pubTime>2018-04-27T02:11:44.000Z</pubTime>
-        
-        <tag>学习路上</tag>
-         
-         
-           
-             
-              <breadCrumb title="时光任意门" url="http://Binshao.site/categories/%E6%97%B6%E5%85%89%E4%BB%BB%E6%84%8F%E9%97%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/07/06/Strategy/</loc>
-    <lastmod>2019-01-24T09:18:00.116Z</lastmod>
-    <data>
-        <display>
-        <title>设计模式之策略模式</title>
-        <pubTime>2018-07-06T06:09:56.000Z</pubTime>
-        
-        <tag>策略模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/09/State/</loc>
-    <lastmod>2019-01-24T09:17:42.714Z</lastmod>
-    <data>
-        <display>
-        <title>从富豪财产身家中学习状态模式</title>
-        <pubTime>2018-08-09T12:26:21.000Z</pubTime>
-        
-        <tag>状态模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/07/15/Singletop/</loc>
-    <lastmod>2019-01-24T09:16:04.409Z</lastmod>
-    <data>
-        <display>
-        <title>以古代帝皇来讲单例模式</title>
-        <pubTime>2018-07-15T06:13:01.000Z</pubTime>
-        
-        <tag>单例模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://Binshao.site/2018/07/07/simpleFactory/</loc>
-    <lastmod>2019-01-24T09:15:40.258Z</lastmod>
+    <lastmod>2019-04-26T13:06:23.641Z</lastmod>
     <data>
         <display>
         <title>哆啦A梦来讲简单工厂模式</title>
@@ -304,8 +44,148 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/07/15/Singletop/</loc>
+    <lastmod>2019-04-26T13:06:19.975Z</lastmod>
+    <data>
+        <display>
+        <title>以古代帝皇来讲单例模式</title>
+        <pubTime>2018-07-15T06:13:01.000Z</pubTime>
+        
+        <tag>单例模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/09/State/</loc>
+    <lastmod>2019-04-26T13:06:16.331Z</lastmod>
+    <data>
+        <display>
+        <title>从富豪财产身家中学习状态模式</title>
+        <pubTime>2018-08-09T12:26:21.000Z</pubTime>
+        
+        <tag>状态模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/03/07/SurfaceView/</loc>
+    <lastmod>2019-04-26T13:06:10.689Z</lastmod>
+    <data>
+        <display>
+        <title>SurfaceView</title>
+        <pubTime>2018-03-07T10:47:39.000Z</pubTime>
+        
+        <tag>SurfaceView</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/06/Strategy/</loc>
+    <lastmod>2019-04-26T13:06:06.818Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之策略模式</title>
+        <pubTime>2018-07-06T06:09:56.000Z</pubTime>
+        
+        <tag>策略模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/04/27/StudyWay/</loc>
+    <lastmod>2019-04-26T13:05:53.786Z</lastmod>
+    <data>
+        <display>
+        <title>学习路上的一些感悟</title>
+        <pubTime>2018-04-27T02:11:44.000Z</pubTime>
+        
+        <tag>学习路上</tag>
+         
+         
+           
+             
+              <breadCrumb title="时光任意门" url="http://Binshao.site/categories/%E6%97%B6%E5%85%89%E4%BB%BB%E6%84%8F%E9%97%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/07/TemplateMethob/</loc>
+    <lastmod>2019-04-26T13:05:49.631Z</lastmod>
+    <data>
+        <display>
+        <title>从组装枪械中学习模板方法模式</title>
+        <pubTime>2018-08-07T12:25:41.000Z</pubTime>
+        
+        <tag>模板方法模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/06/09/Thinking-in-Java/</loc>
+    <lastmod>2019-04-26T13:05:44.630Z</lastmod>
+    <data>
+        <display>
+        <title>读 《Java编程思想》</title>
+        <pubTime>2018-06-09T04:33:01.000Z</pubTime>
+        
+        <tag>Java编程思想</tag>
+         
+         
+           
+             
+              <breadCrumb title="书籍" url="http://Binshao.site/categories/%E4%B9%A6%E7%B1%8D/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/10/17/RxJava1/</loc>
-    <lastmod>2019-01-24T09:15:17.841Z</lastmod>
+    <lastmod>2019-04-26T13:05:26.720Z</lastmod>
     <data>
         <display>
         <title>RxJava 创建操作符详解</title>
@@ -324,19 +204,39 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/10/14/RxJava/</loc>
-    <lastmod>2019-01-24T09:11:28.971Z</lastmod>
+    <loc>http://Binshao.site/2018/06/17/readBook/</loc>
+    <lastmod>2019-04-26T13:05:22.332Z</lastmod>
     <data>
         <display>
-        <title>RxJava2 入门笔记</title>
-        <pubTime>2018-10-14T11:06:09.000Z</pubTime>
+        <title>推荐一些读过的技术书籍</title>
+        <pubTime>2018-06-17T04:44:48.000Z</pubTime>
         
-        <tag>RxJava2 入门</tag>
+        <tag>Android 书籍</tag>
          
          
            
              
-              <breadCrumb title="RxJava2" url="http://Binshao.site/categories/RxJava2/"/>
+              <breadCrumb title="书籍" url="http://Binshao.site/categories/%E4%B9%A6%E7%B1%8D/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2019/04/03/Reflection/</loc>
+    <lastmod>2019-04-26T13:05:18.043Z</lastmod>
+    <data>
+        <display>
+        <title>反射，程序员的快乐</title>
+        <pubTime>2019-04-03T12:55:15.000Z</pubTime>
+        
+        <tag>反射</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://Binshao.site/categories/Java/"/>
           
         </display>
     </data>
@@ -345,7 +245,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/08/17/runOnUiThread/</loc>
-    <lastmod>2019-01-24T09:09:54.462Z</lastmod>
+    <lastmod>2019-04-26T13:05:14.102Z</lastmod>
     <data>
         <display>
         <title>浅谈 runOnUiThread</title>
@@ -365,7 +265,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/07/29/Responsibility/</loc>
-    <lastmod>2019-01-24T09:07:55.146Z</lastmod>
+    <lastmod>2019-04-26T13:05:10.307Z</lastmod>
     <data>
         <display>
         <title>从请假流程来学习责任链模式</title>
@@ -384,19 +284,19 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/06/17/readBook/</loc>
-    <lastmod>2019-01-24T09:07:17.621Z</lastmod>
+    <loc>http://Binshao.site/2018/10/14/RxJava/</loc>
+    <lastmod>2019-04-26T13:05:04.767Z</lastmod>
     <data>
         <display>
-        <title>推荐一些读过的技术书籍</title>
-        <pubTime>2018-06-17T04:44:48.000Z</pubTime>
+        <title>RxJava2 入门笔记</title>
+        <pubTime>2018-10-14T11:06:09.000Z</pubTime>
         
-        <tag>Android 书籍</tag>
+        <tag>RxJava2 入门</tag>
          
          
            
              
-              <breadCrumb title="书籍" url="http://Binshao.site/categories/%E4%B9%A6%E7%B1%8D/"/>
+              <breadCrumb title="RxJava2" url="http://Binshao.site/categories/RxJava2/"/>
           
         </display>
     </data>
@@ -405,7 +305,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/07/21/Proxy/</loc>
-    <lastmod>2019-01-24T09:07:04.203Z</lastmod>
+    <lastmod>2019-04-26T13:04:49.805Z</lastmod>
     <data>
         <display>
         <title>校园爱情故事后记</title>
@@ -424,14 +324,14 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/07/16/Prototype/</loc>
-    <lastmod>2019-01-24T09:05:30.640Z</lastmod>
+    <loc>http://Binshao.site/2018/07/04/Memento/</loc>
+    <lastmod>2019-04-26T13:04:45.675Z</lastmod>
     <data>
         <display>
-        <title>设计模式之原型模式</title>
-        <pubTime>2018-07-16T01:13:10.000Z</pubTime>
+        <title>设计模式之备忘录模式</title>
+        <pubTime>2018-07-04T06:09:22.000Z</pubTime>
         
-        <tag>原型模式</tag>
+        <tag>备忘录模式</tag>
          
          
            
@@ -445,7 +345,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/07/19/Observer/</loc>
-    <lastmod>2019-01-24T09:04:47.822Z</lastmod>
+    <lastmod>2019-04-26T13:04:41.773Z</lastmod>
     <data>
         <display>
         <title>十三校园泡妞记</title>
@@ -465,7 +365,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/09/27/NumAddSubView/</loc>
-    <lastmod>2019-01-24T09:02:11.343Z</lastmod>
+    <lastmod>2019-04-26T13:04:37.955Z</lastmod>
     <data>
         <display>
         <title>简单实现个购物车商品数量控件</title>
@@ -485,7 +385,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/10/29/MiniProgram/</loc>
-    <lastmod>2019-01-24T09:00:45.835Z</lastmod>
+    <lastmod>2019-04-26T13:04:33.928Z</lastmod>
     <data>
         <display>
         <title>我的个人小程序上线了</title>
@@ -504,14 +404,14 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/07/04/Memento/</loc>
-    <lastmod>2019-01-24T08:53:51.890Z</lastmod>
+    <loc>http://Binshao.site/2018/07/16/Prototype/</loc>
+    <lastmod>2019-04-26T13:04:30.414Z</lastmod>
     <data>
         <display>
-        <title>设计模式之备忘录模式</title>
-        <pubTime>2018-07-04T06:09:22.000Z</pubTime>
+        <title>设计模式之原型模式</title>
+        <pubTime>2018-07-16T01:13:10.000Z</pubTime>
         
-        <tag>备忘录模式</tag>
+        <tag>原型模式</tag>
          
          
            
@@ -525,7 +425,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/07/27/Mediator/</loc>
-    <lastmod>2019-01-24T08:53:22.272Z</lastmod>
+    <lastmod>2019-04-26T13:04:17.189Z</lastmod>
     <data>
         <display>
         <title>程序猿相亲记</title>
@@ -544,48 +444,8 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/07/31/Iterator/</loc>
-    <lastmod>2019-01-24T08:52:40.751Z</lastmod>
-    <data>
-        <display>
-        <title>设计模式之迭代模式</title>
-        <pubTime>2018-07-31T12:25:23.000Z</pubTime>
-        
-        <tag>迭代模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/08/16/IntentService/</loc>
-    <lastmod>2019-01-24T08:50:49.513Z</lastmod>
-    <data>
-        <display>
-        <title>IntentService 的深入理解</title>
-        <pubTime>2018-08-16T12:40:45.000Z</pubTime>
-        
-        <tag>IntentService</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://Binshao.site/2018/02/17/hello-world/</loc>
-    <lastmod>2019-01-24T08:49:47.967Z</lastmod>
+    <lastmod>2019-04-26T13:04:13.492Z</lastmod>
     <data>
         <display>
         <title>Hello World</title>
@@ -604,14 +464,34 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/08/13/HandlerThread/</loc>
-    <lastmod>2019-01-24T08:48:40.340Z</lastmod>
+    <loc>http://Binshao.site/2019/03/28/InnerClass/</loc>
+    <lastmod>2019-04-26T13:04:09.404Z</lastmod>
     <data>
         <display>
-        <title>HandlerThread 的深入理解</title>
-        <pubTime>2018-08-13T12:40:30.000Z</pubTime>
+        <title>搞懂 Java 内部类</title>
+        <pubTime>2019-03-28T05:01:18.000Z</pubTime>
         
-        <tag>HandlerThread</tag>
+        <tag>内部类 Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://Binshao.site/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/16/IntentService/</loc>
+    <lastmod>2019-04-26T13:04:05.576Z</lastmod>
+    <data>
+        <display>
+        <title>IntentService 的深入理解</title>
+        <pubTime>2018-08-16T12:40:45.000Z</pubTime>
+        
+        <tag>IntentService</tag>
          
          
            
@@ -624,8 +504,48 @@
 
     
   <url>
+    <loc>http://Binshao.site/2019/02/01/IPC/</loc>
+    <lastmod>2019-04-26T13:04:01.305Z</lastmod>
+    <data>
+        <display>
+        <title>Android 跨进程通信机制</title>
+        <pubTime>2019-02-01T06:18:45.000Z</pubTime>
+        
+        <tag>IPC</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/31/Iterator/</loc>
+    <lastmod>2019-04-26T13:03:55.445Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之迭代模式</title>
+        <pubTime>2018-07-31T12:25:23.000Z</pubTime>
+        
+        <tag>迭代模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/07/20/Flyweight/</loc>
-    <lastmod>2019-01-24T08:43:18.668Z</lastmod>
+    <lastmod>2019-04-26T13:03:38.450Z</lastmod>
     <data>
         <display>
         <title>设计模式之享元模式</title>
@@ -644,28 +564,8 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/07/22/Facade/</loc>
-    <lastmod>2019-01-24T08:41:01.866Z</lastmod>
-    <data>
-        <display>
-        <title>从造人的角度来学习外观模式</title>
-        <pubTime>2018-07-22T06:42:57.000Z</pubTime>
-        
-        <tag>外观模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://Binshao.site/2018/03/09/dispatch/</loc>
-    <lastmod>2019-01-24T08:38:38.280Z</lastmod>
+    <lastmod>2019-04-26T13:03:33.684Z</lastmod>
     <data>
         <display>
         <title>浅谈事件分发机制</title>
@@ -684,8 +584,28 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/07/22/Facade/</loc>
+    <lastmod>2019-04-26T13:03:29.465Z</lastmod>
+    <data>
+        <display>
+        <title>从造人的角度来学习外观模式</title>
+        <pubTime>2018-07-22T06:42:57.000Z</pubTime>
+        
+        <tag>外观模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/07/18/design-decorator/</loc>
-    <lastmod>2019-01-24T08:36:16.678Z</lastmod>
+    <lastmod>2019-04-26T13:03:24.909Z</lastmod>
     <data>
         <display>
         <title>爆发雄性荷尔蒙——从玩改装赛车中学习装饰模式</title>
@@ -705,7 +625,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/07/09/Creator/</loc>
-    <lastmod>2019-01-24T08:34:30.785Z</lastmod>
+    <lastmod>2019-04-26T13:03:19.444Z</lastmod>
     <data>
         <display>
         <title>设计模式之工厂方法模式</title>
@@ -724,8 +644,28 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/08/13/HandlerThread/</loc>
+    <lastmod>2019-04-26T13:03:13.527Z</lastmod>
+    <data>
+        <display>
+        <title>HandlerThread 的深入理解</title>
+        <pubTime>2018-08-13T12:40:30.000Z</pubTime>
+        
+        <tag>HandlerThread</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2018/07/23/Composite/</loc>
-    <lastmod>2019-01-24T08:33:59.153Z</lastmod>
+    <lastmod>2019-04-26T13:02:57.085Z</lastmod>
     <data>
         <display>
         <title>设计模式之组合模式</title>
@@ -744,88 +684,8 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/08/11/Command/</loc>
-    <lastmod>2019-01-24T08:31:58.491Z</lastmod>
-    <data>
-        <display>
-        <title>设计模式之命令模式</title>
-        <pubTime>2018-08-11T12:26:58.000Z</pubTime>
-        
-        <tag>命令模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/07/17/Builder/</loc>
-    <lastmod>2019-01-24T08:31:35.082Z</lastmod>
-    <data>
-        <display>
-        <title>买不起房就自己“盖房”来聊聊建造者模式</title>
-        <pubTime>2018-07-17T01:13:23.000Z</pubTime>
-        
-        <tag>建造者模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/07/24/Bridge/</loc>
-    <lastmod>2019-01-24T08:30:30.458Z</lastmod>
-    <data>
-        <display>
-        <title>秋名山车王 —AE86— 改装记</title>
-        <pubTime>2018-07-24T06:44:04.000Z</pubTime>
-        
-        <tag>桥接模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/06/25/blackApple/</loc>
-    <lastmod>2019-01-24T08:28:09.584Z</lastmod>
-    <data>
-        <display>
-        <title>黑苹果踩坑指南</title>
-        <pubTime>2018-06-25T06:07:49.000Z</pubTime>
-        
-        <tag>黑苹果</tag>
-         
-         
-           
-             
-              <breadCrumb title="Mac" url="http://Binshao.site/categories/Mac/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://Binshao.site/2018/08/30/Aug/</loc>
-    <lastmod>2019-01-24T08:27:27.663Z</lastmod>
+    <lastmod>2019-04-26T13:02:53.176Z</lastmod>
     <data>
         <display>
         <title>扎心的八月</title>
@@ -846,19 +706,19 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/03/08/AttributeSet/</loc>
-    <lastmod>2019-01-24T08:26:32.645Z</lastmod>
+    <loc>http://Binshao.site/2018/06/25/blackApple/</loc>
+    <lastmod>2019-04-26T13:02:47.809Z</lastmod>
     <data>
         <display>
-        <title>Android 自定义属性</title>
-        <pubTime>2018-03-08T13:42:42.000Z</pubTime>
+        <title>黑苹果踩坑指南</title>
+        <pubTime>2018-06-25T06:07:49.000Z</pubTime>
         
-        <tag>Android 自定义属性</tag>
+        <tag>黑苹果</tag>
          
          
            
              
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+              <breadCrumb title="Mac" url="http://Binshao.site/categories/Mac/"/>
           
         </display>
     </data>
@@ -866,19 +726,79 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/08/10/AsyncTask/</loc>
-    <lastmod>2019-01-24T08:24:57.108Z</lastmod>
+    <loc>http://Binshao.site/2018/07/24/Bridge/</loc>
+    <lastmod>2019-04-26T13:02:42.121Z</lastmod>
     <data>
         <display>
-        <title>AsyncTask 的深入理解</title>
-        <pubTime>2018-08-10T12:26:33.000Z</pubTime>
+        <title>秋名山车王 —AE86— 改装记</title>
+        <pubTime>2018-07-24T06:44:04.000Z</pubTime>
         
-        <tag>AsyncTask</tag>
+        <tag>桥接模式</tag>
          
          
            
              
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/11/Command/</loc>
+    <lastmod>2019-04-26T13:02:37.255Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式之命令模式</title>
+        <pubTime>2018-08-11T12:26:58.000Z</pubTime>
+        
+        <tag>命令模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/07/17/Builder/</loc>
+    <lastmod>2019-04-26T13:02:29.759Z</lastmod>
+    <data>
+        <display>
+        <title>买不起房就自己“盖房”来聊聊建造者模式</title>
+        <pubTime>2018-07-17T01:13:23.000Z</pubTime>
+        
+        <tag>建造者模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2019/04/01/Annotation/</loc>
+    <lastmod>2019-04-26T13:02:10.650Z</lastmod>
+    <data>
+        <display>
+        <title>关于 Java 注解及其原理简析</title>
+        <pubTime>2019-04-01T01:05:25.000Z</pubTime>
+        
+        <tag>注解</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://Binshao.site/categories/Java/"/>
           
         </display>
     </data>
@@ -887,7 +807,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/03/10/AndroidTheme/</loc>
-    <lastmod>2019-01-24T08:24:19.743Z</lastmod>
+    <lastmod>2019-04-26T13:02:06.499Z</lastmod>
     <data>
         <display>
         <title>Android 主题和样式</title>
@@ -907,7 +827,7 @@
     
   <url>
     <loc>http://Binshao.site/2018/07/25/Adapter/</loc>
-    <lastmod>2019-01-24T08:21:48.850Z</lastmod>
+    <lastmod>2019-04-26T13:02:01.278Z</lastmod>
     <data>
         <display>
         <title>设计模式之适配器模式</title>
@@ -919,6 +839,86 @@
            
              
               <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/03/08/AttributeSet/</loc>
+    <lastmod>2019-04-26T13:01:48.145Z</lastmod>
+    <data>
+        <display>
+        <title>Android 自定义属性</title>
+        <pubTime>2018-03-08T13:42:42.000Z</pubTime>
+        
+        <tag>Android 自定义属性</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/03/13/Activity/</loc>
+    <lastmod>2019-04-26T13:01:41.569Z</lastmod>
+    <data>
+        <display>
+        <title>Activity 基础总结</title>
+        <pubTime>2018-03-13T01:39:18.000Z</pubTime>
+        
+        <tag>Activity</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/10/AsyncTask/</loc>
+    <lastmod>2019-04-26T13:01:35.885Z</lastmod>
+    <data>
+        <display>
+        <title>AsyncTask 的深入理解</title>
+        <pubTime>2018-08-10T12:26:33.000Z</pubTime>
+        
+        <tag>AsyncTask</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
+    <lastmod>2019-04-26T12:43:58.549Z</lastmod>
+    <data>
+        <display>
+        <title>Handler 的深入理解</title>
+        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
+        
+        <tag>Handler</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
           
         </display>
     </data>
