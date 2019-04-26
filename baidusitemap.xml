@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
+    <lastmod>2019-04-26T12:43:58.549Z</lastmod>
+    <data>
+        <display>
+        <title>Handler 的深入理解</title>
+        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
+        
+        <tag>Handler</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Binshao.site/2018/03/13/Activity/</loc>
+    <lastmod>2019-04-26T04:06:51.938Z</lastmod>
+    <data>
+        <display>
+        <title>Activity 基础总结</title>
+        <pubTime>2018-03-13T01:39:18.000Z</pubTime>
+        
+        <tag>Activity</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Binshao.site/2019/04/03/Reflection/</loc>
     <lastmod>2019-04-05T03:40:38.007Z</lastmod>
     <data>
@@ -584,26 +624,6 @@
 
     
   <url>
-    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
-    <lastmod>2019-01-24T08:47:32.411Z</lastmod>
-    <data>
-        <display>
-        <title>Handler 的深入理解</title>
-        <pubTime>2018-08-12T12:39:58.000Z</pubTime>
-        
-        <tag>Handler</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://Binshao.site/2018/07/20/Flyweight/</loc>
     <lastmod>2019-01-24T08:43:18.668Z</lastmod>
     <data>
@@ -899,26 +919,6 @@
            
              
               <breadCrumb title="设计模式" url="http://Binshao.site/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Binshao.site/2018/03/13/Activity/</loc>
-    <lastmod>2019-01-24T08:20:40.548Z</lastmod>
-    <data>
-        <display>
-        <title>Activity 基础总结</title>
-        <pubTime>2018-03-13T01:39:18.000Z</pubTime>
-        
-        <tag>Activity</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://Binshao.site/categories/Android/"/>
           
         </display>
     </data>

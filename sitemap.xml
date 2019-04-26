@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
+    
+    <lastmod>2019-04-26T12:43:58.549Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://Binshao.site/2018/03/13/Activity/</loc>
+    
+    <lastmod>2019-04-26T04:06:51.938Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://Binshao.site/2019/04/03/Reflection/</loc>
     
     <lastmod>2019-04-05T03:40:38.007Z</lastmod>
@@ -205,13 +219,6 @@
   </url>
   
   <url>
-    <loc>http://Binshao.site/2018/08/12/Handler/</loc>
-    
-    <lastmod>2019-01-24T08:47:32.411Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://Binshao.site/2018/07/20/Flyweight/</loc>
     
     <lastmod>2019-01-24T08:43:18.668Z</lastmod>
@@ -313,13 +320,6 @@
     <loc>http://Binshao.site/2018/07/25/Adapter/</loc>
     
     <lastmod>2019-01-24T08:21:48.850Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Binshao.site/2018/03/13/Activity/</loc>
-    
-    <lastmod>2019-01-24T08:20:40.548Z</lastmod>
     
   </url>
   
